@@ -1,5 +1,5 @@
 # MASW04_actividad_1
-A PHP backend that manages a local database
+A PHP backend that manages a local library database
 
 Se debera entregar:
 - Codigo fuente
@@ -8,7 +8,9 @@ Se debera entregar:
   - (10-15) paginas explicando el trabajo realizado (sin contar portada e indice)
   
 Para la base de datos se utilizara MySQL
+
 Se montara un servidor local con MAMP
+
 Se utilizara el patron MVC
 
 La entrega consistira en:
