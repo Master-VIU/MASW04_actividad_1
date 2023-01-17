@@ -117,6 +117,7 @@ CREATE TABLE filmaviu.EPISODIOS(
                                    TEMPORADA_ID VARCHAR(36) NOT NULL,
                                    NUMERO INT NOT NULL,
                                    TITULO VARCHAR(255) NOT NULL,
+                                   DURACION INT NOT NULL,
                                    CONSTRAINT PK_EPISODIO PRIMARY KEY(ID),
                                    CONSTRAINT FK_EPISODIO_TEMPORADA FOREIGN KEY(TEMPORADA_ID) REFERENCES filmaviu.TEMPORADAS(ID)
                                        ON UPDATE CASCADE
@@ -132,6 +133,7 @@ CREATE TABLE filmaviu.PELICULAS(
                                    CLASIFICACION MEDIUMINT NOT NULL,
                                    GENERO MEDIUMINT NOT NULL,
                                    PORTADA mediumint NOT NULL,
+                                   DURACION INT NOT NULL,
                                    CONSTRAINT PK_PELICULA PRIMARY KEY(ID),
                                    CONSTRAINT FK_PELICULA_PLATAFORMA FOREIGN KEY(PLATAFORMA) REFERENCES filmaviu.PLATAFORMAS(ID),
                                    CONSTRAINT FK_PELICULA_DIRECTOR FOREIGN KEY(DIRECTOR) REFERENCES filmaviu.DIRECTORES(ID),

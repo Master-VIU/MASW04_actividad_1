@@ -1,17 +1,16 @@
 <?php
 
-    class Director
+    class Episodio
     {
-
         private $id;
         private $temporadaId;
         private $numero;
         private $titulo;
         private $duracion;
 
-
         function __constructor($idEpisodio, $temporadaIdEpisodio, $numeroEpisodio, $tituloEpisodio, $duracionEpisodio)
         {
+
             $this->id = $idEpisodio;
             $this->temporadaId = $temporadaIdEpisodio;
             $this->numero = $numeroEpisodio;
@@ -38,65 +37,67 @@
         /**
          * @return mixed
          */
-        public function getNombre()
+        public function getTemporadaId()
         {
-            return $this->nombre;
+            return $this->temporadaId;
         }
 
         /**
-         * @param mixed $nombre
+         * @param mixed $temporadaId
          */
-        public function setNombre($nombre)
+        public function setTemporadaId($temporadaId)
         {
-            $this->nombre = $nombre;
-        }
-
-           /**
-         * @return mixed 
-         */
-        public function getApellidos()
-        {
-            return $this->apellidos;
+            $this->temporadaId = $temporadaId;
         }
 
         /**
-         * @param mixed $apellidos
-         */
-        public function setApellidos($apellidos)
-        {
-            $this->apellidos = $apellidos;
-        }
-
-           /**
          * @return mixed
          */
-        public function getFechaNacimiento()
+        public function getNumero()
         {
-            return $this->fechaNacimiento;
+            return $this->numero;
         }
 
         /**
-         * @param mixed $fechaNacimiento
+         * @param mixed $numero
          */
-        public function setFechaNacimiento($fechaNacimiento)
+        public function setNumero($numero)
         {
-            $this->fechaNacimiento = $fechaNacimiento;
+            $this->numero = $numero;
         }
 
-           /**
+        /**
          * @return mixed
          */
-        public function getNacionalidad()
+        public function getTitulo()
         {
-            return $this->nacionalidad;
+            return $this->titulo;
         }
 
         /**
-         * @param mixed $nacionalidad
+         * @param mixed $titulo
          */
-        public function setNacionalidad($nacionalidad)
+        public function setTitulo($titulo)
         {
-            $this->nacionalidad = $nacionalidad;
+            $this->titulo = $titulo;
         }
+
+        /**
+         * @return mixed
+         */
+        public function getDuracion()
+        {
+            return $this->duracion;
+        }
+
+        /**
+         * @param mixed $duracion
+         */
+        public function setDuracion($duracion)
+        {
+            $this->duracion = $duracion;
+        }
+
+
     }
 ?>

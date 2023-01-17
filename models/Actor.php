@@ -1,6 +1,7 @@
 <?php
 
-    class Actor{
+    class Actor
+    {
 
         private $id;
         private $nombre;
@@ -10,7 +11,8 @@
 
 
         function __constructor($idDirector, $nombreDirector,
-             $apellidosDirector, $fechaNacimientoDirector, $nacionalidadDirector){
+             $apellidosDirector, $fechaNacimientoDirector, $nacionalidadDirector)
+        {
 
             $this->id = $idDirector;
             $this->nombre = $nombreDirector;

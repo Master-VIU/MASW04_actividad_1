@@ -1,28 +1,32 @@
 <?php
 
-    class Serie
+class Pelicula
     {
         private $id;
         private $titulo;
         private $plataforma;
         private $director;
+        private $puntuacion;
         private $clasificacion;
         private $genero;
+        private $portada;
+        private $duracion;
 
-
-        function __constructor($idSerie, $tituloSerie, $plataformaSerie,
-             $directorSerie, $clasificacionSerie, $generoSerie)
+        function __constructor($idPelicula, $tituloPelicula, $plataformaPelicula, $directorPelicula,
+                               $puntuacionPelicula, $clasificacionPelicula, $generoPelicula, $portadaPelicula,
+                               $duracionPelicula)
         {
+            $this->id = $idPelicula;
+            $this->titulo = $tituloPelicula;
+            $this->plataforma = $plataformaPelicula;
+            $this->director = $directorPelicula;
+            $this->puntuacion = $puntuacionPelicula;
+            $this->clasificacion = $clasificacionPelicula;
+            $this->genero = $generoPelicula;
+            $this->portada = $portadaPelicula;
+            $this->duracion = $duracionPelicula;
+        }
 
-                $this->id = $idSerie;
-                $this->titulo = $tituloSerie;
-                $this->plataforma = $plataformaSerie;
-                $this->director = $directorSerie;
-                $this->clasificacion = $clasificacionSerie;
-                $this->genero = $generoSerie;
-             }
-
-        
         /**
          * @return mixed
          */
@@ -55,7 +59,7 @@
             $this->titulo = $titulo;
         }
 
-           /**
+        /**
          * @return mixed
          */
         public function getPlataforma()
@@ -71,7 +75,7 @@
             $this->plataforma = $plataforma;
         }
 
-         /**
+        /**
          * @return mixed
          */
         public function getDirector()
@@ -90,6 +94,22 @@
         /**
          * @return mixed
          */
+        public function getPuntuacion()
+        {
+            return $this->puntuacion;
+        }
+
+        /**
+         * @param mixed $puntuacion
+         */
+        public function setPuntuacion($puntuacion)
+        {
+            $this->puntuacion = $puntuacion;
+        }
+
+        /**
+         * @return mixed
+         */
         public function getClasificacion()
         {
             return $this->clasificacion;
@@ -103,7 +123,7 @@
             $this->clasificacion = $clasificacion;
         }
 
-           /**
+        /**
          * @return mixed
          */
         public function getGenero()
@@ -119,6 +139,36 @@
             $this->genero = $genero;
         }
 
+        /**
+         * @return mixed
+         */
+        public function getPortada()
+        {
+            return $this->portada;
+        }
+
+        /**
+         * @param mixed $portada
+         */
+        public function setPortada($portada)
+        {
+            $this->portada = $portada;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getDuracion()
+        {
+            return $this->duracion;
+        }
+
+        /**
+         * @param mixed $duracion
+         */
+        public function setDuracion($duracion)
+        {
+            $this->duracion = $duracion;
+        }
     }
-    
 ?>
