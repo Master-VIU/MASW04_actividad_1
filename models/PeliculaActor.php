@@ -1,31 +1,31 @@
 <?php
 
-
-    class SerieActor
+class PeliculaActor
     {
-        private $idSerie;
+        private $idPelicula;
         private $idActor;
 
-        function __constructor($idSerieActor, $idActorSerie)
+        function __constructor($idPelicula, $idActor)
         {
-            $this->idSerie = $idSerieActor;
-            $this->idActor = $idActorSerie;
-        }
 
-              /**
-         * @return mixed
-         */
-        public function getIdSerie()
-        {
-            return $this->idSerie;
+            $this->idPelicula = $idPelicula;
+            $this->idActor = $idActor;
         }
 
         /**
-         * @param mixed $idSerie
+         * @return mixed
          */
-        public function setIdSerie($idSerie)
+        public function getIdPelicula()
         {
-            $this->idSerie = $idSerie;
+            return $this->idPelicula;
+        }
+
+        /**
+         * @param mixed $idPelicula
+         */
+        public function setIdPelicula($idPelicula)
+        {
+            $this->idPelicula = $idPelicula;
         }
 
         /**
@@ -43,5 +43,6 @@
         {
             $this->idActor = $idActor;
         }
-}
+
+    }
 ?>
