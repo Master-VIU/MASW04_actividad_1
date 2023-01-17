@@ -1,11 +1,13 @@
 <?php
 
 
-    class SerieIdioma{
+    class SerieIdioma
+    {
         private $idSerie;
         private $idIdioma;
 
-        function __constructor($idSerieIdioma, $idIdiomaSerie){
+        function __constructor($idSerieIdioma, $idIdiomaSerie)
+        {
             $this->idSerie = $idSerieIdioma;
             $this->idIdioma = $idIdiomaSerie;
         }
