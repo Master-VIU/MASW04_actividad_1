@@ -1,13 +1,15 @@
 <?php
 
 
-    class Clasificacion{
+    class Clasificacion
+    {
 
         private $id;
         private $tipo;
 
 
-    public function __constructor($idClasificacion, $tipoClasificacion){
+    public function __constructor($idClasificacion, $tipoClasificacion)
+    {
         $this->id = $idClasificacion;
         $this->tipo = $tipoClasificacion;
     }

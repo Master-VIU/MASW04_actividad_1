@@ -1,13 +1,15 @@
 <?php
 
 
-    class Idioma{
+    class Idioma
+    {
 
         private $id;
         private $nombre;
         private $isoCode;
 
-    private function __constructor($idIdioma, $nombreIdioma, $isoCodeIdioma){
+    private function __constructor($idIdioma, $nombreIdioma, $isoCodeIdioma)
+    {
         $this->id = $idIdioma;
         $this->nombre = $nombreIdioma;
         $this->isoCode = $isoCodeIdioma; 

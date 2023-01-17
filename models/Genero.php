@@ -1,11 +1,13 @@
 <?php
 
-    class Genero{
+    class Genero
+    {
 
         private $id;
         private $nombre;
 
-        public function __constructor($idGenero, $nombreGenero){
+        public function __constructor($idGenero, $nombreGenero)
+        {
             $this->id = $idGenero;
             $this->nombre = $nombreGenero;
         }

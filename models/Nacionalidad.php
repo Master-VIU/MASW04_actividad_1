@@ -1,13 +1,15 @@
 <?php
 
 
-    class Nacionalidad{
+    class Nacionalidad
+    {
 
         private $id;
         private $pais;
 
 
-        function __constructor($idNacionalidad, $paisNacionalidad){
+        function __constructor($idNacionalidad, $paisNacionalidad)
+        {
             $this->id = $idNacionalidad;
             $this->pais = $paisNacionalidad;
         }
