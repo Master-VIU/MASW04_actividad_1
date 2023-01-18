@@ -6,7 +6,7 @@ class Portada
         private $tamanio;
         private $imagen;
 
-        function __constructor($idPortada, $tamanioPortada, $imagenPortada)
+        function __construct($idPortada, $tamanioPortada, $imagenPortada)
         {
 
             $this->id = $idPortada;

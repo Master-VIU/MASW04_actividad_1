@@ -6,7 +6,7 @@
         private $idSerie;
         private $idIdioma;
 
-        function __constructor($idSerieIdioma, $idIdiomaSerie)
+        function __construct($idSerieIdioma, $idIdiomaSerie)
         {
             $this->idSerie = $idSerieIdioma;
             $this->idIdioma = $idIdiomaSerie;
