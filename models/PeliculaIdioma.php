@@ -6,7 +6,7 @@ class PeliculaIdioma
         private $idIdioma;
         private $tipo;
 
-        function __constructor($idPelicula, $idIdioma, $tipo)
+        function __construct($idPelicula, $idIdioma, $tipo)
         {
             $this->idPelicula = $idPelicula;
             $this->idIdioma = $idIdioma;

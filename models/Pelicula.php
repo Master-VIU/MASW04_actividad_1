@@ -12,7 +12,7 @@ class Pelicula
         private $portada;
         private $duracion;
 
-        function __constructor($idPelicula, $tituloPelicula, $plataformaPelicula, $directorPelicula,
+        function __construct($idPelicula, $tituloPelicula, $plataformaPelicula, $directorPelicula,
                                $puntuacionPelicula, $clasificacionPelicula, $generoPelicula, $portadaPelicula,
                                $duracionPelicula)
         {

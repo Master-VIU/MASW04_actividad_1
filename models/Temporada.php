@@ -7,7 +7,7 @@ class Temporada
         private $id;
         private $fechaLanzamiento;
 
-        function __constructor($numeroTemporada, $serieIdTemporada, $idTemporada, $fechaLanzamientoTemporada)
+        function __construct($numeroTemporada, $serieIdTemporada, $idTemporada, $fechaLanzamientoTemporada)
         {
             $this->numero = $numeroTemporada;
             $this->serieId = $serieIdTemporada;
