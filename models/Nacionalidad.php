@@ -8,7 +8,7 @@
         private $pais;
 
 
-        function __constructor($idNacionalidad, $paisNacionalidad)
+        function __construct($idNacionalidad, $paisNacionalidad)
         {
             $this->id = $idNacionalidad;
             $this->pais = $paisNacionalidad;

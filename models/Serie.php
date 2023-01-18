@@ -10,7 +10,7 @@
         private $genero;
 
 
-        function __constructor($idSerie, $tituloSerie, $plataformaSerie,
+        function __construct($idSerie, $tituloSerie, $plataformaSerie,
              $directorSerie, $clasificacionSerie, $generoSerie)
         {
 
