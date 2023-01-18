@@ -8,7 +8,7 @@
         private $titulo;
         private $duracion;
 
-        function __constructor($idEpisodio, $temporadaIdEpisodio, $numeroEpisodio, $tituloEpisodio, $duracionEpisodio)
+        function __construct($idEpisodio, $temporadaIdEpisodio, $numeroEpisodio, $tituloEpisodio, $duracionEpisodio)
         {
 
             $this->id = $idEpisodio;

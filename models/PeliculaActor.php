@@ -5,7 +5,7 @@ class PeliculaActor
         private $idPelicula;
         private $idActor;
 
-        function __constructor($idPelicula, $idActor)
+        function __construct($idPelicula, $idActor)
         {
 
             $this->idPelicula = $idPelicula;

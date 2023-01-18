@@ -9,7 +9,7 @@
         private $nombre;
         private $isoCode;
 
-    private function __constructor($idIdioma, $nombreIdioma, $isoCodeIdioma)
+    private function __construct($idIdioma, $nombreIdioma, $isoCodeIdioma)
     {
         $this->id = $idIdioma;
         $this->nombre = $nombreIdioma;

@@ -8,7 +8,7 @@
         private $tipo;
 
 
-    public function __constructor($idClasificacion, $tipoClasificacion)
+    public function __construct($idClasificacion, $tipoClasificacion)
     {
         $this->id = $idClasificacion;
         $this->tipo = $tipoClasificacion;

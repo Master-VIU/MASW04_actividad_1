@@ -10,7 +10,7 @@
         private $nacionalidad;
 
 
-        function __constructor($idDirector, $nombreDirector,
+        function __construct($idDirector, $nombreDirector,
              $apellidosDirector, $fechaNacimientoDirector, $nacionalidadDirector)
         {
 
