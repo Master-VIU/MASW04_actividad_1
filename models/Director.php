@@ -4,19 +4,21 @@
     {
 
         private $id;
-        private $temporadaId;
-        private $numero;
-        private $titulo;
-        private $duracion;
+        private $nombre;
+        private $apellidos;
+        private $fechaNacimiento;
+        private $nacionalidad;
 
 
-        function __construct($idEpisodio, $temporadaIdEpisodio, $numeroEpisodio, $tituloEpisodio, $duracionEpisodio)
+        function __construct($idDirector, $nombreDirector,
+                             $apellidosDirector, $fechaNacimientoDirector, $nacionalidadDirector)
         {
-            $this->id = $idEpisodio;
-            $this->temporadaId = $temporadaIdEpisodio;
-            $this->numero = $numeroEpisodio;
-            $this->titulo = $tituloEpisodio;
-            $this->duracion = $duracionEpisodio;
+
+            $this->id = $idDirector;
+            $this->nombre = $nombreDirector;
+            $this->apellidos = $apellidosDirector;
+            $this->fechaNacimiento = $fechaNacimientoDirector;
+            $this->nacionalidad = $nacionalidadDirector;
         }
 
         /**
@@ -51,8 +53,8 @@
             $this->nombre = $nombre;
         }
 
-           /**
-         * @return mixed 
+        /**
+         * @return mixed
          */
         public function getApellidos()
         {
@@ -67,7 +69,7 @@
             $this->apellidos = $apellidos;
         }
 
-           /**
+        /**
          * @return mixed
          */
         public function getFechaNacimiento()
@@ -83,7 +85,7 @@
             $this->fechaNacimiento = $fechaNacimiento;
         }
 
-           /**
+        /**
          * @return mixed
          */
         public function getNacionalidad()
@@ -98,5 +100,7 @@
         {
             $this->nacionalidad = $nacionalidad;
         }
+
+
     }
 ?>

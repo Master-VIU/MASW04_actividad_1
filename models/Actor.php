@@ -1,5 +1,5 @@
 <?php
-
+    require_once ('../utils/Database.php');
     class Actor
     {
 
@@ -8,94 +8,110 @@
         private $apellidos;
         private $fechaNacimiento;
         private $nacionalidad;
+        private $database;
 
 
-        function __construct($idDirector, $nombreDirector,
-             $apellidosDirector, $fechaNacimientoDirector, $nacionalidadDirector)
+        function __construct($idActor, $nombreActor,
+             $apellidosActor, $fechaNacimientoActor, $nacionalidadActor)
         {
-
-            $this->id = $idDirector;
-            $this->nombre = $nombreDirector;
-            $this->apellidos = $apellidosDirector;
-            $this->fechaNacimiento = $fechaNacimientoDirector;
-            $this->nacionalidad = $nacionalidadDirector;
+            $this->id = $idActor;
+            $this->nombre = $nombreActor;
+            $this->apellidos = $apellidosActor;
+            $this->fechaNacimiento = $fechaNacimientoActor;
+            $this->nacionalidad = $nacionalidadActor;
+            $this->database = new Database();
         }
 
-        /**
-         * @return mixed
-         */
+        public function getAll()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filaviu.actores";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $plataforma = new Actor($item['id'], $item['nombre'], $item['apellidos'], $item['fecha_nacimiento'], $item['nacionalidad']);
+                array_push($listData, $plataforma);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        function get()
+        {
+
+        }
+
+        function create()
+        {
+
+        }
+
+        function update()
+        {
+
+        }
+
+        function remove()
+        {
+
+        }
+
+        // GETTERS Y SETTERS
+
+        // ID
         public function getId()
         {
             return $this->id;
         }
 
-        /**
-         * @param mixed $id
-         */
         public function setId($id)
         {
             $this->id = $id;
         }
 
-        /**
-         * @return mixed
-         */
+        // NOMBRE
         public function getNombre()
         {
             return $this->nombre;
         }
 
-        /**
-         * @param mixed $nombre
-         */
         public function setNombre($nombre)
         {
             $this->nombre = $nombre;
         }
 
-           /**
-         * @return mixed 
-         */
+        // APELLIDOS
         public function getApellidos()
         {
             return $this->apellidos;
         }
 
-        /**
-         * @param mixed $apellidos
-         */
         public function setApellidos($apellidos)
         {
             $this->apellidos = $apellidos;
         }
 
-           /**
-         * @return mixed
-         */
+        // FECHA NACIMIENTO
         public function getFechaNacimiento()
         {
             return $this->fechaNacimiento;
         }
 
-        /**
-         * @param mixed $fechaNacimiento
-         */
         public function setFechaNacimiento($fechaNacimiento)
         {
             $this->fechaNacimiento = $fechaNacimiento;
         }
 
-           /**
-         * @return mixed
-         */
+        // NACIONALIDAD
         public function getNacionalidad()
         {
             return $this->nacionalidad;
         }
 
-        /**
-         * @param mixed $nacionalidad
-         */
         public function setNacionalidad($nacionalidad)
         {
             $this->nacionalidad = $nacionalidad;
