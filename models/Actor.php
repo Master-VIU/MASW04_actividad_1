@@ -26,7 +26,7 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filaviu.actores";
+            $query = "SELECT * FROM filmaviu.actores";
             $result = $connection->query($query);
             $listData = [];
 
