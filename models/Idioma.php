@@ -75,7 +75,7 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = ("SELECT * FROM filaviu.idiomas");
+            $query = ("SELECT * FROM filmaviu.idiomas");
             $result = $connection->query($query);
             $listLanguages = [];
 
@@ -100,7 +100,7 @@
             $languageObjet = null;
             $connection = $this->database->getConnection();
 
-            $query = ("SELECT * FROM filaviu.idiomas WHERE id = " .$this->id;
+            $query = ("SELECT * FROM filmaviu.idiomas WHERE id = " .$this->id;
             $result = $connection->query($query);
 
             foreach ($query as $language)
@@ -123,7 +123,7 @@
             $connection = $this->database->getConnection();
             
             if($resultInsert = $mysqli->query(
-                "INSERT INTO filaviu.idiomas (nombre, isoCode) VALUES (' $this->nombre, $this->isoCode ')"))
+                "INSERT INTO filmaviu.idiomas (nombre, isoCode) VALUES (' $this->nombre, $this->isoCode ')"))
             {
                 $languageCreated = true;
             }
@@ -142,7 +142,7 @@
             $idiomaActualizado = false;
             $connection = $this->database->getConnection();
 
-            $query = "UPDATE filaviu.idioma set nombre = '$this->nombre ', isoCode = '$this->isoCode ' WHERE id = ".$this->id;
+            $query = "UPDATE filmaviu.idioma set nombre = '$this->nombre ', isoCode = '$this->isoCode ' WHERE id = ".$this->id;
 
             if($this->exists())
             {
@@ -163,7 +163,7 @@
         {
             $idiomaBorrado = false;
             $connection = $this->database->getConnection();
-            $query = "DELETE FROM filaviu.idioma WHERE id = ".$this->id;
+            $query = "DELETE FROM filmaviu.idioma WHERE id = ".$this->id;
 
             if($this->exists())
             {
