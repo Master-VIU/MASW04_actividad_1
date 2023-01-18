@@ -1,8 +1,9 @@
 <?php
+    require_once ('../models/Plataforma.php');
 
-namespace controllers;
-
-class PlataformaController
-{
-
-}
+    function listarPlataformas()
+    {
+        $model = new Plataforma();
+        $listaPlataformas = $model->getAll();
+        return $listaPlataformas;
+    }
