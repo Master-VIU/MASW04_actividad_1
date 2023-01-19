@@ -10,12 +10,29 @@
         private $isoCode;
         private $database;
 
-    private function __construct($idIdioma, $nombreIdioma, $isoCodeIdioma)
+    private function constructor($idIdioma, $nombreIdioma, $isoCodeIdioma)
     {
         $this->id = $idIdioma;
         $this->nombre = $nombreIdioma;
         $this->isoCode = $isoCodeIdioma; 
         $this->database = new Database();
+    }
+
+    public function constructorVacio()
+    {
+        $this->database = new Database();
+    }
+
+    public function __construct()
+    {
+        $params = func_get_args();
+        $num_params = func_num_args();
+
+        if ($num_params == 0) {
+            call_user_func_array(array($this,'constructorVacio'),$params);
+        } else {
+            call_user_func_array(array($this,'constructor'),$params);
+        }
     }
     
      /**
@@ -75,19 +92,19 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = ("SELECT * FROM filmaviu.idiomas");
+            $query = "SELECT * FROM filmaviu.idiomas";
             $result = $connection->query($query);
-            $listLanguages = [];
+            $listData = [];
 
-            foreach ($query as $language)
+            foreach ($result as $item)
             {
-                $languageObjet =  new Idioma($language['id'], $language['nombre'], $language['isoCode']);
-                array_push($listLanguages, $languageObjet);
+                $idioma =  new Idioma($item['ID'], $item['NOMBRE'], $item['ISOCODE']);
+                array_push($listData, $idioma);
             }
 
             $this->database->closeConnection();
 
-            return $listLanguages;
+            return $listData;
         }
 
         /**
@@ -97,20 +114,20 @@
 
         public function get()
         {
-            $languageObjet = null;
+           
             $connection = $this->database->getConnection();
 
-            $query = ("SELECT * FROM filmaviu.idiomas WHERE id = " .$this->id;
+            $query = "SELECT * FROM filmaviu.idiomas WHERE ID = " .$this->id;
             $result = $connection->query($query);
 
-            foreach ($query as $language)
+            $idioma = null;
+            foreach ($result as $item)
             {
-                $languageObjet = new Idioma($language['id'], $language['nombre'], $language['isoCode']);
-                break;
-
+                $idioma = new Idioma($item['id'], $item['nombre'], $item['isoCode']);
             }
+
             $this->database->closeConnection();
-            return $languageObjet;
+            return $idioma;
         }
 
         /**
@@ -119,17 +136,17 @@
 
         public function create()
         {
-            $languageCreated = false;
+            $idiomaCreado = false;
             $connection = $this->database->getConnection();
             
-            if($resultInsert = $mysqli->query(
+            if($resultInsert = $connection->query(
                 "INSERT INTO filmaviu.idiomas (nombre, isoCode) VALUES (' $this->nombre, $this->isoCode ')"))
             {
-                $languageCreated = true;
+                $idiomaCreado = true;
             }
 
             $this->database->closeConnection();
-            return $languageCreated;
+            return $idiomaCreado;
             
         }
 
@@ -141,8 +158,7 @@
         {
             $idiomaActualizado = false;
             $connection = $this->database->getConnection();
-
-            $query = "UPDATE filmaviu.idioma set nombre = '$this->nombre ', isoCode = '$this->isoCode ' WHERE id = ".$this->id;
+            $query = "UPDATE filmaviu.idiomas set nombre = '$this->nombre ', isoCode = '$this->isoCode ' WHERE id = ".$this->id;
 
             if($this->exists())
             {
@@ -163,7 +179,7 @@
         {
             $idiomaBorrado = false;
             $connection = $this->database->getConnection();
-            $query = "DELETE FROM filmaviu.idioma WHERE id = ".$this->id;
+            $query = "DELETE FROM filmaviu.idiomas WHERE id = ".$this->id;
 
             if($this->exists())
             {
