@@ -113,5 +113,67 @@ class PeliculaIdioma
             $this->database->closeConnection();
             return $peliculaIdioma;
         }
+
+        public function create()
+        {
+            $peliculaIdiomaCreate = false;
+            $connection = $this->database->getConnection();
+
+            if($resultInsert = $connection->query(
+                "INSERT INTO filaviu.pelicula_idiomas (idPelicula, idIdioma, tipo) VALUES ('$this->idPelicula, $this->idIdioma, $this->tipo ')"
+            ))
+            {
+                $peliculaIdiomaCreate =  true;
+            }
+
+            $this->database->closeConnection();
+            return $peliculaIdiomaCreate;
+        }
+
+        public function update()
+        {
+            $peliculaIdiomaActualizado = false;
+            $connection = $this->database->getConnection();
+            $query = "UPDATE filaviu.pelicula_idiomas set idPelicula = ' $this->idPelicula', idIdioma = ' $this->idIdioma ', tipo = ' $this->tipo ' WHERE id = ".$this->idPelicula;
+
+            if($this->exists())
+            {
+                if($resultInsert = $connection->query($query))
+                {
+                    $peliculaIdiomaActualizado = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $peliculaIdiomaActualizado;
+        }
+
+        public function remove()
+        {
+            $peliculaIdiomaBorrado = false;
+
+            $connection = $this->database->getConnection();
+            $query = "DELETE FROM filaviu.pelicula_idiomas WHERE ID = ".$this->idPelicula;
+
+            if($this->exists())
+            {
+                if($resultRemove = $connection->query($query))
+                {
+                    $peliculaIdiomaBorrado = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $peliculaIdiomaBorrado;
+        
+
+            public function exists()
+            {
+                $existePeliculaIdioma = false;
+                $peliculaIdioma = $this->get();
+                if($peliculaIdioma != null)
+                {
+                    $existePeliculaIdioma = true;
+                }
+                return $existePeliculaIdioma;
+            }
     }
 ?>
