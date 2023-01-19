@@ -140,7 +140,8 @@
             $connection = $this->database->getConnection();
             
             if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.idiomas (nombre, isoCode) VALUES (' $this->nombre, $this->isoCode ')"))
+                "INSERT INTO filmaviu.idiomas (nombre, isoCode) VALUES (' $this->nombre, $this->isoCode ')"
+            ))
             {
                 $idiomaCreado = true;
             }
