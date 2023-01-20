@@ -31,6 +31,103 @@ class PeliculaIdioma
             }
         }
 
+        public function getAll()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filaviu.pelicula_idiomas";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item) 
+            {
+                $peliculaIdioma = new PeliculaIdioma($item['ID_PELICULA'], $item['ID_IDIOMA'], $item['TIPO']);
+                array_push($listData, $peliculaIdioma);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        public function get()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filaviu.pelicula_idiomas WHERE ID_PELICULA = ".$this->idPelicula;
+            $result = $connection->query($query);
+
+            $peliculaIdioma = null;
+            foreach ($result as $item)
+            {
+                $peliculaIdioma = new PeliculaIdioma($item['ID_PELICULA'], $item['ID_IDIOMA'], $item['TIPO']);
+            }
+
+            $this->database->closeConnection();
+            return $peliculaIdioma;
+        }
+
+        public function create()
+        {
+            $peliculaIdiomaCreate = false;
+            $connection = $this->database->getConnection();
+
+            if($resultInsert = $connection->query(
+                "INSERT INTO filaviu.pelicula_idiomas (ID_PELICULA, ID_IDIOMA, TIPO) VALUES ('$this->idPelicula, $this->idIdioma, $this->tipo ')"
+            ))
+            {
+                $peliculaIdiomaCreate =  true;
+            }
+
+            $this->database->closeConnection();
+            return $peliculaIdiomaCreate;
+        }
+
+        public function update()
+        {
+            $peliculaIdiomaActualizado = false;
+            $connection = $this->database->getConnection();
+            $query = "UPDATE filaviu.pelicula_idiomas set ID_PELICULA = ' $this->idPelicula', ID_IDIOMA = ' $this->idIdioma ', TIPO = ' $this->tipo ' WHERE ID_PELICULA = ".$this->idPelicula;
+
+            if($this->exists())
+            {
+                if($resultInsert = $connection->query($query))
+                {
+                    $peliculaIdiomaActualizado = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $peliculaIdiomaActualizado;
+        }
+
+        public function remove()
+        {
+            $peliculaIdiomaBorrado = false;
+
+            $connection = $this->database->getConnection();
+            $query = "DELETE FROM filaviu.pelicula_idiomas WHERE ID_PELICULA = ".$this->idPelicula;
+
+            if($this->exists())
+            {
+                if($resultRemove = $connection->query($query))
+                {
+                    $peliculaIdiomaBorrado = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $peliculaIdiomaBorrado;
+        
+
+            public function exists()
+            {
+                $existePeliculaIdioma = false;
+                $peliculaIdioma = $this->get();
+                if($peliculaIdioma != null)
+                {
+                    $existePeliculaIdioma = true;
+                }
+                return $existePeliculaIdioma;
+            }
+
         /**
          * @return mixed
          */
@@ -79,101 +176,5 @@ class PeliculaIdioma
             $this->tipo = $tipo;
         }
 
-        public function getAll()
-        {
-            $connection = $this->database->getConnection();
-
-            $query = "SELECT * FROM filaviu.pelicula_idiomas";
-            $result = $connection->query($query);
-            $listData = [];
-
-            foreach ($result as $item) 
-            {
-                $peliculaIdioma = new PeliculaIdioma($item['idPelicula'], $item['idIdioma'], $item['tipo']);
-                array_push($listData, $peliculaIdioma);
-            }
-
-            $this->database->closeConnection();
-            return $listData;
-        }
-
-        public function get()
-        {
-            $connection = $this->database->getConnection();
-
-            $query = "SELECT * FROM filaviu.pelicula_idiomas WHERE ID = ".$this->idPelicula;
-            $result = $connection->query($query);
-
-            $peliculaIdioma = null;
-            foreach ($result as $item)
-            {
-                $peliculaIdioma = new PeliculaIdioma($item['idPelicula'], $item['idIdioma'], $item['tipo']);
-            }
-
-            $this->database->closeConnection();
-            return $peliculaIdioma;
-        }
-
-        public function create()
-        {
-            $peliculaIdiomaCreate = false;
-            $connection = $this->database->getConnection();
-
-            if($resultInsert = $connection->query(
-                "INSERT INTO filaviu.pelicula_idiomas (idPelicula, idIdioma, tipo) VALUES ('$this->idPelicula, $this->idIdioma, $this->tipo ')"
-            ))
-            {
-                $peliculaIdiomaCreate =  true;
-            }
-
-            $this->database->closeConnection();
-            return $peliculaIdiomaCreate;
-        }
-
-        public function update()
-        {
-            $peliculaIdiomaActualizado = false;
-            $connection = $this->database->getConnection();
-            $query = "UPDATE filaviu.pelicula_idiomas set idPelicula = ' $this->idPelicula', idIdioma = ' $this->idIdioma ', tipo = ' $this->tipo ' WHERE id = ".$this->idPelicula;
-
-            if($this->exists())
-            {
-                if($resultInsert = $connection->query($query))
-                {
-                    $peliculaIdiomaActualizado = true;
-                }
-            }
-            $this->database->closeConnection();
-            return $peliculaIdiomaActualizado;
-        }
-
-        public function remove()
-        {
-            $peliculaIdiomaBorrado = false;
-
-            $connection = $this->database->getConnection();
-            $query = "DELETE FROM filaviu.pelicula_idiomas WHERE ID = ".$this->idPelicula;
-
-            if($this->exists())
-            {
-                if($resultRemove = $connection->query($query))
-                {
-                    $peliculaIdiomaBorrado = true;
-                }
-            }
-            $this->database->closeConnection();
-            return $peliculaIdiomaBorrado;
-        
-
-            public function exists()
-            {
-                $existePeliculaIdioma = false;
-                $peliculaIdioma = $this->get();
-                if($peliculaIdioma != null)
-                {
-                    $existePeliculaIdioma = true;
-                }
-                return $existePeliculaIdioma;
-            }
     }
 ?>
