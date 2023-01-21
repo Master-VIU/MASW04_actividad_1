@@ -9,10 +9,23 @@
     ?>
             <div class="table_container">
                 <ul class="items_table">
+                    <li class="table-title">
+                        <div class="item_column">
+                            <a class="btn btn-success" href="../">
+                                Volver
+                            </a>
+                        </div>
+                        <div class="item_column">PLATAFORMAS</div>
+                        <div class="item_column">
+                            <a class="btn btn-success" href="new.php">
+                                Crear
+                            </a>
+                        </div>
+                    </li>
                     <li class="table-header">
                         <div class="item_column">Id</div>
                         <div class="item_column">Nombre</div>
-                        <div class="item_column">Acciones</div>
+                        <div class="item_column_wide">Acciones</div>
                     </li>
                     <?php
                     foreach($listaPlataformas as $plataforma)
@@ -21,7 +34,7 @@
                             <li class="table-row">
                                 <div class="item_column" data-label="Id"><?php echo $plataforma->getId(); ?></div>
                                 <div class="item_column" data-label="Nombre"><?php echo $plataforma->getNombre(); ?></div>
-                                <div class="item_column" data-label="Acciones">
+                                <div class="item_column_wide" data-label="Acciones">
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-success" href="edit.php?id=<?php echo $plataforma->getId(); ?>">
                                             Editar
