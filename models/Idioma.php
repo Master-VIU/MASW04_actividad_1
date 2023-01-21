@@ -102,7 +102,8 @@
             $connection = $this->database->getConnection();
             
             if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES (' $this->nombre, $this->isoCode ')"
+                //"INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES (' $this->nombre, $this->isoCode ')"
+                "INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES (' $this->nombre', '$this->isoCode ')"
             ))
             {
                 $idiomaCreado = true;
@@ -122,8 +123,8 @@
         {
             $idiomaActualizado = false;
             $connection = $this->database->getConnection();
-            $query = "UPDATE filmaviu.idiomas set nombre = '$this->nombre ', isoCode = '$this->isoCode ' WHERE id = ".$this->id;
-
+            $query = "UPDATE filmaviu.idiomas set nombre = '". $this->nombre . "', isoCode = '". $this->isoCode . "' WHERE id = " . $this->id;
+                     
             if($this->exists())
             {
                 if($resultInsert = $connection->query($query))
