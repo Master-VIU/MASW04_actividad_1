@@ -1,6 +1,7 @@
 <?php
 
-    require_once('../utils/Database.php');
+   // require_once('../utils/Database.php');
+   include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
 
     class Idioma
     {
@@ -23,6 +24,12 @@
         $this->database = new Database();
     }
 
+    public function constructorUnParametro($idIdioma)
+    {
+        $this->id = $idIdioma;
+        $this->database = new Database();
+    }
+
     public function __construct()
     {
         $params = func_get_args();
@@ -30,7 +37,11 @@
 
         if ($num_params == 0) {
             call_user_func_array(array($this,'constructorVacio'),$params);
-        } else {
+        } elseif($num_params == 1)
+        {
+            call_user_func_array(array($this,'constructorUnParametro'),$params);
+        }
+        else {
             call_user_func_array(array($this,'constructor'),$params);
         }
     }
@@ -49,7 +60,7 @@
 
             foreach ($result as $item)
             {
-                $idioma =  new Idioma($item['ID'], $item['NOMBRE'], $item['ISOCODE']);
+                $idioma =  new Idioma($item['ID'], $item['NOMBRE'], $item['ISO_CODE']);
                 array_push($listData, $idioma);
             }
 
@@ -74,13 +85,13 @@
             $idioma = null;
             foreach ($result as $item)
             {
-                $idioma = new Idioma($item['id'], $item['nombre'], $item['isoCode']);
+                $idioma = new Idioma($item['ID'], $item['NOMBRE'], $item['ISO_CODE']);
             }
 
             $this->database->closeConnection();
             return $idioma;
         }
-
+       
         /**
          * Método que realiza la creacón de un nuevo idioma.
          */
@@ -91,7 +102,7 @@
             $connection = $this->database->getConnection();
             
             if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.idiomas (nombre, isoCode) VALUES (' $this->nombre, $this->isoCode ')"
+                "INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES (' $this->nombre, $this->isoCode ')"
             ))
             {
                 $idiomaCreado = true;
@@ -101,6 +112,7 @@
             return $idiomaCreado;
             
         }
+        
 
         /**
          * Metodo que actualiza un registro en bbdd
@@ -130,12 +142,12 @@
         public function remove()
         {
             $idiomaBorrado = false;
-            $connection = $this->database->getConnection();
             $query = "DELETE FROM filmaviu.idiomas WHERE id = ".$this->id;
 
             if($this->exists())
             {
-                if($resultRemove = $connection->query($query))
+                $connection = $this->database->getConnection();
+                if($connection->query($query))
                 {
                     $idiomaBorrado = true;
                 }
@@ -157,6 +169,7 @@
             }
             return $existeIdioma;
         }
+        
     
      /**
          * @return mixed
