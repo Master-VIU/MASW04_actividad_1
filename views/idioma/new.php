@@ -21,8 +21,7 @@
 
             if(!$sendData)
             {
-        ?>
-    
+        ?>    
         <div class="row">   
             <div class="col-12">
                 <h1>Crear idioma</h1>
@@ -41,9 +40,28 @@
                     </form>
                 </div>
         </div>
-
         <?php
             }
+            else{
+                if($idiomaCreado)
+                {
+        ?>
+             <div class="alert alert-success" role="alert">
+                Idioma creado con éxito! <br>
+                <a href="index.php"> Volver al listado de idiomas.</a>
+            </div>
+        <?php
+            }
+            else
+            {
+        ?>
+             <div class="alert alert-danger" role="alert">
+                 No se ha creado el idioma. <br>
+                <a href="index.php"> Volver a intentarlo</a>
+            </div>
+         <?php
+            }
+        }
         ?>
     </body>
 </div>
