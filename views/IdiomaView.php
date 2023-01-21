@@ -1,13 +1,11 @@
 <div>
     <?php
 
-    $listarIdiomas = listarIdiomas();
+    $listaIdiomas = listarIdiomas();
 
-    if(count($listarIdiomas) > 0)
+    if(count($listaIdiomas) > 0)
     {
-    ?>
-    }
-
+?>
     <table class="tabla">
             <thead>
                 <th>Id</th>
@@ -17,9 +15,9 @@
             </thead>
             <tbody>
             <?php
-            foreach($listarIdiomas as $idioma)
+                 foreach($listaIdiomas as $idioma)
             {
-            ?>
+        ?>
             <tr>
                 <td><?php echo $idioma->getId() ?></td>
                 <td><?php echo $idioma->getNombre() ?></td>
@@ -28,22 +26,21 @@
                      Acciones
                 </td>
             </tr>
-            <?php
+         <?php
             }
-            ?>
-            </body>
+        ?>
+           </tbody>
         </table>
-    <?php
+<?php
     }
     else
     {
-        ?>
+?>
         <div class="alerta alerta-warning" role="alert">
                 Aun no existen idiomas.
         </div>
-        <?php
+<?php
     }
 
-  ?>
-
- </div>
+?>
+</div>
