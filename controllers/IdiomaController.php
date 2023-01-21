@@ -11,7 +11,7 @@ function listarIdiomas()
 
 function obtenerIdioma($idIdioma)
 {
-    $model = new Idioma();
+    $model = new Idioma($idIdioma);
     $idiomaObjeto = $model->get();
     return $idiomaObjeto;
 }
@@ -23,9 +23,9 @@ function crearIdioma($idioma, $isoCode)
     return $idiomaCreado;
 }
 
-function actualizarIdioma($nombreIdioma, $isoCode)
+function actualizarIdioma($idIdioma, $nombreIdioma, $isoCode)
 {
-    $idioma = new Idioma(null, $nombreIdioma, $isoCode);
+    $idioma = new Idioma($idIdioma, $nombreIdioma, $isoCode);
     $idiomaActualizado = $idioma->update();
     return $idiomaActualizado;
 }
