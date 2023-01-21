@@ -9,6 +9,13 @@ function listarIdiomas()
     return $listarIdiomas;
 }
 
+function obtenerIdioma($idIdioma)
+{
+    $model = new Idioma();
+    $idiomaObjeto = $model->get();
+    return $idiomaObjeto;
+}
+
 function crearIdioma($idioma, $isoCode)
 {
     $nuevoIdioma = new Idioma(null, $idioma, $isoCode);
