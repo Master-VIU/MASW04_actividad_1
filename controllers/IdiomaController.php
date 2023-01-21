@@ -1,5 +1,6 @@
 <?php
-require_once('../models/Idioma.php');
+//require_once('../models/Idioma.php');
+include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Idioma.php';
 
 function listarIdiomas()
 {
@@ -10,7 +11,7 @@ function listarIdiomas()
 
 function crearIdioma($idioma, $isoCode)
 {
-    $nuevoIdioma = new (null, $idioma, $isoCode);
+    $nuevoIdioma = new Idioma(null, $idioma, $isoCode);
     $idiomaCreado = $nuevoIdioma->create();
     return $idiomaCreado;
 }
@@ -22,9 +23,9 @@ function actualizarIdioma($nombreIdioma, $isoCode)
     return $idiomaActualizado;
 }
 
-function eliminarIdioma($nombreIdioma)
+function eliminarIdioma($idIdioma)
 {
-    $idioma = new Idioma(null, $nombreIdioma);
+    $idioma = new Idioma($idIdioma);
     $idiomaEliminado = $idioma->remove();
     return $idiomaEliminado;
 }
