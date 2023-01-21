@@ -8,7 +8,7 @@ if($idiomaEliminado)
 {    
     ?>
     <div class="alert alert-success" role="alert">
-        Idioma eliminado con éxito! <br>
+        Idioma eliminado con éxito! <br><br>
         <a href="index.php"> Volver al listado de idiomas.</a>
     </div>
 <?php
@@ -16,7 +16,7 @@ if($idiomaEliminado)
 else{
         ?>
         <div class="alert alert-danger" role="alert">
-            El idioma no se ha borrado correctamente. <br>
+            El idioma no se ha borrado correctamente. <br><br>
             <a href="index.php"> Volver a intentarlo</a>
         </div>
     <?php
