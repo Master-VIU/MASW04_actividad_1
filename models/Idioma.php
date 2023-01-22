@@ -102,7 +102,7 @@
             $connection = $this->database->getConnection();
             
             if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES (' $this->nombre', '$this->isoCode ')"
+                "INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES ('$this->nombre', '$this->isoCode')"
             ))
             {
                 $idiomaCreado = true;
@@ -169,7 +169,7 @@
             }
             return $existeIdioma;
         }
-        
+
     
      /**
          * @return mixed
