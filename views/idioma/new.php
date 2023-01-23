@@ -35,7 +35,7 @@
                 <div class="item_column">NUEVO IDIOMA</div>
                 <div class="item_column"></div>
             </li>
-            <form name="nueva_plataforma" action="" method="POST">
+            <form name="nuevo_idioma" action="" method="POST">
                 <li class="table-row">
                     <div class="item_column">
                         <label for="nuevoIdioma" class="form-label">Nombre</label>
@@ -70,7 +70,7 @@
             {
         ?>
              <div class="alert alert-danger" role="alert">
-                 No se ha creado el idioma. <br><br>
+                 Error al crear el idioma. <br><br>
                 <a href="index.php"> Volver a intentarlo</a>
             </div>
          <?php
