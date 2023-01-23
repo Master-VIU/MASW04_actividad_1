@@ -14,16 +14,47 @@ function obtenerPelicula($idPelicula)
     $peliculaObjeto = $model->get();
     return $peliculaObjeto;
 }
-function crearPelicula($nombrePelicula)
+function crearPelicula($tituloPelilcula,
+                       $plataformaIdPelilcula,
+                       $directorIdPelilcula,
+                       $puntuacionPelilcula,
+                       $clasificacionIdPelilcula,
+                       $generoIdPelilcula,
+                       $portadaIdPelilcula,
+                       $duracionPelilcula)
 {
-    $nuevaPelicula = new Pelicula(null, $nombrePelicula);
+    $nuevaPelicula = new Pelicula(null,
+        $tituloPelilcula,
+        $plataformaIdPelilcula,
+        $directorIdPelilcula,
+        $puntuacionPelilcula,
+        $clasificacionIdPelilcula,
+        $generoIdPelilcula,
+        $portadaIdPelilcula,
+        $duracionPelilcula);
     $peliculaCreada = $nuevaPelicula->create();
     return $peliculaCreada;
 }
 
-function actualizarPelicula($idPelicula, $nombrePelicula)
+function actualizarPelicula($idPelicula,
+                            $tituloPelilcula,
+                            $plataformaIdPelilcula,
+                            $directorIdPelilcula,
+                            $puntuacionPelilcula,
+                            $clasificacionIdPelilcula,
+                            $generoIdPelilcula,
+                            $portadaIdPelilcula,
+                            $duracionPelilcula)
 {
-    $pelicula = new Pelicula($idPelicula, $nombrePelicula);
+    $pelicula = new Pelicula($idPelicula,
+        $tituloPelilcula,
+        $plataformaIdPelilcula,
+        $directorIdPelilcula,
+        $puntuacionPelilcula,
+        $clasificacionIdPelilcula,
+        $generoIdPelilcula,
+        $portadaIdPelilcula,
+        $duracionPelilcula);
     $peliculaActualizada = $pelicula->update();
     return $peliculaActualizada;
 }
