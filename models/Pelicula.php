@@ -4,27 +4,132 @@ class Pelicula
     {
         private $id;
         private $titulo;
-        private $plataforma;
-        private $director;
+        private $plataformaId;
+        private $directorId;
         private $puntuacion;
-        private $clasificacion;
-        private $genero;
-        private $portada;
+        private $clasificacionId;
+        private $generoId;
+        private $portadaId;
         private $duracion;
+        private $database;
 
-        function __construct($idPelicula, $tituloPelicula, $plataformaPelicula, $directorPelicula,
+        function constructor($idPelicula, $tituloPelicula, $plataformaPelicula, $directorPelicula,
                                $puntuacionPelicula, $clasificacionPelicula, $generoPelicula, $portadaPelicula,
                                $duracionPelicula)
         {
-            $this->id = $idPelicula;
+            $this->idId = $idPelicula;
             $this->titulo = $tituloPelicula;
-            $this->plataforma = $plataformaPelicula;
-            $this->director = $directorPelicula;
+            $this->plataformaId = $plataformaPelicula;
+            $this->directorId = $directorPelicula;
             $this->puntuacion = $puntuacionPelicula;
-            $this->clasificacion = $clasificacionPelicula;
-            $this->genero = $generoPelicula;
-            $this->portada = $portadaPelicula;
+            $this->clasificacionId = $clasificacionPelicula;
+            $this->generoId = $generoPelicula;
+            $this->portadaId = $portadaPelicula;
             $this->duracion = $duracionPelicula;
+            $this->database = new Database();
+        }
+
+        public function constructorVacio()
+        {
+            $this->database = new Database();
+        }
+
+        public function __construct()
+        {
+            $params = func_get_args();
+            $num_params = func_num_args();
+
+            if ($num_params == 0)
+            {
+                call_user_func_array(array($this,'constructorVacio'),$params);
+            }
+            else
+            {
+                call_user_func_array(array($this,'constructor'),$params);
+            }
+        }
+
+        public function getAll()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.peliculas";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $pelicula = new Pelicula(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['PUNTUACION'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA'],
+                    $item['DURACION']
+                );
+                array_push($listData, $pelicula);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        public function get()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.peliculas WHERE ID = " .$this->id;
+            $result = $connection->query($query);
+
+            $pelicula = null;
+            foreach ($result as $item)
+            {
+                $pelicula = new Pelicula(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['PUNTUACION'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA'],
+                    $item['DURACION']
+                );
+            }
+
+            $this->database->closeConnection();
+            return $pelicula;
+        }
+
+        public function create()
+        {
+            $peliculaCreada = false;
+            if(!$this->existsTitulo())
+            {
+                $connection = $this->database->getConnection();
+
+                if ($resultInsert = $connection->query(
+                    "INSERT INTO filmaviu.peliculas (nombre) VALUES ('$this->nombre')"
+                ))
+                {
+                    $peliculaCreada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $peliculaCreada;
+        }
+
+        public function update()
+        {
+
+        }
+
+        public function remove()
+        {
+
         }
 
         /**
@@ -62,33 +167,33 @@ class Pelicula
         /**
          * @return mixed
          */
-        public function getPlataforma()
+        public function getPlataformaId()
         {
-            return $this->plataforma;
+            return $this->plataformaId;
         }
 
         /**
-         * @param mixed $plataforma
+         * @param mixed $plataformaId
          */
-        public function setPlataforma($plataforma)
+        public function setPlataformaId($plataformaId)
         {
-            $this->plataforma = $plataforma;
+            $this->plataformaId = $plataformaId;
         }
 
         /**
          * @return mixed
          */
-        public function getDirector()
+        public function getDirectorId()
         {
-            return $this->director;
+            return $this->directorId;
         }
 
         /**
-         * @param mixed $director
+         * @param mixed $directorId
          */
-        public function setDirector($director)
+        public function setDirectorId($directorId)
         {
-            $this->director = $director;
+            $this->directorId = $directorId;
         }
 
         /**
@@ -110,49 +215,49 @@ class Pelicula
         /**
          * @return mixed
          */
-        public function getClasificacion()
+        public function getClasificacionId()
         {
-            return $this->clasificacion;
+            return $this->clasificacionId;
         }
 
         /**
-         * @param mixed $clasificacion
+         * @param mixed $clasificacionId
          */
-        public function setClasificacion($clasificacion)
+        public function setClasificacionId($clasificacionId)
         {
-            $this->clasificacion = $clasificacion;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getGenero()
-        {
-            return $this->genero;
-        }
-
-        /**
-         * @param mixed $genero
-         */
-        public function setGenero($genero)
-        {
-            $this->genero = $genero;
+            $this->clasificacionId = $clasificacionId;
         }
 
         /**
          * @return mixed
          */
-        public function getPortada()
+        public function getGeneroId()
         {
-            return $this->portada;
+            return $this->generoId;
         }
 
         /**
-         * @param mixed $portada
+         * @param mixed $generoId
          */
-        public function setPortada($portada)
+        public function setGeneroId($generoId)
         {
-            $this->portada = $portada;
+            $this->generoId = $generoId;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getPortadaId()
+        {
+            return $this->portadaId;
+        }
+
+        /**
+         * @param mixed $portadaId
+         */
+        public function setPortadaId($portadaId)
+        {
+            $this->portadaId = $portadaId;
         }
 
         /**
@@ -170,5 +275,23 @@ class Pelicula
         {
             $this->duracion = $duracion;
         }
+
+        /**
+         * @return mixed
+         */
+        public function getDatabase()
+        {
+            return $this->database;
+        }
+
+        /**
+         * @param mixed $database
+         */
+        public function setDatabase($database)
+        {
+            $this->database = $database;
+        }
+
+
     }
 ?>

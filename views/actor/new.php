@@ -43,27 +43,34 @@
                     <div class="item_column_wide">
                         <input id="nombre" name="nombre" type="text" placeholder="Introduce el nombre" class="form-control" required />
                     </div>
-
+                    <div class="item_column"></div>
+                </li>
+                <li class="table-row">
                     <div class="item_column">
                         <label for="apellido" class="form-label">Apellido</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="apellido" name="apellido" type="text" placeholder="Introduce los apellidos" class="form-control" required />
                     </div>
-
+                    <div class="item_column"></div>
+                </li>
+                <li class="table-row">
                     <div class="item_column">
                         <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="fechaNacimiento" name="fechaNacimiento" type="date" placeholder="Introduce la fecha de nacimiento" class="form-control" required />
                     </div>
-
+                    <div class="item_column"></div>
+                </li>
+                <li class="table-row">
+                    <div class="item_column">
+                        <label for="nacionalidad" class="form-label">Nacionalidad</label>
+                    </div>
                     <div class="item_column_wide">
-                    <label for="nacionalidad" class="form-label">Nacionalidad</label>
+                        <input id="nacionalidad" name="nacionalidad" type="text" placeholder="Introduce la nacionalidad" class="form-control" required />
                     </div>
-                    <div>
-                    <input id="nacionalidad" name="nacionalidad" type="text" placeholder="Introduce la nacionalidad" class="form-control" required />
-                    </div>
+                    <div class="item_column"></div>
                 </li>
                 <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
             </form>

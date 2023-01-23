@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Episodio.php';
+include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/episodio.php';
 
 function listarEpisodios()
 {

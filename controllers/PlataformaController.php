@@ -10,7 +10,7 @@
 
     function obtenerPlataforma($idPlataforma)
     {
-        $model = new Plataforma($idPlataforma);
+        $model = new Plataforma($idPlataforma, null);
         $plataformaObjeto = $model->get();
         return $plataformaObjeto;
     }
@@ -30,7 +30,7 @@
 
     function eliminarPlataforma($idPlataforma)
     {
-        $plataforma = new Plataforma($idPlataforma);
+        $plataforma = new Plataforma($idPlataforma, null);
         $plataformaEliminada = $plataforma->remove();
         return $plataformaEliminada;
     }

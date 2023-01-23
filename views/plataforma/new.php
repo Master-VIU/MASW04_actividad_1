@@ -1,5 +1,17 @@
-<div class="row">
+<div>
     <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <div class="table_container">
+        <ul class="items_table">
+            <li class="table-title">
+                <div class="item_column">
+                    <a class="btn btn-success" href="index.php">
+                        Volver
+                    </a>
+                </div>
+                <div class="item_column">NUEVA PLATAFORMA</div>
+                <div class="item_column"></div>
+        </li>
+
     <?php
         include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php';
 
@@ -19,25 +31,22 @@
 
             if ($plataformaCreada)
             {
-                echo "Plataforma creada correctamente.";
+                ?>
+                <li class="table-success">
+                    <div class="item_column">Plataforma creada correctamente.</div>
+                </li>
+                <?php
             }
             else
             {
-                echo "Error en la creacion de la plataforma. Intentalo de nuevo.";
+                ?>
+                <li class="table-wrong">
+                    <div class="item_column">No se ha podido crear la plataforma. Intentalo de nuevo.</div>
+                </li>
+                <?php
             }
         }
     ?>
-    <div class="table_container">
-        <ul class="items_table">
-            <li class="table-title">
-                <div class="item_column">
-                    <a class="btn btn-success" href="index.php">
-                        Volver
-                    </a>
-                </div>
-                <div class="item_column">NUEVA PLATAFORMA</div>
-                <div class="item_column"></div>
-            </li>
             <form name="nueva_plataforma" action="" method="POST">
                 <li class="table-row">
                     <div class="item_column">

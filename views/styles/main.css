@@ -51,6 +51,22 @@
     justify-content: space-between;
 }
 
+.items_table .table-success {
+    background-color: #afe270;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.items_table .table-wrong {
+    background-color: #ef6361;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .item_column {
     width: 150px;
     text-align: center;
