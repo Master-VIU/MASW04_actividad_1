@@ -2,10 +2,6 @@
     <link rel="stylesheet" href="../styles/main.css" type="text/css">
     <?php
         include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php';
-        $listaPlataformas = listarPlataformas();
-
-        if (count($listaPlataformas) > 0)
-        {
     ?>
             <div class="table_container">
                 <ul class="items_table">
@@ -28,6 +24,10 @@
                         <div class="item_column_wide">Acciones</div>
                     </li>
                     <?php
+                    $listaPlataformas = listarPlataformas();
+
+                    if (count($listaPlataformas) > 0)
+                    {
                     foreach($listaPlataformas as $plataforma)
                         {
                         ?>
