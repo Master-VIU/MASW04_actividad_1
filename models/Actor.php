@@ -1,5 +1,5 @@
 <?php
-    require_once ('../utils/Database.php');
+    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
     class Actor
     {
 
@@ -11,7 +11,7 @@
         private $database;
 
 
-        function __construct($idActor, $nombreActor,
+        private function constructor($idActor, $nombreActor,
              $apellidosActor, $fechaNacimientoActor, $nacionalidadActor)
         {
             $this->id = $idActor;
@@ -22,6 +22,32 @@
             $this->database = new Database();
         }
 
+        public function constructorVacio()
+        {
+            $this->database = new Database();
+        }
+    
+        public function constructorUnParametro($idActor)
+        {
+            $this->id = $idActor;
+            $this->database = new Database();
+        }
+
+        public function __construct()
+        {
+            $params = func_get_args();
+            $num_params = func_num_args();
+
+            if ($num_params == 0) {
+                call_user_func_array(array($this,'constructorVacio'),$params);
+            } elseif($num_params == 1)
+            {
+                call_user_func_array(array($this,'constructorUnParametro'),$params);
+            }
+            else {
+                call_user_func_array(array($this,'constructor'),$params);
+            }
+        }
         public function getAll()
         {
             $connection = $this->database->getConnection();
@@ -32,7 +58,7 @@
 
             foreach ($result as $item)
             {
-                $plataforma = new Actor($item['id'], $item['nombre'], $item['apellidos'], $item['fecha_nacimiento'], $item['nacionalidad']);
+                $plataforma = new Actor($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
                 array_push($listData, $plataforma);
             }
 
@@ -42,12 +68,24 @@
 
         function get()
         {
-
+            
         }
 
         function create()
         {
+            $actorCreado = false;
+            $connection = $this->database->getConnection();
 
+            if($resultInsert = $connection->query(
+                "INSERT INTO filmaviu.actores (NOMBRE, APELLIDOS, FECHA_NACIMIENTO, NACIONALIDAD) VALUES 
+                ('$this->nombre', '$this->apellidos', '$this->fechaNacimiento', '$this->nacionalidad')"
+            ))
+            {
+                $actorCreado = true;
+            }
+
+            $this->database->closeConnection();
+            return $actorCreado;
         }
 
         function update()
