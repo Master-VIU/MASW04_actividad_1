@@ -1,5 +1,5 @@
 <?php
-
+include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
     class Episodio
     {
         private $id;
@@ -8,7 +8,7 @@
         private $titulo;
         private $duracion;
 
-        function __construct($idEpisodio, $temporadaIdEpisodio, $numeroEpisodio, $tituloEpisodio, $duracionEpisodio)
+        private function constructor($idEpisodio, $temporadaIdEpisodio, $numeroEpisodio, $tituloEpisodio, $duracionEpisodio)
         {
 
             $this->id = $idEpisodio;
@@ -16,6 +16,53 @@
             $this->numero = $numeroEpisodio;
             $this->titulo = $tituloEpisodio;
             $this->duracion = $duracionEpisodio;
+            $this->database = new Database();
+        }
+
+        public function constructorVacio()
+        {
+            $this->database = new Database();
+        }
+
+        public function constructorUnParametro($idEpisodio)
+        {
+            $this->id = $idEpisodio;
+            $this->database = new Database();
+        }
+
+        public function __construct()
+        {
+            $params = func_get_args();
+            $num_params = func_num_args();
+
+            if ($num_params == 0) {
+                call_user_func_array(array($this,'constructorVacio'),$params);
+            } elseif($num_params == 1)
+            {
+                call_user_func_array(array($this,'constructorUnParametro'),$params);
+            }
+            else {
+                call_user_func_array(array($this,'constructor'),$params);
+            }
+        }
+
+        public function getAll()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.episodios";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $episodio =  new Episodio($item['ID'], $item['TEMPORADA_ID'], $item['NUMERO'], $item['TITULO'], $item['DURACION']);
+                array_push($listData, $episodio);
+            }
+
+            $this->database->closeConnection();
+
+            return $listData;
         }
 
         /**
