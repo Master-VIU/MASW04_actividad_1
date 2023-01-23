@@ -1,7 +1,7 @@
 <div>
 <link rel="stylesheet" href="../styles/main.css" type="text/css">
     <?php
-    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/portadacontroller.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php';
     ?>
     <body>
         <div>

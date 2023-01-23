@@ -18,24 +18,17 @@
             $this->database = new Database();
         }
 
-        public function constructorUnParametro($idPlataforma)
-    {
-        $this->id = $idPlataforma;
-        $this->database = new Database();
-    }
-
         public function __construct()
         {
             $params = func_get_args();
             $num_params = func_num_args();
 
-            if ($num_params == 0) {
-                call_user_func_array(array($this,'constructorVacio'),$params);
-            } elseif($num_params == 1)
+            if ($num_params == 0)
             {
-                call_user_func_array(array($this,'constructorUnParametro'),$params);
-            } 
-            else {
+                call_user_func_array(array($this,'constructorVacio'),$params);
+            }
+            else
+            {
                 call_user_func_array(array($this,'constructor'),$params);
             }
         }
@@ -78,7 +71,7 @@
         public function create()
         {
             $plataformaCreada = false;
-            if($this->existsPlataforma())
+            if(!$this->existsNombre())
             {
                 $connection = $this->database->getConnection();
 
@@ -129,7 +122,7 @@
             return $plataformaBorrada;
         }
 
-        public function getNamePlataforma()
+        /*public function getNamePlataforma()
         {
            
             $connection = $this->database->getConnection();
@@ -152,7 +145,7 @@
             return null;
            
         }
-
+        */
         public function exists()
         {
             $existePlataforma = false;

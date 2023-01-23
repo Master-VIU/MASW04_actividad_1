@@ -1,6 +1,6 @@
 <div>
     <?php
-include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/portadacontroller.php';
+include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php';
 
 $portada_eliminar = $_POST['idiformId'];
 $PortadaEliminada = eliminarPortada($portada_eliminar);
