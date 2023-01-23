@@ -18,6 +18,12 @@
             $this->database = new Database();
         }
 
+        public function constructorUnParametro($idPlataforma)
+    {
+        $this->id = $idPlataforma;
+        $this->database = new Database();
+    }
+
         public function __construct()
         {
             $params = func_get_args();
@@ -25,7 +31,11 @@
 
             if ($num_params == 0) {
                 call_user_func_array(array($this,'constructorVacio'),$params);
-            } else {
+            } elseif($num_params == 1)
+            {
+                call_user_func_array(array($this,'constructorUnParametro'),$params);
+            } 
+            else {
                 call_user_func_array(array($this,'constructor'),$params);
             }
         }
@@ -52,13 +62,13 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.plataformas WHERE ID = ".$this->id;
+            $query = "SELECT * FROM filmaviu.plataformas WHERE ID = " .$this->id;
             $result = $connection->query($query);
 
             $plataforma = null;
             foreach ($result as $item)
             {
-                $plataforma = new Plataforma($item['id'], $item['nombre']);
+                $plataforma = new Plataforma($item['ID'], $item['NOMBRE']);
             }
 
             $this->database->closeConnection();
@@ -68,15 +78,17 @@
         public function create()
         {
             $plataformaCreada = false;
-            $connection = $this->database->getConnection();
-
-            if ($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.plataformas (nombre) VALUES (' $this->nombre ')"
-            ))
+            if($this->existsPlataforma())
             {
-                $plataformaCreada = true;
-            }
+                $connection = $this->database->getConnection();
 
+                if ($resultInsert = $connection->query(
+                    "INSERT INTO filmaviu.plataformas (nombre) VALUES ('$this->nombre')"
+                ))
+                {
+                    $plataformaCreada = true;
+                }
+            }
             $this->database->closeConnection();
             return $plataformaCreada;
         }
@@ -84,11 +96,11 @@
         public function update()
         {
             $plataformaActualizada = false;
-            $connection = $this->database->getConnection();
-            $query = "UPDATE filmaviu.plataformas set nombre = ' $this->nombre ' WHERE id = ".$this->id;
+            $query = "UPDATE filmaviu.plataformas set nombre = '$this->nombre' WHERE id = ".$this->id;
 
-            if ($this->exists())
+            if ($this->existsPlataforma())
             {
+                $connection = $this->database->getConnection();
                 if ($resultInsert = $connection->query($query))
                 {
                     $plataformaActualizada = true;
@@ -101,12 +113,12 @@
 
         public function remove()
         {
-            $plataformaBorrada = false;
-            $connection = $this->database->getConnection();
+            $plataformaBorrada = false;            
             $query = "DELETE FROM filmaviu.plataformas WHERE id = ".$this->id;
 
             if ($this->exists())
             {
+                $connection = $this->database->getConnection();
                 if ($resultRemove = $connection->query($query))
                 {
                     $plataformaBorrada = true;
@@ -117,11 +129,46 @@
             return $plataformaBorrada;
         }
 
+        public function getNamePlataforma()
+        {
+           
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.plataformas WHERE NOMBRE = '$this->nombre'";            
+            $result = $connection->query($query);            
+            $plataforma = null;
+            
+            foreach ($result as $item)
+            {
+                $plataforma = new Plataforma($item['ID'], $item['NOMBRE']);
+            }                 
+            
+            if($plataforma != null)
+            {
+                return $plataforma;
+            }
+            
+            $this->database->closeConnection();
+            return null;
+           
+        }
+
         public function exists()
         {
             $existePlataforma = false;
             $plataforma = $this->get();
             if ($plataforma != null)
+            {
+                $existePlataforma = true;
+            }
+            return $existePlataforma;
+        }
+
+        public function existsPlataforma()
+        {
+            $existePlataforma = false;
+            $plataforma = $this->getNamePlataforma();
+            if($plataforma == null)
             {
                 $existePlataforma = true;
             }
