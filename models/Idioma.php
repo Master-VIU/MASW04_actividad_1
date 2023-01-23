@@ -98,14 +98,16 @@
 
         public function create()
         {
-            $idiomaCreado = false;
-            $connection = $this->database->getConnection();
-            
-            if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES ('$this->nombre', '$this->isoCode')"
-            ))
+            $idiomaCreado = false;            
+            if($this->existsNameCode())
             {
-                $idiomaCreado = true;
+                $connection = $this->database->getConnection();
+                if($resultInsert = $connection->query(
+                    "INSERT INTO filmaviu.idiomas (NOMBRE, ISO_CODE) VALUES ('$this->nombre', '$this->isoCode')"
+                ))
+                {
+                    $idiomaCreado = true;
+                }
             }
 
             $this->database->closeConnection();
@@ -123,7 +125,7 @@
             $idiomaActualizado = false;            
             $query = "UPDATE filmaviu.idiomas set nombre = '$this->nombre', iso_code = '$this->isoCode' WHERE id = " . $this->id;
                      
-            if($this->exists())
+            if($this->existsNameCode())
             {
                 $connection = $this->database->getConnection();
                 if($resultInsert = $connection->query($query))
@@ -168,6 +170,48 @@
                 $existeIdioma = true;
             }
             return $existeIdioma;
+        }
+
+        public function existsNameCode()
+        {
+            $existeIdioma = false;
+            $idioma = $this->getNameCode();
+            if($idioma == null)
+            {
+                $existeIdioma = true;
+            }
+            return $existeIdioma;
+        }
+
+        public function getNameCode()
+        {
+           
+            $connection = $this->database->getConnection();
+
+            $queryName = "SELECT * FROM filmaviu.idiomas WHERE NOMBRE = '$this->nombre'";
+            $queryCode = "SELECT * FROM filmaviu.idiomas WHERE ISO_CODE = '$this->isoCode'";
+            $resultName = $connection->query($queryName);
+            $resultCode = $connection->query($queryCode);       
+
+            $idiomaName = null;
+            $idiomaCode = null;
+            foreach ($resultName as $item)
+            {
+                $idiomaName = new Idioma($item['ID'], $item['NOMBRE'], $item['ISO_CODE']);
+            }
+            foreach($resultCode as $item2)
+            {
+                $idiomaCode = new Idioma($item2['ID'], $item2['NOMBRE'], $item2['ISO_CODE']);
+            }           
+            
+            if(($idiomaName != null) && ($idiomaCode != null))
+            {
+                return $idiomaCode;
+            }
+            
+            $this->database->closeConnection();
+            return null;
+           
         }
 
     
