@@ -1,5 +1,5 @@
 <?php
-
+include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
 class Pelicula
     {
         private $id;
@@ -17,7 +17,7 @@ class Pelicula
                                $puntuacionPelicula, $clasificacionPelicula, $generoPelicula, $portadaPelicula,
                                $duracionPelicula)
         {
-            $this->idId = $idPelicula;
+            $this->id = $idPelicula;
             $this->titulo = $tituloPelicula;
             $this->plataformaId = $plataformaPelicula;
             $this->directorId = $directorPelicula;
@@ -81,7 +81,7 @@ class Pelicula
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.peliculas WHERE ID = " .$this->id;
+            $query = "SELECT * FROM filmaviu.peliculas WHERE ID = '$this->id'";
             $result = $connection->query($query);
 
             $pelicula = null;
@@ -112,7 +112,25 @@ class Pelicula
                 $connection = $this->database->getConnection();
 
                 if ($resultInsert = $connection->query(
-                    "INSERT INTO filmaviu.peliculas (nombre) VALUES ('$this->nombre')"
+                    "INSERT INTO filmaviu.peliculas (
+                                TITULO,
+                                PLATAFORMA,
+                                DIRECTOR,
+                                PUNTUACION,
+                                CLASIFICACION,
+                                GENERO,
+                                PORTADA,
+                                DURACION
+                    ) VALUES (
+                              '$this->titulo',
+                              '$this->plataformaId',
+                              '$this->directorId',
+                              '$this->puntuacion',
+                              '$this->clasificacionId',
+                              '$this->generoId',
+                              '$this->portadaId'
+                              '$this->duracion'
+                    )"
                 ))
                 {
                     $peliculaCreada = true;
@@ -124,12 +142,84 @@ class Pelicula
 
         public function update()
         {
+            $peliculaActualizada = false;
+            $query = "UPDATE filmaviu.peliculas
+                        set 
+                            TITULO = '$this->titulo',
+                            PLATAFORMA = '$this->plataformaId',
+                            DIRECTOR = '$this->directorId',
+                            PUNTUACION = '$this->puntuacion',
+                            CLASIFICACION = '$this->clasificacionId',
+                            GENERO = '$this->generoId',
+                            PORTADA = '$this->portadaId',
+                            DURACION = '$this->duracion'                
+                        WHERE id = '$this->id'";
 
+            if ($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if ($resultInsert = $connection->query($query))
+                {
+                    $peliculaActualizada = true;
+                }
+            }
+
+            $this->database->closeConnection();
+            return $peliculaActualizada;
         }
 
         public function remove()
         {
+            $peliculaBorrada = false;
+            $query = "DELETE FROM filmaviu.peliculas WHERE id = '$this->id'";
 
+            if ($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if ($resultRemove = $connection->query($query))
+                {
+                    $peliculaBorrada = true;
+                }
+            }
+
+            $this->database->closeConnection();
+            return $peliculaBorrada;
+        }
+
+        public function exists()
+        {
+            $existePelicula = false;
+            $pelicula = $this->get();
+            if ($pelicula != null)
+            {
+                $existePelicula = true;
+            }
+            return $existePelicula;
+        }
+
+        public function existsTitulo()
+        {
+            $connection = $this->database->getConnection();
+            $existePelicula = false;
+
+            if($this->titulo != null)
+            {
+                $query = "SELECT ID FROM filmaviu.peliculas WHERE TITULO = '$this->titulo'";
+                $result = $connection->query($query);
+                $pelicula = null;
+                foreach ($result as $item)
+                {
+                    $pelicula = new Pelicula(
+                        $item['ID'], null, null, null, null, null, null, null, null
+                    );
+                }
+                if ($pelicula != null)
+                {
+                    $existePelicula = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $existePelicula;
         }
 
         /**
