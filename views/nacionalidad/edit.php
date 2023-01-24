@@ -12,7 +12,7 @@
                 <div class="item_column"></div>
             </li>
             <?php
-            include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php';
+            require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');
                 $idNacionalidad = $_GET['id'];
                 $nacionalidadObjeto = obtenerNacionalidad($idNacionalidad);
 

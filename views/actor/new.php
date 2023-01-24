@@ -12,7 +12,8 @@
                 <div class="item_column"></div>
             </li> 
     <?php
-    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ActorController.php';
+    require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ActorController.php');
+    require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');
     ?>
         <?php
             $sendData =false;
@@ -90,7 +91,17 @@
                         <label for="nacionalidad" class="form-label">Nacionalidad</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="nacionalidad" name="nacionalidad" type="text" placeholder="Introduce la nacionalidad" class="form-control" required />
+                        <select id="nacionalidad" name="nacionalidad" required>
+                            <?php
+                            $listaNacionalidades = listarNacionalidades();
+                            foreach ($listaNacionalidades as $nacionalidad)
+                            {
+                                ?>
+                                <option value="<?php echo $nacionalidad->getId(); ?>"><?php echo $nacionalidad->getPais(); ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="item_column"></div>
                 </li>

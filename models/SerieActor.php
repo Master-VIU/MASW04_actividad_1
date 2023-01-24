@@ -10,12 +10,12 @@
         {
             $this->idSerie = $idSerieActor;
             $this->idActor = $idActorSerie;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function constructorVacio()
         {
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function __construct()

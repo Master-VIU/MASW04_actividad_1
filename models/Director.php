@@ -1,6 +1,6 @@
 <?php
 
-    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
+    require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php');
     class Director
     {
 
@@ -23,18 +23,18 @@
             $this->dni = $dniDirector;
             $this->fechaNacimiento = $fechaNacimientoDirector;
             $this->nacionalidad = $nacionalidadDirector;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function constructorVacio()
         {
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
     
         public function constructorUnParametro($idDirector)
         {
             $this->id = $idDirector;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function __construct()

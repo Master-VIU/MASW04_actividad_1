@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
+require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php');
 class Pelicula
     {
         private $id;
@@ -26,12 +26,12 @@ class Pelicula
             $this->generoId = $generoPelicula;
             $this->portadaId = $portadaPelicula;
             $this->duracion = $duracionPelicula;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function constructorVacio()
         {
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function __construct()

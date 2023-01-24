@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Actor.php';
+require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Actor.php');
 
 function listarActores()
 {

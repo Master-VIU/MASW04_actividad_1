@@ -7,10 +7,30 @@
         private $db_password = "root";
         private $db_database = "filmaviu";
         private $mysqli = null;
+        private static $instance;
 
-        public function __construct()
+        // SINGLETON IMPLEMENTATION
+        protected function __construct()
         {
+            // empty
+        }
+        private function __clone()
+        {
+            // empty
+        }
+        private function __wakeup()
+        {
+            // empty
+        }
 
+        public static function getInstance()
+        {
+            if (!isset(self::$instance))
+            {
+            // late static binding
+                self::$instance = new self;
+            }
+            return self::$instance;
         }
 
         public function getConnection()

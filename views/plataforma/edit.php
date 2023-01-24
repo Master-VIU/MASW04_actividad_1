@@ -12,7 +12,7 @@
                 <div class="item_column"></div>
             </li>
             <?php
-            include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php';
+            require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php');
                 $idIPlataforma = $_GET['id'];
                 $plataformaObjeto = obtenerPlataforma($idIPlataforma);
 

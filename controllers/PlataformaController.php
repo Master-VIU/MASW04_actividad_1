@@ -1,5 +1,5 @@
 <?php
-    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Plataforma.php';
+    require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Plataforma.php');
 
     function listarPlataformas()
     {
