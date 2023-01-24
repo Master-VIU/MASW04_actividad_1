@@ -19,7 +19,8 @@
                 "SERIES" => "./serie/",
                 "PLATAFORMAS" => "./plataforma/",
                 "IDIOMAS" => "./idioma/",
-                "NACIONALIDADES" => "./nacionalidad/"
+                "NACIONALIDADES" => "./nacionalidad/",
+                "CLASIFICACIONES" => "./clasificacion/"
             ];
             foreach ($listaEntidades as $entidad => $ruta)
             {
