@@ -27,7 +27,7 @@
             {
                 ?>
                 <li class="table-wrong">
-                    <div class="item_column">El plataforma no se ha borrado correctamente. Intentalo de nuevo.</div>
+                    <div class="item_column">La plataforma no se ha borrado correctamente. Intentalo de nuevo.</div>
                 </li>
                 <?php
             }
