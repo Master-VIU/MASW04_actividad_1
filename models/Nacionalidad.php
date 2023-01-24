@@ -102,8 +102,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
 
         public function update()
         {
-            $nacionalidadActualizada = false;
-            if(!$this->existsName())
+          $nacionalidadActualizada = false;
+           if(!$this->existsName())
             {            
             $query = "UPDATE filmaviu.nacionalidades set PAIS = '$this->pais' WHERE id = ".$this->id;
 
