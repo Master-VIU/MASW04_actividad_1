@@ -111,6 +111,24 @@
             return $clasificacionActualizada;
         }
 
+        public function remove()
+        {
+            $clasificacionBorrada = false;            
+            $query = "DELETE FROM filmaviu.clasificaciones WHERE id = '$this->id'";
+
+            if ($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if ($resultRemove = $connection->query($query))
+                {
+                    $clasificacionBorrada = true;
+                }
+            }
+
+            $this->database->closeConnection();
+            return $clasificacionBorrada;
+        }
+
         public function exists()
         {
             $existeClasificacion = false;
