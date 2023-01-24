@@ -1,7 +1,7 @@
 <div>
 <link rel="stylesheet" href="../styles/main.css" type="text/css">          
     <?php
-        include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php';     
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php');     
     ?>
         <div class="table_container">
                 <ul class="items_table">

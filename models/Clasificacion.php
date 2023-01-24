@@ -1,6 +1,6 @@
 <?php
 
-    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
+    require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php');
     class Clasificacion
     {
 
@@ -13,12 +13,12 @@
     {
         $this->id = $idClasificacion;
         $this->tipo = $tipoClasificacion;
-        $this->database = new Database();
+        $this->database = Database::getInstance();
     }
 
     public function constructorVacio()
     {
-        $this->database = new Database();
+        $this->database = Database::getInstance();
     }
 
     public function __construct()

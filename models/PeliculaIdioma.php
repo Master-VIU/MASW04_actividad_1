@@ -11,12 +11,12 @@ class PeliculaIdioma
             $this->idPelicula = $idPelicula;
             $this->idIdioma = $idIdioma;
             $this->tipo = $tipo;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function constructorVacio()
         {
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function __construct()

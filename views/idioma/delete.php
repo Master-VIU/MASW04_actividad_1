@@ -13,7 +13,7 @@
                 <div class="item_column"></div>
             </li>
     <?php
-include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php';
+require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php');
 
 $idioma = $_POST['idiformId'];
 $idiomaEliminado = eliminarIdioma($idioma);

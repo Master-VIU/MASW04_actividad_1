@@ -1,5 +1,5 @@
 <?php
-    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
+    require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php');
     class Plataforma
     {
         private $id;
@@ -10,12 +10,12 @@
         {
             $this->id = $idPlataforma;
             $this->nombre = $nombrePlataforma;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function constructorVacio()
         {
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function __construct()

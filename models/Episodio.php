@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
+require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php');
     class Episodio
     {
         private $id;
@@ -16,18 +16,18 @@ include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
             $this->numero = $numeroEpisodio;
             $this->titulo = $tituloEpisodio;
             $this->duracion = $duracionEpisodio;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function constructorVacio()
         {
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function constructorUnParametro($idEpisodio)
         {
             $this->id = $idEpisodio;
-            $this->database = new Database();
+            $this->database = Database::getInstance();
         }
 
         public function __construct()
