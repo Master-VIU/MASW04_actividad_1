@@ -10,24 +10,7 @@
                 </div>
                 <div class="item_column">NUEVO IDIOMA</div>
                 <div class="item_column"></div>
-            </li>
-            <form name="nuevo_idioma" action="" method="POST">
-            <li class="table-row">
-                <div class="item_column">
-                    <label for="nuevoIdioma" class="form-label">Nombre</label>
-                </div>
-                <div class="item_column_wide">
-                    <input id="nuevoIdioma" name="nuevoIdioma" type="text" placeholder="Introduce el idioma" class="form-control" required />
-                </div>
-                <div class="item_column_wide">
-                    <label for="nuevoIso" class="form-label">Iso code</label>
-                </div>
-                <div>
-                    <input id="nuevoIso" name="nuevoIso" type="text" placeholder="Introduce el iso code" class="form-control" required />
-                </div>
-            </li>
-            <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
-            </form>
+            </li>            
     <?php
     include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php';  
             
@@ -64,7 +47,22 @@
         }
     }
 ?>            
-       
-        
+       <form name="nuevo_idioma" action="" method="POST">
+            <li class="table-row">
+                <div class="item_column">
+                    <label for="nuevoIdioma" class="form-label">Nombre</label>
+                </div>
+                <div class="item_column_wide">
+                    <input id="nuevoIdioma" name="nuevoIdioma" type="text" placeholder="Introduce el idioma" class="form-control" required />
+                </div>
+                <div class="item_column_wide">
+                    <label for="nuevoIso" class="form-label">Iso code</label>
+                </div>
+                <div>
+                    <input id="nuevoIso" name="nuevoIso" type="text" placeholder="Introduce el iso code" class="form-control" required />
+                </div>
+            </li>
+            <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
+            </form>        
         </ul>
     </div>
