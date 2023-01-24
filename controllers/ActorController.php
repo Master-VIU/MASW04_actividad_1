@@ -22,9 +22,9 @@ function crearActor($nombre, $apellidos, $fechaNacimiento, $nacionalidad)
         return $actorCreado;
 }
 
-function actualizarActor($idActor, $nombreActor, $isoCode)
+function actualizarActor($idActor, $nombreActor, $apellidoActor, $fechaNacimiento, $nacionalidad)
 {
-    $actor = new Actor($idActor, $nombreActor, $isoCode);
+    $actor = new Actor($idActor, $nombreActor, $apellidoActor, $fechaNacimiento, $nacionalidad);
     $actorActualizado = $actor->update();
     return $actorActualizado;
 }
@@ -34,10 +34,5 @@ function eliminarActor($idActor)
     $actor = new Actor($idActor);
     $actorEliminado = $actor->remove();
     return $actorEliminado;
-}
-
-function dateFormat($fechaNacimiento)
-{
-    $newDate = date("d/m/Y", strtotime($fechaNacimiento));
 }
 ?>
