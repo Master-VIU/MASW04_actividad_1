@@ -1,5 +1,4 @@
 <?php
-//require_once('../models/Idioma.php');
 include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Idioma.php';
 
 function listarIdiomas()
