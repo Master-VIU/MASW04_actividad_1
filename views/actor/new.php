@@ -59,7 +59,7 @@
                         <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="fechaNacimiento" name="fechaNacimiento" type="date" placeholder="Introduce la fecha de nacimiento" class="form-control" required />
+                        <input id="fechaNacimiento" name="fechaNacimiento" type="date" min="1940-01-01" max="2013-12-31" placeholder="Introduce la fecha de nacimiento" class="form-control" required />
                     </div>
                     <div class="item_column"></div>
                 </li>
