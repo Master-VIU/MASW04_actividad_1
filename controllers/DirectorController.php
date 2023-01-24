@@ -15,16 +15,16 @@ function obtenerDirector($idDirector)
     return $directorObjeto;
 }
 
-function crearDirector($nombre, $apellidos, $fechaNacimiento, $nacionalidad)
+function crearDirector($nombre, $apellidos, $dni, $fechaNacimiento, $nacionalidad)
 {
-        $nuevoDirector = new Director(null, $nombre, $apellidos, $fechaNacimiento, $nacionalidad);
+        $nuevoDirector = new Director(null, $nombre, $apellidos, $dni, $fechaNacimiento, $nacionalidad);
         $directorCreado = $nuevoDirector->create();
         return $directorCreado;
 }
 
-function actualizarDirector($idDirector, $nombreDirector, $apellidoDirector, $fechaNacimiento, $nacionalidad)
+function actualizarDirector($idDirector, $nombreDirector, $apellidoDirector,$dni, $fechaNacimiento, $nacionalidad)
 {
-    $director = new Director($idDirector, $nombreDirector, $apellidoDirector, $fechaNacimiento, $nacionalidad);
+    $director = new Director($idDirector, $nombreDirector, $apellidoDirector, $dni, $fechaNacimiento, $nacionalidad);
     $directorActualizado = $director->update();
     return $directorActualizado;
 }
