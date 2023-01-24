@@ -1,5 +1,6 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
+    
     class Actor
     {
 
@@ -58,24 +59,40 @@
 
             foreach ($result as $item)
             {
-                $plataforma = new Actor($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
-                array_push($listData, $plataforma);
+                $actor = new Actor($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
+                array_push($listData, $actor);
             }
 
             $this->database->closeConnection();
             return $listData;
         }
 
-        function get()
+        public function get()
         {
-            
+           
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.actores WHERE ID = " .$this->id;
+            $result = $connection->query($query);
+
+            $actor = null;
+            foreach ($result as $item)
+            {
+                $actor = new Actor($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
+            }
+
+            $this->database->closeConnection();
+            return $actor;
         }
 
         function create()
         {
             $actorCreado = false;
-            $connection = $this->database->getConnection();
+            $connection = $this->database->getConnection();  
 
+            $queryNacionalidad = "SELECT PAIS FROM filmaviu.nacionalidades WHERE ID = " .$this->nacionalidad;
+            
+            echo $queryNacionalidad;      
             if($resultInsert = $connection->query(
                 "INSERT INTO filmaviu.actores (NOMBRE, APELLIDOS, FECHA_NACIMIENTO, NACIONALIDAD) VALUES 
                 ('$this->nombre', '$this->apellidos', '$this->fechaNacimiento', '$this->nacionalidad')"
@@ -88,14 +105,51 @@
             return $actorCreado;
         }
 
-        function update()
+        public function update()
         {
+            $actorActualizado = false;            
+            $query = "UPDATE filmaviu.actores set nombre = '$this->nombre', apellidos = '$this->apellidos', fecha_nacimiento = '$this->fechaNacimiento',
+            nacionalidad = '$this->nacionalidad' WHERE id = " . $this->id;
+                     
+            if($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if($resultInsert = $connection->query($query))
+                {
+                    $actorActualizado = true;
+                }
+            }
 
+            $this->database->closeConnection();
+            return $actorActualizado;
         }
 
         function remove()
         {
+            $actorBorrado = false;
+            $query = "DELETE FROM filmaviu.actores WHERE id = ".$this->id;
 
+            if($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if($connection->query($query))
+                {
+                    $actorBorrado = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $actorBorrado;
+        }
+
+        public function exists()
+        {
+            $existeActor = false;
+            $actor = $this->get();
+            if ($actor != null)
+            {
+                $existeActor = true;
+            }
+            return $existeActor;
         }
 
         // GETTERS Y SETTERS
@@ -154,5 +208,6 @@
         {
             $this->nacionalidad = $nacionalidad;
         }
+    
     }
 ?>
