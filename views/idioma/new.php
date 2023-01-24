@@ -1,30 +1,6 @@
 <div>
 <link rel="stylesheet" href="../styles/main.css" type="text/css">
-    <?php
-    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php';
-    ?>
-    <body>
-        <?php
-            $sendData =false;
-            $idiomaCreado = false;
-            
-            if(isset($_POST['botonCrear']))
-            {
-                $sendData = true;
-            }
-            if($sendData)
-            {
-                if(isset($_POST['nuevoIdioma']) && isset($_POST['nuevoIso']))
-                {
-                    $idiomaCreado = crearIdioma($_POST['nuevoIdioma'], $_POST['nuevoIso']);
-                }
-            }
-
-            if(!$sendData)
-            {
-        ?>            
-
-        <div class="table_container">
+<div class="table_container">
         <ul class="items_table">
             <li class="table-title">
                 <div class="item_column">
@@ -36,46 +12,59 @@
                 <div class="item_column"></div>
             </li>
             <form name="nuevo_idioma" action="" method="POST">
-                <li class="table-row">
-                    <div class="item_column">
-                        <label for="nuevoIdioma" class="form-label">Nombre</label>
-                    </div>
-                    <div class="item_column_wide">
-                        <input id="nuevoIdioma" name="nuevoIdioma" type="text" placeholder="Introduce el idioma" class="form-control" required />
-                    </div>
-                    <div class="item_column_wide">
+            <li class="table-row">
+                <div class="item_column">
+                    <label for="nuevoIdioma" class="form-label">Nombre</label>
+                </div>
+                <div class="item_column_wide">
+                    <input id="nuevoIdioma" name="nuevoIdioma" type="text" placeholder="Introduce el idioma" class="form-control" required />
+                </div>
+                <div class="item_column_wide">
                     <label for="nuevoIso" class="form-label">Iso code</label>
-                    </div>
-                    <div>
+                </div>
+                <div>
                     <input id="nuevoIso" name="nuevoIso" type="text" placeholder="Introduce el iso code" class="form-control" required />
-                    </div>
-                </li>
-                <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
+                </div>
+            </li>
+            <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
             </form>
-        </ul>
-         </div>
-        <?php
-            }
-            else{
-                if($idiomaCreado)
-                {
-        ?>
-             <div class="alert alert-success" role="alert">
-                Idioma creado con éxito! <br><br>
-                <a href="index.php"> Volver al listado de idiomas.</a>
-            </div>
-        <?php
-            }
-            else
-            {
-        ?>
-             <div class="alert alert-danger" role="alert">
-                 Error al crear el idioma. <br><br>
-                <a href="index.php"> Volver a intentarlo</a>
-            </div>
-         <?php
-            }
+    <?php
+    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php';  
+            
+    $sendData =false;
+    $idiomaCreado = false;
+            
+    if(isset($_POST['botonCrear']))
+    {
+        $sendData = true;
+    }
+    if($sendData)
+    {
+        if(isset($_POST['nuevoIdioma']) && isset($_POST['nuevoIso']))
+        {
+            $idiomaCreado = crearIdioma($_POST['nuevoIdioma'], $_POST['nuevoIso']);
         }
-        ?>
-    </body>
-</div>
+
+        if($idiomaCreado)
+        {
+            
+            ?>
+            <li class="table-success">
+                <div class="item_column">Idioma creado correctamente.</div>
+                </li>
+            <?php
+        }
+        else
+        {
+            ?>
+            <li class="table-wrong">
+                <div class="item_column">No se ha podido crear el idioma. Inténtalo de nuevo.</div>
+            </li>
+            <?php
+        }
+    }
+?>            
+       
+        
+        </ul>
+    </div>
