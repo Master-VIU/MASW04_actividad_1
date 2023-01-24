@@ -14,13 +14,13 @@
              $directorSerie, $clasificacionSerie, $generoSerie)
         {
 
-                $this->id = $idSerie;
-                $this->titulo = $tituloSerie;
-                $this->plataforma = $plataformaSerie;
-                $this->director = $directorSerie;
-                $this->clasificacion = $clasificacionSerie;
-                $this->genero = $generoSerie;
-             }
+            $this->id = $idSerie;
+            $this->titulo = $tituloSerie;
+            $this->plataforma = $plataformaSerie;
+            $this->director = $directorSerie;
+            $this->clasificacion = $clasificacionSerie;
+            $this->genero = $generoSerie;
+         }
 
         
         /**
