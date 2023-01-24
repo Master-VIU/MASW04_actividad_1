@@ -22,6 +22,7 @@
                         <div class="item_column">Id</div>
                         <div class="item_column">Nombre</div>
                         <div class="item_column">Apellidos</div>
+                        <div class="item_column">Dni</div>
                         <div class="item_column">Fecha de nacimiento</div>
                         <div class="item_column">Nacionalidad</div>
                         <div class="item_column">Acciones</div>
@@ -40,6 +41,7 @@
                         <div class="item_column" data-label="Id"><?php echo $director->getId(); ?></div>
                         <div class="item_column" data-label="Nombre"><?php echo $director->getNombre(); ?></div>
                         <div class="item_column" data-label="Apellidos"><?php echo $director->getApellidos(); ?></div>
+                        <div class="item_column" data-label="Dni"><?php echo $director->getDni(); ?></div>
                         <div class="item_column" data-label="Fecha-Nacimiento"><?php echo $dateFormat; ?></div>
                         <div class="item_column" data-label="Nacionalidad"><?php echo $director->getNacionalidad(); ?></div>
                         <div class="item_column" data-label="Acciones">
