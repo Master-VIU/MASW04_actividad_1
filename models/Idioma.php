@@ -1,6 +1,4 @@
 <?php
-
-   // require_once('../utils/Database.php');
    include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php';
 
     class Idioma
