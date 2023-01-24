@@ -18,7 +18,8 @@
                 "PELICULAS" => "./pelicula/",
                 "SERIES" => "./serie/",
                 "PLATAFORMAS" => "./plataforma/",
-                "IDIOMAS" => "./idioma/"
+                "IDIOMAS" => "./idioma/",
+                "NACIONALIDADES" => "./nacionalidad/"
             ];
             foreach ($listaEntidades as $entidad => $ruta)
             {
