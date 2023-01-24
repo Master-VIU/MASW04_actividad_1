@@ -24,10 +24,11 @@
                 }
                 if($sendData)
                 {
-                    if(isset($_POST['nombre']) && isset($_POST['apellido']) 
+                    if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['dni'])
                         && isset($_POST['fechaNacimiento']) && isset($_POST['nacionalidad']))
                     {
-                        $actorEditado = actualizarActor($_POST['actformId'], $_POST['nombre'], $_POST['apellido'], $_POST['fechaNacimiento'], $_POST['nacionalidad']);
+                        $actorEditado = actualizarActor($_POST['actformId'], $_POST['nombre'], 
+                        $_POST['apellido'], $_POST['dni'], $_POST['fechaNacimiento'], $_POST['nacionalidad']);
                     }
 
                     if($actorEditado)
@@ -73,6 +74,15 @@
                         required value="<?php if(isset($actorObjeto)) echo $actorObjeto->getApellidos();?>" />
                     </div>
                     <div class="item_column"></div>
+                    <li class="table-row">
+                    <div class="item_column">
+                        <label for="dni" class="form-label">Dni</label>
+                 </div>
+                    <div class="item_column_wide">
+                    <input id="dni" name="dni" type="text" placeholder="Introduce el dni" class="form-control" 
+                        required value="<?php if(isset($actorObjeto)) echo $actorObjeto->getDni();?>" />
+                </div>
+                <div class="item_column"></div>
                 </li>
                 <li class="table-row">
                     <div class="item_column">
