@@ -13,7 +13,7 @@
         </li>
 
     <?php
-        include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php';
+        require_once($_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
 
         $sendData =false;
         $clasificacionCreada = false;
