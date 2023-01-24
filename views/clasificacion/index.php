@@ -40,7 +40,7 @@
                                         Editar
                                     </a>
                                     <form name="delete-clasificacion" action="delete.php" method="POST" style="...">
-                                        <input type="hidden" name="actformId" value="<?php echo $clasificacion->getId();?>"/>
+                                        <input type="hidden" name="clasformId" value="<?php echo $clasificacion->getId();?>"/>
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                     </form>
                                  </div>
