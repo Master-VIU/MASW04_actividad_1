@@ -129,6 +129,7 @@
             return $clasificacionBorrada;
         }
 
+
         public function exists()
         {
             $existeClasificacion = false;
@@ -140,6 +141,7 @@
             return $existeClasificacion;
         }
 
+        
         public function existsTipo()
         {
             $connection = $this->database->getConnection();
