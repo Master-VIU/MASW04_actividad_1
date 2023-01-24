@@ -2,6 +2,12 @@
     <link rel="stylesheet" href="../styles/main.css" type="text/css">
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');
+        //require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php');
     ?>
             <div class="table_container">
                 <ul class="items_table">
@@ -41,13 +47,28 @@
                             <li class="table-row">
                                 <div class="item_column" data-label="Id"><?php echo $pelicula->getId(); ?></div>
                                 <div class="item_column" data-label="Titulo"><?php echo $pelicula->getTitulo(); ?></div>
-                                <div class="item_column" data-label="PlataformaId"><?php echo $pelicula->getPlataformaId(); ?></div>
-                                <div class="item_column" data-label="DirectorId"><?php echo $pelicula->getDirectorId(); ?></div>
+                                <div class="item_column" data-label="PlataformaId">
+                                    <?php echo obtenerPlataforma($pelicula->getPlataformaId())->getNombre(); ?>
+                                </div>
+                                <div class="item_column" data-label="DirectorId">
+                                    <?php $director = obtenerDirector($pelicula->getDirectorId());
+                                    echo $director->getNombre()." ".$director->getApellidos(); ?>
+                                </div>
                                 <div class="item_column" data-label="Puntuacion"><?php echo $pelicula->getPuntuacion(); ?></div>
-                                <div class="item_column" data-label="ClasificacionId"><?php echo $pelicula->getClasificacionId(); ?></div>
-                                <div class="item_column" data-label="GeneroId"><?php echo $pelicula->getGeneroId(); ?></div>
-                                <div class="item_column" data-label="PortadaId"><?php echo $pelicula->getPortadaId(); ?></div>
-                                <div class="item_column" data-label="Duracion"><?php echo $pelicula->getDuracion(); ?></div>
+                                <div class="item_column" data-label="ClasificacionId">
+                                    <?php echo obtenerClasificacion($pelicula->getClasificacionId())->getTipo(); ?>
+                                </div>
+                                <div class="item_column" data-label="GeneroId">
+                                    <!--?php echo obtenerGenero($pelicula->getGeneroId())->getNombre(); ?-->
+                                </div>
+                                <div class="item_column" data-label="PortadaId">
+                                    <?php $portada = obtenerPortada($pelicula->getPortadaId()); ?>
+                                    <img src="http://localhost:8888/MASW04_actividad_1<?php echo $portada->getImagen(); ?>"
+                                    width="150" height="150"/>
+                                </div>
+                                <div class="item_column" data-label="Duracion">
+                                    <?php echo gmdate("H:i:s", $pelicula->getDuracion()); ?>
+                                </div>
                                 <div class="item_column" data-label="Acciones">
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-success" href="edit.php?id=<?php echo $pelicula->getId(); ?>">
