@@ -7,18 +7,20 @@
         private $id;
         private $nombre;
         private $apellidos;
+        private $dni;
         private $fechaNacimiento;
         private $nacionalidad;
         private $database;
 
 
         function constructor($idDirector, $nombreDirector,
-                             $apellidosDirector, $fechaNacimientoDirector, $nacionalidadDirector)
+                             $apellidosDirector, $dniDirector, $fechaNacimientoDirector, $nacionalidadDirector)
         {
 
             $this->id = $idDirector;
             $this->nombre = $nombreDirector;
             $this->apellidos = $apellidosDirector;
+            $this->dni = $dniDirector;
             $this->fechaNacimiento = $fechaNacimientoDirector;
             $this->nacionalidad = $nacionalidadDirector;
             $this->database = new Database();
@@ -61,7 +63,7 @@
 
             foreach ($result as $item)
             {
-                $director = new Director($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
+                $director = new Director($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['DNI'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
                 array_push($listData, $director);
             }
 
@@ -80,7 +82,7 @@
             $director = null;
             foreach ($result as $item)
             {
-                $director = new Director($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
+                $director = new Director($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['DNI'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
             }
 
             $this->database->closeConnection();
@@ -90,38 +92,39 @@
         function create()
         {
             $directorCreado = false;
-            $connection = $this->database->getConnection();  
-
-            $queryNacionalidad = "SELECT PAIS FROM filmaviu.nacionalidades WHERE ID = " .$this->nacionalidad;
-            
-            echo $queryNacionalidad;      
-            if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.directores (NOMBRE, APELLIDOS, FECHA_NACIMIENTO, NACIONALIDAD) VALUES 
-                ('$this->nombre', '$this->apellidos', '$this->fechaNacimiento', '$this->nacionalidad')"
-            ))
+            if(!$this->existsDni())
             {
-                $directorCreado = true;
-            }
+                $connection = $this->database->getConnection();  
 
+                $queryNacionalidad = "SELECT PAIS FROM filmaviu.nacionalidades WHERE ID = " .$this->nacionalidad;
+                
+                echo $queryNacionalidad;      
+                if($resultInsert = $connection->query(
+                    "INSERT INTO filmaviu.directores (NOMBRE, APELLIDOS, DNI, FECHA_NACIMIENTO, NACIONALIDAD) VALUES 
+                    ('$this->nombre', '$this->apellidos', '$this->dni', '$this->fechaNacimiento', '$this->nacionalidad')"
+                ))
+                {
+                    $directorCreado = true;
+                }
+            } 
             $this->database->closeConnection();
             return $directorCreado;
         }
 
         public function update()
         {
-            $directorActualizado = false;            
-            $query = "UPDATE filmaviu.directores set nombre = '$this->nombre', apellidos = '$this->apellidos', fecha_nacimiento = '$this->fechaNacimiento',
-            nacionalidad = '$this->nacionalidad' WHERE id = " . $this->id;
-                     
-            if($this->exists())
-            {
-                $connection = $this->database->getConnection();
-                if($resultInsert = $connection->query($query))
+            $directorActualizado = false;         
+                $query = "UPDATE filmaviu.directores set nombre = '$this->nombre', apellidos = '$this->apellidos', dni = '$this->dni', fecha_nacimiento = '$this->fechaNacimiento',
+                nacionalidad = '$this->nacionalidad' WHERE id = " . $this->id;
+                        
+                if($this->exists())
                 {
-                    $directorActualizado = true;
+                    $connection = $this->database->getConnection();
+                    if($resultInsert = $connection->query($query))
+                    {
+                        $directorActualizado = true;
+                    }
                 }
-            }
-
             $this->database->closeConnection();
             return $directorActualizado;
         }
@@ -151,6 +154,32 @@
             {
                 $existeDirector = true;
             }
+            return $existeDirector;
+        }
+
+
+        public function existsDni()
+        {
+            $connection = $this->database->getConnection();
+            $existeDirector = false;
+
+            if($this->dni != null)
+            {
+                $query = "SELECT ID FROM filmaviu.directores WHERE DNI = '$this->dni'";
+                $result = $connection->query($query);
+                $director = null;
+                foreach ($result as $item)
+                {
+                    $director = new Director(
+                        $item['ID']
+                    );
+                }
+                if ($director != null)
+                {
+                    $existeDirector = true;
+                }
+            }
+            $this->database->closeConnection();
             return $existeDirector;
         }
 
@@ -201,6 +230,19 @@
         public function setApellidos($apellidos)
         {
             $this->apellidos = $apellidos;
+        }
+
+        public function getDni()
+        {
+            return $this->dni;
+        }
+
+        /**
+         * @param mixed $dni
+         */
+        public function setDni($dni)
+        {
+            $this->dni = $dni;
         }
 
         /**
