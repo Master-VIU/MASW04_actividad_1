@@ -1,7 +1,7 @@
 <?php
 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Director.php');
 
-function listarDirector()
+function listarDirectores()
 {
     $model = new Director();
     $listarDirector = $model->getAll();
