@@ -10,7 +10,7 @@ function listarPeliculas()
 
 function obtenerPelicula($idPelicula)
 {
-    $model = new Pelicula($idPelicula, null);
+    $model = new Pelicula($idPelicula, null, null, null, null, null, null, null, null);
     $peliculaObjeto = $model->get();
     return $peliculaObjeto;
 }
