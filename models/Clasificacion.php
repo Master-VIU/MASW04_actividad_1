@@ -55,6 +55,99 @@
         return $listData;
     }
 
+    public function get()
+    {
+        $connection = $this->database->getConnection();
+
+        $query = "SELECT * FROM filmaviu.clasificaciones WHERE ID = '$this->id'";
+        $result = $connection->query($query);
+
+        $clasificacion = null;
+        foreach ($result as $item)
+        {
+            $clasificacion = new Clasificacion($item['ID'], $item['TIPO']);
+        }
+
+        $this->database->closeConnection();
+        return $clasificacion;
+    }
+
+    public function create()
+        {
+            $clasificacionCreada = false;
+            if(!$this->existsTipo())
+            {
+                $connection = $this->database->getConnection();
+
+                if ($resultInsert = $connection->query(
+                    "INSERT INTO filmaviu.clasificaciones (tipo) VALUES ('$this->tipo')"
+                ))
+                {
+                    $clasificacionCreada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $clasificacionCreada;
+        }
+
+
+        public function update()
+        {
+            $clasificacionActualizada = false;
+            if(!$this->existsTipo())
+            {
+                $query = "UPDATE filmaviu.clasificaciones set tipo = '$this->tipo' WHERE id = ".$this->id;
+
+                if ($this->exists())
+                {
+                    $connection = $this->database->getConnection();
+                    if ($resultInsert = $connection->query($query))
+                    {
+                        $clasificacionActualizada = true;
+                    }
+                }
+            }
+            $this->database->closeConnection();
+            return $clasificacionActualizada;
+        }
+
+        public function exists()
+        {
+            $existeClasificacion = false;
+            $clasificacion = $this->get();
+            if ($clasificacion != null)
+            {
+                $existeClasificacion = true;
+            }
+            return $existeClasificacion;
+        }
+
+        public function existsTipo()
+        {
+            $connection = $this->database->getConnection();
+            $existeClasificacion = false;
+
+            if($this->tipo != null)
+            {
+                $query = "SELECT ID FROM filmaviu.clasificaciones WHERE tipo = '$this->tipo'";
+                $result = $connection->query($query);
+                $clasificacion = null;
+                foreach ($result as $item)
+                {
+                    $clasificacion = new Clasificacion(
+                        $item['ID'], null
+                    );
+                }
+                if ($clasificacion != null)
+                {
+                    $existeClasificacion = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $existeClasificacion;
+        }
+
+
      /**
          * @return mixed
          */
