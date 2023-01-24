@@ -12,6 +12,7 @@
                 <div class="item_column"></div>
             </li>
             <?php
+            require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');
             require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ActorController.php');
                 $idActor = $_GET['id'];
                 $actorObjeto = obtenerActor($idActor);
@@ -99,8 +100,28 @@
                         <label for="nacionalidad" class="form-label">Nacionalidad</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="nacionalidad" name="nacionalidad" type="text" placeholder="Introduce la nacionalidad" class="form-control"
-                        required value="<?php if(isset($actorObjeto)) echo $actorObjeto->getNacionalidad();?>" />
+                        <select id="nacionalidad" name="nacionalidad" required>
+                            <?php
+                            $listaNacionalidades = listarNacionalidades();
+                            foreach ($listaNacionalidades as $nacionalidad)
+                            {
+                                ?>
+                                <option value="<?php echo $nacionalidad->getId(); ?>"
+                                        <?php
+                                        if(isset($actorObjeto))
+                                        {
+                                            $nacionalidadSeleccionada = $actorObjeto->getNacionalidad();
+                                            if ($nacionalidad->getId() == $nacionalidadSeleccionada)
+                                            {
+                                                echo "selected";
+                                            }
+                                        }
+                                        ?>>
+                                    <?php echo $nacionalidad->getPais(); ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                     <input type="hidden" name="actformId" value="<?php echo $idActor;?>"/>
                     <div class="item_column"></div>
