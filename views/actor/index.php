@@ -1,9 +1,11 @@
 <div>
 <link rel="stylesheet" href="../styles/main.css" type="text/css">          
     <?php
-        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ActorController.php');     
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ActorController.php');
+    require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');
+
     ?>
-        <div class="table_container">
+    <div class="table_container">
                 <ul class="items_table">
                     <li class="table-title">
                         <div class="item_column">
@@ -43,7 +45,9 @@
                         <div class="item_column" data-label="Apellidos"><?php echo $actor->getApellidos(); ?></div>
                         <div class="item_column" data-label="Dni"><?php echo $actor->getDni(); ?></div>
                         <div class="item_column" data-label="Fecha-Nacimiento"><?php echo $dateFormat; ?></div>
-                        <div class="item_column" data-label="Nacionalidad"><?php echo $actor->getNacionalidad(); ?></div>
+                        <div class="item_column" data-label="Nacionalidad"><?php
+                            echo obtenerNacionalidad($actor->getNacionalidad())->getPais();
+                            ?></div>
                         <div class="item_column" data-label="Acciones">
                              <div class="btn-group" role="group">
                                     <a class="btn btn-success" href="edit.php?id=<?php echo $actor->getId(); ?>">
