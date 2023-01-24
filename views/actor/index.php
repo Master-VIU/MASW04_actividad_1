@@ -32,12 +32,15 @@
         {  
                 foreach($listaActores as $actor)
                     {
+                        $date = $actor->getFechaNacimiento();
+                        $mDate = DateTime::createFromFormat('Y-m-d', $date);
+                        $dateFormat = $mDate->format('d/m/Y');
                 ?>
                 <li class="table-row">                        
                         <div class="item_column" data-label="Id"><?php echo $actor->getId(); ?></div>
                         <div class="item_column" data-label="Nombre"><?php echo $actor->getNombre(); ?></div>
                         <div class="item_column" data-label="Apellidos"><?php echo $actor->getApellidos(); ?></div>
-                        <div class="item_column" data-label="Fecha-Nacimiento"><?php echo $actor->getFechaNacimiento(); ?></div>
+                        <div class="item_column" data-label="Fecha-Nacimiento"><?php echo $dateFormat; ?></div>
                         <div class="item_column" data-label="Nacionalidad"><?php echo $actor->getNacionalidad(); ?></div>
                         <div class="item_column" data-label="Acciones">
                              <div class="btn-group" role="group">
