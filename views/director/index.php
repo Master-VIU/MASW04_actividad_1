@@ -1,7 +1,8 @@
 <div>
 <link rel="stylesheet" href="../styles/main.css" type="text/css">          
     <?php
-        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');     
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');
     ?>
         <div class="table_container">
                 <ul class="items_table">
@@ -43,7 +44,11 @@
                         <div class="item_column" data-label="Apellidos"><?php echo $director->getApellidos(); ?></div>
                         <div class="item_column" data-label="Dni"><?php echo $director->getDni(); ?></div>
                         <div class="item_column" data-label="Fecha-Nacimiento"><?php echo $dateFormat; ?></div>
-                        <div class="item_column" data-label="Nacionalidad"><?php echo $director->getNacionalidad(); ?></div>
+                        <div class="item_column" data-label="Nacionalidad">
+                            <?php
+                            echo obtenerNacionalidad($director->getNacionalidad())->getPais();
+                            ?>
+                        </div>
                         <div class="item_column" data-label="Acciones">
                              <div class="btn-group" role="group">
                                     <a class="btn btn-success" href="edit.php?id=<?php echo $director->getId(); ?>">
