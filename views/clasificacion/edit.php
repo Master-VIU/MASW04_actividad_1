@@ -12,7 +12,7 @@
                 <div class="item_column"></div>
             </li>
             <?php
-            include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php';
+            require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
                 $idClasificacion = $_GET['id'];
                 $clasificacionObjeto = obtenerClasificacion($idClasificacion);
 
@@ -33,7 +33,7 @@
                     {
                     ?>
                         <li class="table-success">
-                            <div class="item_column">Clasificacion editada correctamente.</div>
+                            <div class="item_column">Clasificación editada correctamente.</div>
                         </li>
                     <?php
                     }
