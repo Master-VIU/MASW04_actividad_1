@@ -10,18 +10,7 @@
                 </div>
                 <div class="item_column">NUEVA NACIONALIDAD</div>
                 <div class="item_column"></div>
-            </li>
-            <form name="nueva_nacionalidad" action="" method="POST">
-            <li class="table-row">
-                <div class="item_column">
-                    <label for="nacionalidad" class="form-label">País</label>
-                </div>
-                <div class="item_column_wide">
-                    <input id="nacionalidad" name="nacionalidad" type="text" placeholder="Introduce el país" class="form-control" required />
-                </div>
-            </li>
-            <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
-            </form>
+            </li>          
     <?php
     include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php';  
             
@@ -58,7 +47,17 @@
         }
     }
  ?>            
-       
+         <form name="nueva_nacionalidad" action="" method="POST">
+            <li class="table-row">
+                <div class="item_column">
+                    <label for="nacionalidad" class="form-label">País</label>
+                </div>
+                <div class="item_column_wide">
+                    <input id="nacionalidad" name="nacionalidad" type="text" placeholder="Introduce el país" class="form-control" required />
+                </div>
+            </li>
+            <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
+            </form>
         
- </ul>
+    </ul>
 </div>
