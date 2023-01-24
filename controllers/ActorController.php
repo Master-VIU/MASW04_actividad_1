@@ -17,9 +17,7 @@ function obtenerActor($idActor)
 
 function crearActor($nombre, $apellidos, $fechaNacimiento, $nacionalidad)
 {
-        $date = dateFormat($fechaNacimiento);
-        print($date);
-        $nuevoActor = new Actor(null, $nombre, $apellidos, $date, $nacionalidad);
+        $nuevoActor = new Actor(null, $nombre, $apellidos, $fechaNacimiento, $nacionalidad);
         $actorCreado = $nuevoActor->create();
         return $actorCreado;
 }
