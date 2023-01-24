@@ -47,7 +47,7 @@
                 </li>
                 <li class="table-row">
                     <div class="item_column">
-                        <label for="apellido" class="form-label">Apellido</label>
+                        <label for="apellido" class="form-label">Apellidos</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="apellido" name="apellido" type="text" placeholder="Introduce los apellidos" class="form-control" required />
