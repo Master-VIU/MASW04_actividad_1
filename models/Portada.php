@@ -15,7 +15,7 @@ class Portada
             $this->id = $idPortada;
             $this->tamanio = $tamanioPortada;
             $this->imagen = $imagenPortada;
-            $this-> database= new Database();
+            $this-> database= Database::getInstance();
         }
         
       /** Este metodo se encarga de obtener 
