@@ -36,7 +36,7 @@ CREATE TABLE filmaviu.NACIONALIDADES(
 CREATE TABLE filmaviu.DIRECTORES(
                                     ID MEDIUMINT NOT NULL AUTO_INCREMENT,
                                     NOMBRE VARCHAR(255) NOT NULL,
-									DNI VARCHAR(50) NONT NULL,
+									DNI VARCHAR(9) UNIQUE NOT NULL,
                                     APELLIDOS VARCHAR(500) NOT NULL,
                                     FECHA_NACIMIENTO DATE NOT NULL,
                                     NACIONALIDAD MEDIUMINT NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE filmaviu.DIRECTORES(
 CREATE TABLE filmaviu.ACTORES(
                                  ID MEDIUMINT NOT NULL AUTO_INCREMENT,
                                  NOMBRE VARCHAR(255) NOT NULL,
-								 DNI VARCHAR(50) NONT NULL,
+								 DNI VARCHAR(9) UNIQUE NOT NULL,
                                  APELLIDOS VARCHAR(500) NOT NULL,
                                  FECHA_NACIMIENTO DATE NOT NULL,
                                  NACIONALIDAD MEDIUMINT NOT NULL,
@@ -218,40 +218,41 @@ VALUES
     (7, 'Canada'),
     (8, 'Japón');
 
-INSERT INTO filmaviu.directores (ID, NOMBRE, APELLIDOS, FECHA_NACIMIENTO, NACIONALIDAD)
+INSERT INTO filmaviu.directores (ID, DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO, NACIONALIDAD)
 VALUES
-    (1, 'Steven', 'Spielberg', '1946-12-18', 4),
-    (2, 'Martin', 'Scorsese', '1942-11-17', 4),
-    (3, 'Pedro', 'Almodovar', '1949-09-24', 1),
-    (4, 'D.B.', 'Weiss', '1971-04-23', 4),
-    (5, 'James', 'Cameron', '1954-08-16', 7),
-    (6, 'Justin', 'Roiland', '1980-02-21', 4),
-    (7, 'Christopher', 'Nolan', '1970-07-30', 3);
+    (1, '16105542E', 'Steven', 'Spielberg', '1946-12-18', 4),
+    (2, '91367856B', 'Martin', 'Scorsese', '1942-11-17', 4),
+    (3, '09398295N', 'Pedro', 'Almodovar', '1949-09-24', 1),
+    (4, '34390748K', 'D.B.', 'Weiss', '1971-04-23', 4),
+    (5, '98411824E', 'James', 'Cameron', '1954-08-16', 7),
+    (6, '16103312T', 'Justin', 'Roiland', '1980-02-21', 4),
+    (7, '24433696Z', 'Christopher', 'Nolan', '1970-07-30', 3);
 
-INSERT INTO filmaviu.actores (ID, NOMBRE, APELLIDOS, FECHA_NACIMIENTO, NACIONALIDAD)
+
+INSERT INTO filmaviu.actores (ID, DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO, NACIONALIDAD)
 VALUES
-    (1, 'Tom', 'Hanks', '1956-07-09', 4),
-    (2, 'Meryl', 'Streep', '1956-07-09', 4),
-    (3, 'Denzel', 'Washington', '1954-12-28', 4),
-    (4, 'Leonardo', 'DiCaprio', '1974-11-11', 4),
-    (5, 'Brad', 'Pitt', '1963-12-18', 4),
-    (6, 'Tom', 'Cruise', '1962-07-03', 4),
-    (7, 'Robert', 'De Niro', '1943-08-17', 4),
-    (8, 'Morgan', 'Freeman', '1937-06-01', 4),
-    (9, 'Al', 'Pacino', '1940-04-25', 4),
-    (10, 'Anthony', 'Hopkins', '1937-12-31', 5),
-    (11, 'Peter', 'Dinklage', '1969-06-11', 4),
-    (12, 'Emilia', 'Clarke', '1986-10-23', 3),
-    (13, 'Kit', 'Harrington', '1986-12-26', 3),
-    (14, 'Sophie', 'Turner', '1996-02-21', 3),
-    (15, 'Justin', 'Roiland', '1980-02-21', 4),
-    (16, 'Chris', 'Parnell', '1967-02-05', 4),
-    (17, 'Kate', 'Winslet', '1974-11-11', 4),
-    (18, 'Sam', 'Worthington', '1976-08-02', 2),
-    (19, 'Zoe', 'Saldana', '1978-06-19', 4),
-    (20, 'Matthew', 'McConaughey', '1969-11-04', 4),
-    (21, 'Anne', 'Hathaway', '1982-11-12', 4),
-    (22, 'Ken', 'Watanabe', '1959-10-21', 8);
+    (1, '18793791P','Tom', 'Hanks', '1956-07-09', 4),
+    (2, '15096267X','Meryl', 'Streep', '1956-07-09', 4),
+    (3, '78468321A','Denzel', 'Washington', '1954-12-28', 4),
+    (4, '41443370S','Leonardo', 'DiCaprio', '1974-11-11', 4),
+    (5, '09685272H','Brad', 'Pitt', '1963-12-18', 4),
+    (6, '77132013H','Tom', 'Cruise', '1962-07-03', 4),
+    (7, '26553493Q','Robert', 'De Niro', '1943-08-17', 4),
+    (8, '41610231B','Morgan', 'Freeman', '1937-06-01', 4),
+    (9, '41839249H','Al', 'Pacino', '1940-04-25', 4),
+    (10,'97002771H', 'Anthony', 'Hopkins', '1937-12-31', 5),
+    (11,'05868063G', 'Peter', 'Dinklage', '1969-06-11', 4),
+    (12,'60494637Z', 'Emilia', 'Clarke', '1986-10-23', 3),
+    (13,'64305810H', 'Kit', 'Harrington', '1986-12-26', 3),
+    (14,'24623440P', 'Sophie', 'Turner', '1996-02-21', 3),
+    (15,'37126907P', 'Justin', 'Roiland', '1980-02-21', 4),
+    (16,'11260505G', 'Chris', 'Parnell', '1967-02-05', 4),
+    (17,'13072470Y', 'Kate', 'Winslet', '1974-11-11', 4),
+    (18,'53101494Z', 'Sam', 'Worthington', '1976-08-02', 2),
+    (19,'99577872Q', 'Zoe', 'Saldana', '1978-06-19', 4),
+    (20,'43662561M', 'Matthew', 'McConaughey', '1969-11-04', 4),
+    (21,'27163511M', 'Anne', 'Hathaway', '1982-11-12', 4),
+    (22,'45481189T', 'Ken', 'Watanabe', '1959-10-21', 8);
 
 INSERT INTO filmaviu.portada (ID, IMAGEN)
 VALUES
