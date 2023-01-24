@@ -29,7 +29,7 @@
                         <div class="item_column">Acciones</div>
                     </li>
     <?php
-        $listaDirector = listarDirector();
+        $listaDirector = listarDirectores();
         if (count($listaDirector) > 0)
         {  
                 foreach($listaDirector as $director)
