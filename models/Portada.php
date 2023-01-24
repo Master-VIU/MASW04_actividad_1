@@ -5,15 +5,13 @@ class Portada
 
 {
         private $id;
-        private $tamanio;
         private $imagen;
         private $database;
 
-        function __construct($idPortada, $tamanioPortada, $imagenPortada)
+        function __construct($idPortada, $imagenPortada)
         {
 
             $this->id = $idPortada;
-            $this->tamanio = $tamanioPortada;
             $this->imagen = $imagenPortada;
             $this-> database= Database::getInstance();
         }
@@ -31,7 +29,7 @@ class Portada
 
             foreach ($result as $item)
             {
-                $portada =  new Portada($item['ID'], $item['TAMANIO'], $item['IMAGEN']);
+                $portada =  new Portada($item['ID'], $item['IMAGEN']);
                 array_push($listData, $portada);
             }
 
@@ -49,13 +47,13 @@ class Portada
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.portada WHERE ID = ".$this->id;
+            $query = "SELECT * FROM filmaviu.portada WHERE ID = '$this->id'";
             $result = $connection->query($query);
 
             $portada = null;
             foreach ($result as $item)
             {
-                $portada = new Portada($item['id'], $item['tamanio'], $item['imagen']);
+                $portada = new Portada($item['ID'], $item['IMAGEN']);
             }
 
             $this->database->closeConnection();
@@ -67,15 +65,15 @@ class Portada
 
         public function create()
         {
-           $existeportada = false;
+            $portadaCreada = false;
            $connection = $this->database->getConnection();
-           if($resultInsert = $connection->query("INSERT INTO filmaviu.idiomas (TAMANIO, IMAGEN) VALUES ('$this->tamanio', '$this->imagen')"))
+           if($resultInsert = $connection->query("INSERT INTO filmaviu.idiomas (IMAGEN) VALUES ('$this->imagen')"))
             {
-            $idiomaCreado = true;
-             }
+                $portadaCreada = false;
+            }
 
             $this->database->closeConnection();
-            return $existeportada; 
+            return $portadaCreada;
 
         }
         
@@ -85,7 +83,7 @@ class Portada
         {
             $portadaActualizada = false;
             $connection = $this->database->getConnection();
-            $query = "UPDATE filmaviu.portada set tamanio = ' $this->tamanio, imagen = $this->imagen ' WHERE id = ".$this->id;
+            $query = "UPDATE filmaviu.portada set IMAGEN = '$this->imagen' WHERE id = '$this->id'";
 
             if ($this->exists())
             {
@@ -105,7 +103,7 @@ class Portada
         public function remove()
         {
             $portadaBorrada = false;
-            $query = "DELETE FROM filmaviu.portada WHERE id = ".$this->id;
+            $query = "DELETE FROM filmaviu.portada WHERE id = '$this->id'";
 
             if($this->exists())
             {
@@ -151,22 +149,6 @@ class Portada
         public function setId($id)
         {
             $this->id = $id;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getTamanio()
-        {
-            return $this->tamanio;
-        }
-
-        /**
-         * @param mixed $tamanio
-         */
-        public function setTamanio($tamanio)
-        {
-            $this->tamanio = $tamanio;
         }
 
         /**
