@@ -36,6 +36,7 @@ CREATE TABLE filmaviu.NACIONALIDADES(
 CREATE TABLE filmaviu.DIRECTORES(
                                     ID MEDIUMINT NOT NULL AUTO_INCREMENT,
                                     NOMBRE VARCHAR(255) NOT NULL,
+									DNI VARCHAR(50) NONT NULL,
                                     APELLIDOS VARCHAR(500) NOT NULL,
                                     FECHA_NACIMIENTO DATE NOT NULL,
                                     NACIONALIDAD MEDIUMINT NOT NULL,
@@ -48,6 +49,7 @@ CREATE TABLE filmaviu.DIRECTORES(
 CREATE TABLE filmaviu.ACTORES(
                                  ID MEDIUMINT NOT NULL AUTO_INCREMENT,
                                  NOMBRE VARCHAR(255) NOT NULL,
+								 DNI VARCHAR(50) NONT NULL,
                                  APELLIDOS VARCHAR(500) NOT NULL,
                                  FECHA_NACIMIENTO DATE NOT NULL,
                                  NACIONALIDAD MEDIUMINT NOT NULL,
