@@ -1,4 +1,17 @@
 <div>
+
+<link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <div class="table_container">
+        <ul class="items_table">
+            <li class="table-title">
+                <div class="item_column">
+                    <a class="btn btn-success" href="index.php">
+                        Volver
+                    </a>
+                </div>
+                <div class="item_column">BORRADO</div>
+                <div class="item_column"></div>
+            </li>
     <?php
 include $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php';
 
@@ -7,18 +20,16 @@ $idiomaEliminado = eliminarIdioma($idioma);
 if($idiomaEliminado)
 {    
     ?>
-    <div class="alert alert-success" role="alert">
-        Idioma eliminado con éxito! <br><br>
-        <a href="index.php"> Volver al listado de idiomas.</a>
-    </div>
+    <li class="table-success">
+        <div class="item_column">Idioma eliminado con éxito!</div>
+    </li>
 <?php
 }
 else{
         ?>
-        <div class="alert alert-danger" role="alert">
-            El idioma no se ha borrado correctamente. <br><br>
-            <a href="index.php"> Volver a intentarlo</a>
-        </div>
+        <li class="table-wrong">
+            <div class="item_column">El idioma no se ha borrado correctamente. Inténtalo de nuevo.</div>
+        </li>
     <?php
 }
 ?>
