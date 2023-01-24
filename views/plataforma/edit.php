@@ -58,7 +58,7 @@
                         <label for="editarPlataforma" class="form-label">Nombre</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="editarPlataforma" name="editarPlataforma" type="text" placeholder="Introduce el nombre d ela plataforma" class="form-control"
+                        <input id="editarPlataforma" name="editarPlataforma" type="text" placeholder="Introduce el nombre de la plataforma" class="form-control"
                                required value="<?php if(isset($plataformaObjeto)) echo $plataformaObjeto->getNombre();?>" />
                         <input type="hidden" name="platafromaId" value="<?php echo $idIPlataforma;?>"/>
                     </div>
