@@ -17,7 +17,7 @@
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');
-        //require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php');
         $sendData =false;
         $peliculaCreada = false;
@@ -143,25 +143,25 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <!--li class="table-row">
+                <li class="table-row">
                     <div class="item_column">
                         <label for="genero" class="form-label">Género</label>
                     </div>
                     <div class="item_column_wide">
                         <select id="genero" name="genero" required>
-                            <!?php
+                            <?php
                             $listaGeneros = listarGeneros();
                             foreach ($listaGeneros as $genero)
                             {
                                 ?>
-                                <option value="<!?php echo $genero->getId(); ?>"><!?php echo $genero->getNombre(); ?></option>
-                                <!?php
+                                <option value="<?php echo $genero->getId(); ?>"><?php echo $genero->getNombre(); ?></option>
+                                <?php
                             }
                             ?>
                         </select>
                     </div>
                     <div class="item_column"></div>
-                </li-->
+                </li>
                 <li class="table-row">
                     <div class="item_column">
                         <label for="portada" class="form-label">Portada</label>
