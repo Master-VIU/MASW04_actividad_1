@@ -14,16 +14,16 @@
         $clasificacionObjeto = $model->get();
         return $clasificacionObjeto;
     }
-    function crearClasificacion($nombreClasificacion)
+    function crearClasificacion($tipo)
     {
-        $nuevaClasificacion = new Clasificacion(null, $nombreClasificacion);
+        $nuevaClasificacion = new Clasificacion(null, $tipo);
         $clasificacionCreada = $nuevaClasificacion->create();
         return $clasificacionCreada;
     }
 
-    function actualizarClasificacion($idClasificacion, $nombreClasificacion)
+    function actualizarClasificacion($idClasificacion, $tipo)
     {
-        $clasificacion = new Clasificacion($idClasificacion, $nombreClasificacion);
+        $clasificacion = new Clasificacion($idClasificacion, $tipo);
         $clasificacionActualizada = $clasificacion->update();
         return $clasificacionActualizada;
     }
