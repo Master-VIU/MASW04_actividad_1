@@ -15,16 +15,16 @@ function obtenerActor($idActor)
     return $actorObjeto;
 }
 
-function crearActor($nombre, $apellidos, $fechaNacimiento, $nacionalidad)
+function crearActor($nombre, $apellidos, $dni, $fechaNacimiento, $nacionalidad)
 {
-        $nuevoActor = new Actor(null, $nombre, $apellidos, $fechaNacimiento, $nacionalidad);
+        $nuevoActor = new Actor(null, $nombre, $apellidos, $dni, $fechaNacimiento, $nacionalidad);
         $actorCreado = $nuevoActor->create();
         return $actorCreado;
 }
 
-function actualizarActor($idActor, $nombreActor, $apellidoActor, $fechaNacimiento, $nacionalidad)
+function actualizarActor($idActor, $nombreActor, $apellidoActor, $dni, $fechaNacimiento, $nacionalidad)
 {
-    $actor = new Actor($idActor, $nombreActor, $apellidoActor, $fechaNacimiento, $nacionalidad);
+    $actor = new Actor($idActor, $nombreActor, $apellidoActor, $dni, $fechaNacimiento, $nacionalidad);
     $actorActualizado = $actor->update();
     return $actorActualizado;
 }
