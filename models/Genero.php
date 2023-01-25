@@ -1,17 +1,19 @@
 <?php
     require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php');
-    class Plataforma
+    class Genero
     {
+
         private $id;
         private $nombre;
         private $database;
 
-        public function constructor($idPlataforma, $nombrePlataforma)
+        public function constructor($idGenero, $nombreGenero)
         {
-            $this->id = $idPlataforma;
-            $this->nombre = $nombrePlataforma;
+            $this->id = $idGenero;
+            $this->nombre = $nombreGenero;
             $this->database = Database::getInstance();
         }
+
 
         public function constructorVacio()
         {
@@ -37,14 +39,14 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.plataformas";
+            $query = "SELECT * FROM filmaviu.generos";
             $result = $connection->query($query);
             $listData = [];
 
             foreach ($result as $item)
             {
-                $plataforma = new Plataforma($item['ID'], $item['NOMBRE']);
-                array_push($listData, $plataforma);
+                $genero = new Genero($item['ID'], $item['NOMBRE']);
+                array_push($listData, $genero);
             }
 
             $this->database->closeConnection();
@@ -55,133 +57,142 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.plataformas WHERE ID = '$this->id'";
+            $query = "SELECT * FROM filmaviu.generos WHERE ID = '$this->id'";
             $result = $connection->query($query);
 
-            $plataforma = null;
+            $genero = null;
             foreach ($result as $item)
             {
-                $plataforma = new Plataforma($item['ID'], $item['NOMBRE']);
+                $genero = new Genero($item['ID'], $item['NOMBRE']);
             }
 
             $this->database->closeConnection();
-            return $plataforma;
+            return $genero;
         }
 
         public function create()
         {
-            $plataformaCreada = false;
-            if(!$this->existsNombre())
+            $generoCreado = false;
+            if(!$this->existsGenero())
             {
                 $connection = $this->database->getConnection();
 
                 if ($resultInsert = $connection->query(
-                    "INSERT INTO filmaviu.plataformas (nombre) VALUES ('$this->nombre')"
+                    "INSERT INTO filmaviu.generos (nombre) VALUES ('$this->nombre')"
                 ))
                 {
-                    $plataformaCreada = true;
+                    $generoCreado = true;
                 }
             }
             $this->database->closeConnection();
-            return $plataformaCreada;
+            return $generoCreado;
         }
 
         public function update()
         {
-            $plataformaActualizada = false;
-            $query = "UPDATE filmaviu.plataformas set nombre = '$this->nombre' WHERE id = ".$this->id;
-
-            if ($this->exists())
+            $generoActualizado = false;
+            if(!$this->existsGenero())
             {
-                $connection = $this->database->getConnection();
-                if ($resultInsert = $connection->query($query))
+                $query = "UPDATE filmaviu.generos set nombre = '$this->nombre' WHERE id = ".$this->id;
+
+                if ($this->exists())
                 {
-                    $plataformaActualizada = true;
+                    $connection = $this->database->getConnection();
+                    if ($resultInsert = $connection->query($query))
+                    {
+                        $generoActualizado = true;
+                    }
                 }
             }
-
             $this->database->closeConnection();
-            return $plataformaActualizada;
+            return $generoActualizado;
         }
 
         public function remove()
         {
-            $plataformaBorrada = false;            
-            $query = "DELETE FROM filmaviu.plataformas WHERE id = '$this->id'";
+            $generoBorrado = false;            
+            $query = "DELETE FROM filmaviu.generos WHERE id = '$this->id'";
 
             if ($this->exists())
             {
                 $connection = $this->database->getConnection();
                 if ($resultRemove = $connection->query($query))
                 {
-                    $plataformaBorrada = true;
+                    $generoBorrado = true;
                 }
             }
 
             $this->database->closeConnection();
-            return $plataformaBorrada;
+            return $generoBorrado;
         }
 
         public function exists()
         {
-            $existePlataforma = false;
-            $plataforma = $this->get();
-            if ($plataforma != null)
+            $existeGenero = false;
+            $genero = $this->get();
+            if ($genero != null)
             {
-                $existePlataforma = true;
+                $existeGenero = true;
             }
-            return $existePlataforma;
+            return $existeGenero;
         }
 
-        public function existsNombre()
+
+        public function existsGenero()
         {
             $connection = $this->database->getConnection();
-            $existePlataforma = false;
+            $existeGenero = false;
 
             if($this->nombre != null)
             {
-                $query = "SELECT ID FROM filmaviu.plataformas WHERE NOMBRE = '$this->nombre'";
+                $query = "SELECT ID FROM filmaviu.generos WHERE nombre = '$this->nombre'";
                 $result = $connection->query($query);
-                $plataforma = null;
+                $genero = null;
                 foreach ($result as $item)
                 {
-                    $plataforma = new Plataforma(
+                    $genero = new Genero(
                         $item['ID'], null
                     );
                 }
-                if ($plataforma != null)
+                if ($genero != null)
                 {
-                    $existePlataforma = true;
+                    $existeGenero = true;
                 }
             }
             $this->database->closeConnection();
-            return $existePlataforma;
+            return $existeGenero;
         }
 
-        // GETTERS Y SETTERS
-
-        // ID
+         /**
+         * @return mixed
+         */
         public function getId()
         {
             return $this->id;
         }
 
+        /**
+         * @param mixed $id
+         */
         public function setId($id)
         {
             $this->id = $id;
         }
-        // NOMBRE
+
+        /**
+         * @return mixed
+         */
         public function getNombre()
         {
             return $this->nombre;
         }
 
+        /**
+         * @param mixed $nombre
+         */
         public function setNombre($nombre)
         {
             $this->nombre = $nombre;
         }
-
-
     }
-
 ?>
