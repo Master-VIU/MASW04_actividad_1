@@ -25,7 +25,7 @@
                 "TEMPORADAS" => "./temporada/",
                 "EPISODIOS" => "./episodio/",
                 "PORTADA" => "./portada/",
-                "PELICULAS ACTORES" => "./pelicula_actor/"
+                "PELICULA ACTORES" => "./pelicula_actor/"
             ];
             foreach ($listaEntidades as $entidad => $ruta)
             {
