@@ -23,7 +23,8 @@
                 "CLASIFICACIONES" => "./clasificacion/",
                 "GENERO" => "./genero/",
                 "TEMPORADAS" => "./temporada/",
-                "EPISODIOS" => "./episodio/"
+                "EPISODIOS" => "./episodio/",
+                "PORTADA" => "./portada/"
             ];
             foreach ($listaEntidades as $entidad => $ruta)
             {
