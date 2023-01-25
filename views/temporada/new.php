@@ -25,9 +25,9 @@
             }
             if($sendData)
             {
-                if(isset($_POST['numero']) && isset($_POST['id']) && isset($_POST['fechaLanzamiento']) && isset($_POST['serie']))
+                if(isset($_POST['numero']) && isset($_POST['serie']) && isset($_POST['id'])  && isset($_POST['fechaLanzamiento']))
                 {
-                    $temporadaCreada = crearTemporada($_POST['numero'], $_POST['id'], $_POST['fechaLanzamiento'], $_POST['serie']);
+                    $temporadaCreada = crearTemporada($_POST['numero'], $_POST['serie'], $_POST['id'], $_POST['fechaLanzamiento']);
                 }
 
             if($temporadaCreada)
@@ -58,7 +58,26 @@
                         <input id="numero" name="numero" type="number" min="0" placeholder="Introduce el numero" class="form-control" required />
                     </div>
                     <div class="item_column"></div>
-                </li>             
+                </li>          
+                <li class="table-row">
+                    <div class="item_column">
+                        <label for="serie" class="form-label">Serie</label>
+                    </div>
+                    <div class="item_column_wide">
+                        <select id="serie" name="serie" required>
+                            <?php
+                            //$listaSeries = listarSeries();
+                           // foreach ($listaSeries as $serie)
+                            //{
+                               ?>
+                                <option value="<!?php echo $serie->getId(); ?>"><!?php echo $serie->getTitulo(); ?></option>
+                                <?php
+                           // }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="item_column"></div>
+                </li>      
                 <li class="table-row">
                     <div class="item_column">
                         <label for="id" class="form-label">ID</label>
@@ -67,7 +86,7 @@
                         <input id="id" name="id" type="text" placeholder="Introduce el id" class="form-control" required />
                     </div>
                     <div class="item_column"></div>
-                </li>                
+                </li>               
                 <li class="table-row">
                     <div class="item_column">
                         <label for="fechaLanzamiento" class="form-label">Fecha de lanzamiento</label>
@@ -76,7 +95,7 @@
                         <input id="fechaLanzamiento" name="fechaLanzamiento" type="date" placeholder="Introduce la fecha de lanzamiento" class="form-control" required />
                     </div>
                     <div class="item_column"></div>
-                </li>                
+                </li>          
                 <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
             </form>
         </ul>
