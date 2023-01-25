@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="61513557-ed3c-4903-90bd-83f754390084" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/views/serie/delete.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/serie/edit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/serie/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/serie/new.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/PeliculaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/PeliculaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Serie.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Serie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pelicula/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pelicula/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pelicula/new.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pelicula/new.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KJj3W4Dh5Y1GUCWuL73aG4eOiZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/MAMP/htdocs/MASW04_actividad_1/views/serie",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\MAMP\htdocs\MASW04_actividad_1\views\pelicula" />
+      <recent name="C:\MAMP\htdocs\MASW04_actividad_1\views\plataforma" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\MAMP\htdocs\MASW04_actividad_1\views\plataforma" />
+      <recent name="C:\Users\anglo\Documents\github\MASW04_actividad_1" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="61513557-ed3c-4903-90bd-83f754390084" name="Changes" comment="" />
+      <created>1673699380939</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673699380939</updated>
+      <workItem from="1673699383375" duration="2212000" />
+      <workItem from="1673893790159" duration="2118000" />
+      <workItem from="1673976518689" duration="3764000" />
+      <workItem from="1674016893226" duration="3545000" />
+      <workItem from="1674063071889" duration="2623000" />
+      <workItem from="1674065829826" duration="4872000" />
+      <workItem from="1674301754910" duration="2948000" />
+      <workItem from="1674317617252" duration="6218000" />
+      <workItem from="1674493472224" duration="10321000" />
+      <workItem from="1674580863767" duration="9561000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
