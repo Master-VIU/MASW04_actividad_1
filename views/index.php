@@ -21,7 +21,8 @@
                 "IDIOMAS" => "./idioma/",
                 "NACIONALIDADES" => "./nacionalidad/",
                 "CLASIFICACIONES" => "./clasificacion/",
-                "GENERO" => "./genero/"
+                "GENERO" => "./genero/",
+                "TEMPORADAS" => "./temporada/"
             ];
             foreach ($listaEntidades as $entidad => $ruta)
             {
