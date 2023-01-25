@@ -55,6 +55,97 @@ class Temporada
             return $listData;
         }
 
+        public function get()
+        {
+           
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.temporadas WHERE ID = " .$this->id;
+            $result = $connection->query($query);
+
+            $temporada = null;
+            foreach ($result as $item)
+            {
+                $temporada = new Temporada($item['NUMERO'], $item['SERIE_ID'], $item['ID'], $item['FECHA_LANZAMIENTO']);
+            }
+
+            $this->database->closeConnection();
+            return $temporada;
+        }
+
+
+        function create()
+        {
+            $temporadaCreada = false;
+            if(!$this->existsId())
+            {
+                $connection = $this->database->getConnection();       
+                if($resultInsert = $connection->query(
+                    "INSERT INTO filmaviu.temporadas (NUMERO, SERIE_ID, ID, FECHA_LANZAMIENTO) VALUES 
+                    ('$this->numero', '$this->serieId', '$this->id', '$this->fechaLanzamiento')"
+                ))
+                {
+                    $temporadaCreada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $temporadaCreada;
+        }
+
+        public function existsId()
+        {
+            $connection = $this->database->getConnection();
+            $existeTemporada = false;
+
+            if($this->id != null)
+            {
+                $query = "SELECT ID FROM filmaviu.temporadas WHERE ID = '$this->id'";
+                $result = $connection->query($query);
+                $temporada = null;
+                foreach ($result as $item)
+                {
+                    $temporada = new Temporada(
+                        $item(null, null,['ID'], null)
+                    );
+                }
+                if ($temporada != null)
+                {
+                    $existeTemporada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $existeTemporada;
+        }
+
+        public function update()
+        {
+            $temporadaActualizado = false;                     
+                $query = "UPDATE filmaviu.temporadas set numero = '$this->numero', serie_id = '$this->serieId', id = '$this->id', fecha_lanzamiento = '$this->fechaLanzamiento'
+                    WHERE id = " . $this->id;
+                        
+                if($this->exists())
+                {
+                    $connection = $this->database->getConnection();
+                    if($resultInsert = $connection->query($query))
+                    {
+                        $temporadaActualizado = true;
+                    }
+                }
+            
+            $this->database->closeConnection();
+            return $temporadaActualizado;
+        }
+
+        public function exists()
+        {
+            $existeTemporada = false;
+            $temporada = $this->get();
+            if ($temporada != null)
+            {
+                $existeTemporada = true;
+            }
+            return $existeTemporada;
+        }
         /**
          * @return mixed
          */
