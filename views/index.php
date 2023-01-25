@@ -22,7 +22,8 @@
                 "NACIONALIDADES" => "./nacionalidad/",
                 "CLASIFICACIONES" => "./clasificacion/",
                 "GENERO" => "./genero/",
-                "TEMPORADAS" => "./temporada/"
+                "TEMPORADAS" => "./temporada/",
+                "EPISODIOS" => "./episodio/"
             ];
             foreach ($listaEntidades as $entidad => $ruta)
             {
