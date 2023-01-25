@@ -7,6 +7,7 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php'
         private $numero;
         private $titulo;
         private $duracion;
+        private $database;
 
         private function constructor($idEpisodio, $temporadaIdEpisodio, $numeroEpisodio, $tituloEpisodio, $duracionEpisodio)
         {
@@ -64,6 +65,110 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php'
 
             return $listData;
         }
+
+/**--------------------------------------------------------------------- */
+public function create()
+{
+    $episodioCreado = false;
+    /**if(!$this->existsEpisodio())
+    {*/
+        $connection = $this->database->getConnection();
+
+        if ($resultInsert = $connection->query(
+            "INSERT INTO filmaviu.episodios (TEMPORADA_ID,NUMERO,TITULO) VALUES ('$this->temporadaId', '$this->numero', '$this->titulo')"
+        ))
+        {
+            $episodioCreado = true;
+        }
+    /**}*/
+    $this->database->closeConnection();
+    return $episodioCreado;
+}
+
+public function update()
+{
+    $episodioActualizado = false;
+    if(!$this->existsEpisodio())
+    {
+        $query = "UPDATE filmaviu.episodios set nombre = '$this->nombre' WHERE id = ".$this->id;
+
+        if ($this->exists())
+        {
+            $connection = $this->database->getConnection();
+            if ($resultInsert = $connection->query($query))
+            {
+                $generoActualizado = true;
+            }
+        }
+    }
+    $this->database->closeConnection();
+    return $episodioActualizado;
+}
+
+public function remove()
+{
+    $generoBorrado = false;            
+    $query = "DELETE FROM filmaviu.episodios WHERE id = '$this->id'";
+
+    if ($this->exists())
+    {
+        $connection = $this->database->getConnection();
+        if ($resultRemove = $connection->query($query))
+        {
+            $generoBorrado = true;
+        }
+    }
+
+    $this->database->closeConnection();
+    return $generoBorrado;
+}
+
+public function exists()
+{
+    $existeEpisodio = false;
+    $episodio = $this->get();
+    if ($episodio != null)
+    {
+        $existeEpisodio = true;
+    }
+    return $existeEpisodio;
+}
+
+
+public function existsEpisodio()
+{
+    $connection = $this->database->getConnection();
+    $existeEpisodio = false;
+
+    if($this->nombre != null)
+    {
+        $query = "SELECT ID FROM filmaviu.episodios WHERE nombre = '$this->nombre'";
+        $result = $connection->query($query);
+        $episodio = null;
+        foreach ($result as $item)
+        {
+            $episodio = new Genero(
+                $item['ID'], null
+            );
+        }
+        if ($episodio != null)
+        {
+            $existeEpisodio = true;
+        }
+    }
+    $this->database->closeConnection();
+    return $existeEpisodio;
+}
+
+
+
+
+
+
+/**---------------------------------------------------------------------- */
+
+
+
 
         /**
          * @return mixed

@@ -15,9 +15,9 @@ function obtenerEpisodio($idEpisodio)
     return $episodioObjeto;
 }
 
-function crearEpisodio($episodio, $isoCode)
+function crearEpisodio($temporadaId, $nuevoNumero, $nuevoTitulo, $nuevaDuracion)
 {
-    $nuevoEpisodio = new Episodio(null, $episodio, $isoCode);
+    $nuevoEpisodio = new Episodio(null, $temporadaId, $nuevoNumero, $nuevoTitulo, $nuevaDuracion);
     $episodioCreado = $nuevoEpisodio->create();
     return $episodioCreado;
 }
