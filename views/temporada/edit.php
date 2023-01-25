@@ -61,7 +61,6 @@
                     <div class="item_column_wide">
                         <input id="numero" name="numero" type="number" min="0" placeholder="Introduce el número de la temporada" class="form-control"
                                required value="<?php if(isset($temporadaObjeto)) echo $temporadaObjeto->getNumero();?>" />
-                        <input type="hidden" name="temporadaId" value="<?php echo $idTemporada;?>"/>
                     </div>
                     <div class="item_column"></div>
                 </li>
@@ -94,6 +93,7 @@
                             ?>
                         </select>
                     </div>
+                    <div class="item_column"></div>
                     </li>
                 <li class="table-row">
                     <div class="item_column">
