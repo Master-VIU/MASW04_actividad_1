@@ -57,7 +57,7 @@
         {
     ?>           
             <div class="alerta alerta-warning" role="alert">
-                Aun no existen generoes.
+                Aun no existen generos.
             </div>
     <?php
         }
