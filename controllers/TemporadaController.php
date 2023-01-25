@@ -15,16 +15,16 @@ function obtenerTemporada($idTemporada)
     return $temporadaObjeto;
 }
 
-function crearTemporada($nombre, $apellidos, $dni, $fechaNacimiento, $nacionalidad)
+function crearTemporada($numero, $serieId, $id, $fechaLanzamiento)
 {
-        $nuevoTemporada = new Temporada(null, $nombre, $apellidos, $dni, $fechaNacimiento, $nacionalidad);
+        $nuevoTemporada = new Temporada($numero, $serieId, $id, $fechaLanzamiento);
         $temporadaCreado = $nuevoTemporada->create();
         return $temporadaCreado;
 }
 
-function actualizarTemporada($idTemporada, $nombreTemporada, $apellidoTemporada, $dni, $fechaNacimiento, $nacionalidad)
+function actualizarTemporada($numero, $serieId, $id, $fechaLanzamiento)
 {
-    $temporada = new Temporada($idTemporada, $nombreTemporada, $apellidoTemporada, $dni, $fechaNacimiento, $nacionalidad);
+    $temporada = new Temporada($numero, $serieId, $id, $fechaLanzamiento);
     $temporadaActualizado = $temporada->update();
     return $temporadaActualizado;
 }
