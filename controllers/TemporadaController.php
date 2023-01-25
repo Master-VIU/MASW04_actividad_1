@@ -10,7 +10,7 @@ function listarTemporadas()
 
 function obtenerTemporada($idTemporada)
 {
-    $model = new Temporada($idTemporada);
+    $model = new Temporada($idTemporada, null, null, null);
     $temporadaObjeto = $model->get();
     return $temporadaObjeto;
 }
