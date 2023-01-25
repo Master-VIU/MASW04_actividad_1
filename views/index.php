@@ -21,7 +21,10 @@
                 "IDIOMAS" => "./idioma/",
                 "NACIONALIDADES" => "./nacionalidad/",
                 "CLASIFICACIONES" => "./clasificacion/",
-                "GENERO" => "./genero/"
+                "GENERO" => "./genero/",
+                "TEMPORADAS" => "./temporada/",
+                "EPISODIOS" => "./episodio/",
+                "PORTADA" => "./portada/"
             ];
             foreach ($listaEntidades as $entidad => $ruta)
             {

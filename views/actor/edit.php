@@ -74,8 +74,8 @@
                         <input id="apellido" name="apellido" type="text" placeholder="Introduce los apellidos" class="form-control" 
                         required value="<?php if(isset($actorObjeto)) echo $actorObjeto->getApellidos();?>" />
                     </div>
-                    <div class="item_column"></div>
-                    <li class="table-row">
+                 <div class="item_column"></div>
+                <li class="table-row">
                     <div class="item_column">
                         <label for="dni" class="form-label">Dni</label>
                  </div>

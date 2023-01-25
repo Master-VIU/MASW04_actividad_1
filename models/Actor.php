@@ -92,11 +92,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php')
             $actorCreado = false;
             if(!$this->existsDni())
             {
-                $connection = $this->database->getConnection();  
-
-                $queryNacionalidad = "SELECT PAIS FROM filmaviu.nacionalidades WHERE ID = " .$this->nacionalidad;
-                
-                echo $queryNacionalidad;      
+                $connection = $this->database->getConnection();       
                 if($resultInsert = $connection->query(
                     "INSERT INTO filmaviu.actores (NOMBRE, APELLIDOS, DNI, FECHA_NACIMIENTO, NACIONALIDAD) VALUES 
                     ('$this->nombre', '$this->apellidos', '$this->dni', '$this->fechaNacimiento', '$this->nacionalidad')"

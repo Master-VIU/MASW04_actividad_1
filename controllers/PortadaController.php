@@ -1,7 +1,7 @@
 <?php
 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Portada.php');
 
-function listarPortadas()
+function listarportada()
 {
    $model =new Portada(null,null);
    $listarPortada = $model -> getAll();
