@@ -10,7 +10,7 @@ function listarNacionalidades()
 
 function obtenerNacionalidad($idNacionalidad)
 {
-    $model = new Nacionalidad($idNacionalidad);
+    $model = new Nacionalidad($idNacionalidad, null);
     $nacionalidadObjeto = $model->get();
     return $nacionalidadObjeto;
 }
@@ -31,7 +31,7 @@ function actualizarNacionalidad($idNacionalidad, $pais)
 
 function eliminarNacionalidad($idNacionalidad)
 {
-    $nacionalidad = new Nacionalidad($idNacionalidad);
+    $nacionalidad = new Nacionalidad($idNacionalidad, null);
     $nacionalidadEliminada = $nacionalidad->remove();
     return $nacionalidadEliminada;
 }
