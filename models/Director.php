@@ -30,12 +30,6 @@
         {
             $this->database = Database::getInstance();
         }
-    
-        public function constructorUnParametro($idDirector)
-        {
-            $this->id = $idDirector;
-            $this->database = Database::getInstance();
-        }
 
         public function __construct()
         {
@@ -44,11 +38,8 @@
 
             if ($num_params == 0) {
                 call_user_func_array(array($this,'constructorVacio'),$params);
-            } elseif($num_params == 1)
-            {
-                call_user_func_array(array($this,'constructorUnParametro'),$params);
-            }
-            else {
+            } 
+            else{
                 call_user_func_array(array($this,'constructor'),$params);
             }
         }
@@ -94,11 +85,7 @@
             $directorCreado = false;
             if(!$this->existsDni())
             {
-                $connection = $this->database->getConnection();  
-
-                $queryNacionalidad = "SELECT PAIS FROM filmaviu.nacionalidades WHERE ID = " .$this->nacionalidad;
-                
-                echo $queryNacionalidad;      
+                $connection = $this->database->getConnection();       
                 if($resultInsert = $connection->query(
                     "INSERT INTO filmaviu.directores (NOMBRE, APELLIDOS, DNI, FECHA_NACIMIENTO, NACIONALIDAD) VALUES 
                     ('$this->nombre', '$this->apellidos', '$this->dni', '$this->fechaNacimiento', '$this->nacionalidad')"
