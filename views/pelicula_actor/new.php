@@ -49,7 +49,7 @@
             }
         }
     ?>
-            <form name="nuevO_peliculaActor" action="" method="POST">
+            <form name="nuevo_peliculaActor" action="" method="POST">
             <li class="table-row">
                     <div class="item_column">
                         <label for="pelicula" class="form-label">Pelicula</label>
