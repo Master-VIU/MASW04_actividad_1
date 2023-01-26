@@ -60,9 +60,8 @@ class Temporada
            
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.temporadas WHERE ID = " .$this->id;
+            $query = "SELECT * FROM filmaviu.temporadas WHERE ID = '$this->id'";
             $result = $connection->query($query);
-
             $temporada = null;
             foreach ($result as $item)
             {
@@ -145,6 +144,23 @@ class Temporada
                 $existeTemporada = true;
             }
             return $existeTemporada;
+        }
+
+        public function remove()
+        {
+            $temporadaBorrada = false;
+            $query = "DELETE FROM filmaviu.temporadas WHERE ID = '$this->id'";
+            echo $query;
+            if($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if($resultRemove = $connection->query($query))
+                {
+                    $temporadaBorrada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $temporadaBorrada;
         }
         /**
          * @return mixed
