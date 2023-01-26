@@ -71,7 +71,7 @@ class PeliculaIdioma
             $peliculaIdiomaCreate = false;
             $connection = $this->database->getConnection();
             if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.pelicula_idiomas (ID_PELICULA, ID_IDIOMA, TIPO) VALUES ($this->idPelicula, $this->idIdioma, '$this->tipo ')"
+                "INSERT INTO filmaviu.pelicula_idiomas (ID_PELICULA, ID_IDIOMA, TIPO) VALUES ($this->idPelicula, $this->idIdioma, '$this->tipo')"
             ))
             {
                 $peliculaIdiomaCreate =  true;
