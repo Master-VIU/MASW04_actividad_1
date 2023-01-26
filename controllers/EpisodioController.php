@@ -10,7 +10,7 @@ function listarEpisodios()
 
 function obtenerEpisodio($idEpisodio)
 {
-    $model = new Episodio($idEpisodio);
+    $model = new Episodio($idEpisodio, null, null, null);
     $episodioObjeto = $model->get();
     return $episodioObjeto;
 }
@@ -31,7 +31,7 @@ function actualizarEpisodio($idEpisodio, $nombreEpisodio, $isoCode)
 
 function eliminarEpisodio($idEpisodio)
 {
-    $episodio = new Episodio($idEpisodio);
+    $episodio = new Episodio($idEpisodio, null, null, null, null);
     $episodioEliminado = $episodio->remove();
     return $episodioEliminado;
 }
