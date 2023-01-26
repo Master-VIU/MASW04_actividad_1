@@ -5,12 +5,14 @@
     {
         private $idSerie;
         private $idIdioma;
+        private $tipo;
         private $database;
 
-        function constructor($idSerieIdioma, $idIdiomaSerie)
+        function constructor($idSerieIdioma, $idIdiomaSerie, $tipo)
         {
             $this->idSerie = $idSerieIdioma;
             $this->idIdioma = $idIdiomaSerie;
+            $this->tipo = $tipo;
             $this->database = Database::getInstance();
         }
 
@@ -41,7 +43,7 @@
 
             foreach($result as $item)
             {
-                $serieIdioma = new SerieIdioma($item['ID_SERIE'], $item['ID_IDIOMA']);
+                $serieIdioma = new SerieIdioma($item['ID_SERIE'], $item['ID_IDIOMA'], $item['TIPO']);
                 array_push($listData, $serieIdioma);
             }
 
@@ -53,12 +55,12 @@
         {
             $connection = $this->database->getConnection();
             $query = "SELECT * FROM filmaviu.serie_idiomas WHERE ID_SERIE = ".$this->idSerie;
-            $result = $connection->query($query)
+            $result = $connection->query($query);
 
             $serieIdioma = null;
             foreach($result as $item)
             {
-                $serieIdioma = new SerieIdioma($item['ID_SERIE'], $item['ID_IDIOMA']);
+                $serieIdioma = new SerieIdioma($item['ID_SERIE'], $item['ID_IDIOMA'], $item['TIPO']);
             }
 
             $this->database->closeConnection();
@@ -71,7 +73,7 @@
             $connection = $this->database->getConnection();
 
             if($resultInsert = $connection->query(
-                "INSERT INTO filmaviu.serie_idiomas (ID_SERIE, ID_IDIOMA)  VALUES ('$this->idSerie', '$this->idIdioma')";
+                "INSERT INTO filmaviu.serie_idiomas (ID_SERIE, ID_IDIOMA, TIPO)  VALUES ($this->idSerie, $this->idIdioma, '$this->tipo')"
             ))
             {
                 $serieIdiomaCreado = true;
@@ -84,11 +86,11 @@
         public function update()
         {
             $serieIdiomaActualizado = false;
-            $connection = $this->database->getConnection();
-            $query = "UPDATE filmaviu.serie_idiomas set ID_SERIE = '$this->idSerie ', ID_IDIOMA = '$this->idIdioma'";
+            $query = "UPDATE filmaviu.serie_idiomas set ID_SERIE = '$this->idSerie', ID_IDIOMA = '$this->idIdioma', TIPO = '$this->tipo' WHERE ID_SERIE = ".$this->idSerie;
 
             if($this->exists())
             {
+                $connection = $this->database->getConnection();
                 if($resultInsert = $connection->query($query))
                 {
                     $serieIdiomaActualizado = true;
@@ -103,11 +105,11 @@
         public function remove()
         {
             $serieIdiomaBorrado = false;
-            $connection = $this->database->getConnection();
             $query = "DELETE FROM filmaviu.serie_idiomas WHERE ID_SERIE = ".$this->idSerie;
 
             if($this->exists())
             {
+                $connection = $this->database->getConnection();
                 if($resultRemove = $connection->query($query))
                 {
                     $serieIdiomaBorrado = true;
@@ -160,6 +162,22 @@
         public function setIdIdioma($idIdioma)
         {
             $this->idIdioma = $idIdioma;
+        }
+
+         /**
+         * @return mixed
+         */
+        public function getTipo()
+        {
+            return $this->tipo;
+        }
+
+        /**
+         * @param mixed $tipo
+         */
+        public function setTipo($tipo)
+        {
+            $this->tipo = $tipo;
         }
     }
 ?>
