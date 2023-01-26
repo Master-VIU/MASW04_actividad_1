@@ -109,10 +109,9 @@ class Pelicula
             $peliculaCreada = false;
             if(!$this->existsTitulo())
             {
+                echo "no existe";
                 $connection = $this->database->getConnection();
-
-                if ($resultInsert = $connection->query(
-                    "INSERT INTO filmaviu.peliculas (
+                $query = "INSERT INTO filmaviu.peliculas (
                                 TITULO,
                                 PLATAFORMA,
                                 DIRECTOR,
@@ -125,13 +124,14 @@ class Pelicula
                               '$this->titulo',
                               '$this->plataformaId',
                               '$this->directorId',
-                              '$this->puntuacion',
+                              $this->puntuacion,
                               '$this->clasificacionId',
                               '$this->generoId',
-                              '$this->portadaId'
-                              '$this->duracion'
-                    )"
-                ))
+                              '$this->portadaId',
+                              $this->duracion
+                    )";
+                echo $query;
+                if ($resultInsert = $connection->query($query))
                 {
                     $peliculaCreada = true;
                 }
