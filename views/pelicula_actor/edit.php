@@ -8,7 +8,7 @@
                         Volver
                     </a>
                 </div>
-                <div class="item_column">EDITAR PLATAFORMA</div>
+                <div class="item_column">EDITAR REGISTRO</div>
                 <div class="item_column"></div>
             </li>
             <?php
