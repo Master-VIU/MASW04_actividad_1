@@ -10,7 +10,7 @@ function listarIdiomas()
 
 function obtenerIdioma($idIdioma)
 {
-    $model = new Idioma($idIdioma);
+    $model = new Idioma($idIdioma, null, null);
     $idiomaObjeto = $model->get();
     return $idiomaObjeto;
 }
@@ -31,7 +31,7 @@ function actualizarIdioma($idIdioma, $nombreIdioma, $isoCode)
 
 function eliminarIdioma($idIdioma)
 {
-    $idioma = new Idioma($idIdioma);
+    $idioma = new Idioma($idIdioma, null, null);
     $idiomaEliminado = $idioma->remove();
     return $idiomaEliminado;
 }
