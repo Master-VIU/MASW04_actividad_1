@@ -3,37 +3,38 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/models/Portada.php'
 
 function listarportada()
 {
-   $model =new Portada(null,null);
+   $model =new Portada();
    $listarPortada = $model -> getAll();
-return $listarPortada;
+   return $listarPortada;
 }
 
 
-function  crearPortada($imagen)
+function  crearPortada($tamanio, $imagen)
 {
-   $nuevaPortada = new Portada(null, $imagen);
+   $nuevaPortada = new Portada(null, $tamanio, $imagen);
    $portadaCreada = $nuevaPortada->create();
    return $portadaCreada;
 }
 
 
-function obtenerPortada($idPortada)
+function obtenerPortada($id)
 {
-    $model = new Portada($idPortada,null);
-    $portadaObjeto = $model->get();
+    $model = new Portada($id,null,null);
+    $portadaObjeto= $model->get();
     return $portadaObjeto;
 }
 
-function actualizarPortada($id, $imagen)
+function actualizarPortada($idPortada, $tamanioPortada, $imagenPortada)
 {
-    $portada = new Portada($id, $imagen);
+     $portadaActualizada = false;    
+    $portada = new Portada($idPortada, $tamanioPortada, $imagenPortada);
     $portadaActualizada = $portada->update();
     return $portadaActualizada;
 }
 
 function eliminarPortada($id)
 {
-    $portada = new Portada($id,null);
+    $portada = new Portada($id,null,null);
     $portadaEliminada = $portada->remove();
     return $portadaEliminada;
 }
