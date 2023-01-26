@@ -30,10 +30,10 @@
             }
         }
 
-        private function getAll()
+        public function getAll()
         {
             $connection = $this->database->getConnection();
-            $query = "SELECT * FROM filaviu.serie_actores";
+            $query = "SELECT * FROM filmaviu.serie_actores";
             $result = $connection->query($query);
             $listData = [];
 
@@ -51,9 +51,8 @@
         public function get()
         {
             $connection = $this->database->getConnection();
-            $query = "SELECT * FROM filaviu.serie_actores WHERE ID_SERIE = ".$this->idSerieActor;
+            $query = "SELECT * FROM filmaviu.serie_actores WHERE ID_SERIE = ".$this->idSerie;
             $result = $connection->query($query);
-
             $serieActor = null;
             foreach($result as $item)
             {
@@ -70,7 +69,7 @@
             $connection = $this->database->getConnection();
 
             if($resultInsert = $connection->query(
-                "INSERT INTO filaviu.serie_actores (ID_SERIE,ID_ACTOR) VALUES ('$this->idSerie')"
+                "INSERT INTO filmaviu.serie_actores (ID_SERIE,ID_ACTOR) VALUES ('$this->idSerie')"
             ))
             {
                 $serieActorCreada = true;
@@ -84,16 +83,16 @@
         {
             $serieActorActualizado = false;
             $connection = $this->database->getConnection();
-            $query = "UPDATE filaviu.serie_actores set ID_SERIE = '$this->idSerie', ID_ACTOR = '$this->idActor' WHERE ID_SERIE = ".$this->idSerie;
+            $query = "UPDATE filmaviu.serie_actores set ID_SERIE = '$this->idSerie', ID_ACTOR = '$this->idActor' WHERE ID_SERIE = ".$this->idSerie;
 
             if($this->exists())
             {
+                $connection = $this->database->getConnection();
                 if($resultInsert = $connection->query($query))
                 {
                     $serieActorActualizado = true;
                 }
             }
-
             $this->database->closeConnection();
             return $serieActorActualizado;
         }
@@ -102,11 +101,11 @@
         public function remove()
         {
             $serieActorBorrado = false;
-            $connection = $this->database->getConnection();
-            $query = "DELETE FROM filaviu.serie_actores WHERE ID_SERIE = ".$this->idSerie;
+            $query = "DELETE FROM filmaviu.serie_actores WHERE ID_SERIE = ".$this->idSerie;
 
             if($this->exists())
             {
+                $connection = $this->database->getConnection();
                 if($resultRemove = $connection->query($query))
                 {
                     $serieActorBorrado = true;
