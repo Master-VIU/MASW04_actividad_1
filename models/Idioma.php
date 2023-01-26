@@ -22,12 +22,6 @@
         $this->database = Database::getInstance();
     }
 
-    public function constructorUnParametro($idIdioma)
-    {
-        $this->id = $idIdioma;
-        $this->database = Database::getInstance();
-    }
-
     public function __construct()
     {
         $params = func_get_args();
@@ -35,9 +29,6 @@
 
         if ($num_params == 0) {
             call_user_func_array(array($this,'constructorVacio'),$params);
-        } elseif($num_params == 1)
-        {
-            call_user_func_array(array($this,'constructorUnParametro'),$params);
         }
         else {
             call_user_func_array(array($this,'constructor'),$params);
