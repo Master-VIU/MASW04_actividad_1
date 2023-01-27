@@ -28,9 +28,9 @@
         return $peliculaIdiomaActualizada;
     }
 
-    function eliminarPeliculaIdioma($idPeliculaIdioma)
+    function eliminarPeliculaIdioma($idPelicula, $idIdioma, $tipoIdioma)
     {
-        $peliculaIdioma = new PeliculaIdioma($idPeliculaIdioma, null, null);
+        $peliculaIdioma = new PeliculaIdioma($idPelicula, $idIdioma, $tipoIdioma);
         $peliculaIdiomaEliminada = $peliculaIdioma->remove();
         return $peliculaIdiomaEliminada;
     }

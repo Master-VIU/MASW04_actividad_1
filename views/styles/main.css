@@ -83,6 +83,14 @@
     align-content: center;
 }
 
+.items_table .table-warning {
+    background-color: orange;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .item_column {
     width: 150px !important;
     text-align: center;

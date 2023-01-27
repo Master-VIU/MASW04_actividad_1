@@ -100,7 +100,8 @@ class PeliculaIdioma
         public function remove()
         {
             $peliculaIdiomaBorrado = false;           
-            $query = "DELETE FROM filmaviu.pelicula_idiomas WHERE ID_PELICULA = ".$this->idPelicula;
+            $query = "DELETE FROM filmaviu.pelicula_idiomas WHERE ID_PELICULA = '$this->idPelicula' 
+                                        AND ID_IDIOMA = '$this->idIdioma' AND TIPO = '$this->tipo'";
 
             if($this->exists())
             {
