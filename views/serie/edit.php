@@ -8,21 +8,21 @@
                         Volver
                     </a>
                 </div>
-                <div class="item_column">EDITAR PELICULA</div>
+                <div class="item_column">EDITAR SERIE</div>
                 <div class="item_column"></div>
             </li>
             <?php
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php');
-                require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaController.php');
+                require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/SerieController.php');
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');
-                //require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
+                require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php');
-                $idIPelicula = $_GET['id'];
-                $peliculaObjeto = obtenerPelicula($idIPelicula);
+                $idISerie = $_GET['id'];
+                $serieObjeto = obtenerSerie($idISerie);
 
                 $sendData = false;
-                $peliculaEditada = false;
+                $serieEditada = false;
                 if(isset($_POST['botonEditar']))
                 {
                     $sendData = true;
@@ -32,30 +32,26 @@
                     if(isset($_POST['titulo']) &&
                         isset($_POST['plataforma']) &&
                         isset($_POST['director']) &&
-                        isset($_POST['puntuacion']) &&
                         isset($_POST['clasificacion']) &&
                         isset($_POST['genero']) &&
-                        isset($_POST['portada']) &&
-                        isset($_POST['duracion']))
+                        isset($_POST['portada']))
                     {
-                        $peliculaEditada = actualizarPelicula(
+                        $serieEditada = actualizarSerie(
                             $_POST['id'],
                             $_POST['titulo'],
                             $_POST['plataforma'],
                             $_POST['director'],
-                            $_POST['puntuacion'],
                             $_POST['clasificacion'],
                             $_POST['genero'],
-                            $_POST['portada'],
-                            $_POST['duracion']
+                            $_POST['portada']
                         );
                     }
 
-                    if($peliculaEditada)
+                    if($serieEditada)
                     {
                     ?>
                         <li class="table-success">
-                            <div class="item_column">Pelicula editada correctamente.</div>
+                            <div class="item_column">Serie editada correctamente.</div>
                         </li>
                     <?php
                     }
@@ -64,8 +60,8 @@
                     ?>
                         <li class="table-wrong">
                             <div class="item_column">
-                                La pelicula no se ha editado correctamente.
-                                <a href="edit.php?id=<?php echo $idIPelicula;?>"> Volver a intentarlo.</a>
+                                La serie no se ha editado correctamente.
+                                <a href="edit.php?id=<?php echo $idISerie;?>"> Volver a intentarlo.</a>
                             </div>
                         </li>
                     <?php
@@ -74,14 +70,14 @@
                 else
                 {
                     ?>
-            <form name="editar_pelicula" action="" method="POST">
+            <form name="editar_serie" action="" method="POST">
                 <li class="table-row">
                     <div class="item_column">
                         <label for="titulo" class="form-label">Título</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="titulo" name="titulo" type="text" placeholder="Introduce el título de la pelicula" class="form-control" required
-                        value="<?php if(isset($peliculaObjeto)) echo $peliculaObjeto->getTitulo(); ?>" />
+                        <input id="titulo" name="titulo" type="text" placeholder="Introduce el título de la serie" class="form-control" required
+                        value="<?php if(isset($serieObjeto)) echo $serieObjeto->getTitulo(); ?>" />
                     </div>
                     <div class="item_column"></div>
                 </li>
@@ -98,9 +94,9 @@
                                 ?>
                                 <option value="<?php echo $plataforma->getId(); ?>"
                                     <?php
-                                    if(isset($peliculaObjeto))
+                                    if(isset($serieObjeto))
                                     {
-                                        $plataformaSeleccionada = $peliculaObjeto->getPlataformaId();
+                                        $plataformaSeleccionada = $serieObjeto->getPlataformaId();
                                         if ($plataforma->getId() == $plataformaSeleccionada)
                                         {
                                             echo "selected";
@@ -128,9 +124,9 @@
                                 ?>
                                 <option value="<?php echo $director->getId(); ?>"
                                     <?php
-                                    if(isset($peliculaObjeto))
+                                    if(isset($serieObjeto))
                                     {
-                                        $directorSeleccionado = $peliculaObjeto->getDirectorId();
+                                        $directorSeleccionado = $serieObjeto->getDirectorId();
                                         if ($director->getId() == $directorSeleccionado)
                                         {
                                             echo "selected";
@@ -147,16 +143,6 @@
                 </li>
                 <li class="table-row">
                     <div class="item_column">
-                        <label for="puntuacion" class="form-label">Puntuacion</label>
-                    </div>
-                    <div class="item_column_wide">
-                        <input id="puntuacion" name="puntuacion" type="number" min="0" max="10" placeholder="Introduce la puntuación de la pelicula" class="form-control" required
-                        value="<?php if(isset($peliculaObjeto)) echo $peliculaObjeto->getPuntuacion(); ?>" />
-                    </div>
-                    <div class="item_column"></div>
-                </li>
-                <li class="table-row">
-                    <div class="item_column">
                         <label for="clasificacion" class="form-label">Clasificación</label>
                     </div>
                     <div class="item_column_wide">
@@ -168,9 +154,9 @@
                                 ?>
                                 <option value="<?php echo $clasificacion->getId(); ?>"
                                     <?php
-                                    if(isset($peliculaObjeto))
+                                    if(isset($serieObjeto))
                                     {
-                                        $clasificacionSeleccionada = $peliculaObjeto->getClasificacionId();
+                                        $clasificacionSeleccionada = $serieObjeto->getClasificacionId();
                                         if ($clasificacion->getId() == $clasificacionSeleccionada)
                                         {
                                             echo "selected";
@@ -185,36 +171,36 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <!--li class="table-row">
+                <li class="table-row">
                     <div class="item_column">
                         <label for="genero" class="form-label">Género</label>
                     </div>
                     <div class="item_column_wide">
                         <select id="genero" name="genero" required>
-                            <!?php
+                            <?php
                             $listaGeneros = listarGeneros();
                             foreach ($listaGeneros as $genero)
                             {
                                 ?>
-                                <option value="<!?php echo $genero->getId(); ?>"
-                                    <!?php
-                                    if(isset($peliculaObjeto))
+                                <option value="<?php echo $genero->getId(); ?>"
+                                    <?php
+                                    if(isset($serieObjeto))
                                     {
-                                        $generoSeleccionado = $peliculaObjeto->getGeneroId();
+                                        $generoSeleccionado = $serieObjeto->getGeneroId();
                                         if ($genero->getId() == $generoSeleccionado)
                                         {
                                             echo "selected";
                                         }
                                     }
                                     ?>>
-                                <!?php echo $genero->getNombre(); ?></option>
-                                <!?php
+                                <?php echo $genero->getNombre(); ?></option>
+                                <?php
                             }
                             ?>
                         </select>
                     </div>
                     <div class="item_column"></div>
-                </li-->
+                </li>
                 <li class="table-row">
                     <div class="item_column">
                         <label for="portada" class="form-label">Portada</label>
@@ -222,15 +208,15 @@
                     <div class="item_column_wide">
                         <select id="portada" name="portada" required>
                             <?php
-                            $listaPortadas = listarPortadas();
+                            $listaPortadas = listarPortada();
                             foreach ($listaPortadas as $portada)
                             {
                                 ?>
                                 <option value="<?php echo $portada->getId(); ?>"
                                     <?php
-                                    if(isset($peliculaObjeto))
+                                    if(isset($serieObjeto))
                                     {
-                                        $portadaSeleccionada = $peliculaObjeto->getPortadaId();
+                                        $portadaSeleccionada = $serieObjeto->getPortadaId();
                                         if ($portada->getId() == $portadaSeleccionada)
                                         {
                                             echo "selected";
@@ -242,16 +228,6 @@
                             }
                             ?>
                         </select>
-                    </div>
-                    <div class="item_column"></div>
-                </li>
-                <li class="table-row">
-                    <div class="item_column">
-                        <label for="duracion" class="form-label">Duración (seconds)</label>
-                    </div>
-                    <div class="item_column_wide">
-                        <input id="duracion" name="duracion" type="number"  class="form-control" required
-                               value="<?php if(isset($peliculaObjeto)) echo $peliculaObjeto->getDuracion(); ?>" />
                     </div>
                     <div class="item_column"></div>
                 </li>
