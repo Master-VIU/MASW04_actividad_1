@@ -37,7 +37,7 @@
                         isset($_POST['portada']))
                     {
                         $serieEditada = actualizarSerie(
-                            $_POST['id'],
+                            $idISerie,
                             $_POST['titulo'],
                             $_POST['plataforma'],
                             $_POST['director'],
