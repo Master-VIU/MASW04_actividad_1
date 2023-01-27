@@ -35,4 +35,18 @@
         return $peliculaIdiomaEliminada;
     }
 
+    function listarIdiomasTipo($idPelicula, $tipo)
+    {
+        $model = new PeliculaIdioma($idPelicula, null, $tipo);
+        $listaIdiomasPorTipo = $model->getAllIdiomasTipo();
+        return $listaIdiomasPorTipo;
+    }
+
+    function listarIdiomasAll($idPelicula)
+    {
+        $model = new PeliculaIdioma($idPelicula, null, null);
+        $listaIdiomasPorTipo = $model->getAllIdiomas();
+        return $listaIdiomasPorTipo;
+    }
+
 ?>
