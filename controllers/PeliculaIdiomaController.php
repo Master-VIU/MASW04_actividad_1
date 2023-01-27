@@ -41,7 +41,6 @@
         return $peliculaIdiomaEliminada;
     }
 
-
     function listarIdiomasTipo($idPelicula, $tipo)
     {
         $model = new PeliculaIdioma($idPelicula, null, $tipo);

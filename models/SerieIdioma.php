@@ -51,7 +51,7 @@
             return $listData;
         }
 
-        private function get()
+        public function get()
         {
             $connection = $this->database->getConnection();
             $query = "SELECT * FROM filmaviu.serie_idiomas WHERE ID_SERIE = ".$this->idSerie;
@@ -105,7 +105,8 @@
         public function remove()
         {
             $serieIdiomaBorrado = false;
-            $query = "DELETE FROM filmaviu.serie_idiomas WHERE ID_SERIE = ".$this->idSerie;
+            $query = "DELETE FROM filmaviu.serie_idiomas WHERE ID_SERIE = '$this->idSerie'
+                                        AND ID_IDIOMA = '$this->idIdioma' AND TIPO = '$this->tipo'";
 
             if($this->exists())
             {
@@ -117,6 +118,57 @@
             }
             $this->database->closeConnection();
             return $serieIdiomaBorrado;
+        }
+
+        public function removeAll()
+        {
+            $serieIdiomaBorrado = false;
+            $query = "DELETE FROM filmaviu.serie_idiomas WHERE ID_SERIE = '$this->idSerie'
+                                        AND ID_IDIOMA = '$this->idIdioma' AND TIPO = '$this->tipo'";
+
+            if($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if($resultRemove = $connection->query($query))
+                {
+                    $serieIdiomaBorrado = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $serieIdiomaBorrado;
+        }
+
+        public function getAllIdiomasTipo()
+        {
+
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.serie_idiomas ID_IDIOMA WHERE TIPO = '$this->tipo' AND ID_SERIE = " . $this->idSerie;
+            $result = $connection->query($query);
+            $listData = [];
+            foreach ($result as $item) {
+                $serieIdioma = new SerieIdioma($item['ID_SERIE'], $item['ID_IDIOMA'], $item['TIPO']);
+                array_push($listData, $serieIdioma);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        public function getAllIdiomas()
+        {
+
+            $connection = $this->database->getConnection();
+            $query = "SELECT * FROM filmaviu.serie_idiomas ID_IDIOMA WHERE ID_SERIE = " . $this->idSerie;
+            $result = $connection->query($query);
+            $listData = [];
+            foreach ($result as $item) {
+                $serieIdioma = new SerieIdioma($item['ID_SERIE'], $item['ID_IDIOMA'], $item['TIPO']);
+                array_push($listData, $serieIdioma);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
         }
 
 

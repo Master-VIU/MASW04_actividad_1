@@ -28,11 +28,32 @@
         return $serieIdiomaActualizada;
     }
 
-    function eliminarSerieIdioma($idSerieIdioma)
+    function eliminarSerieIdioma($idSerieIdioma, $idIdioma, $idiomaTipo)
     {
-        $serieIdioma = new SerieIdioma($idSerieIdioma, null, null);
+        $serieIdioma = new SerieIdioma($idSerieIdioma, $idIdioma, $idiomaTipo);
         $serieIdiomaEliminada = $serieIdioma->remove();
         return $serieIdiomaEliminada;
+    }
+
+    function eliminarSerieIdiomaAll($idSerieIdioma)
+    {
+        $serieIdioma = new SerieIdioma($idSerieIdioma, null, null);
+        $serieIdiomaEliminada = $serieIdioma->removeAll();
+        return $serieIdiomaEliminada;
+    }
+
+    function listarIdiomasTipo($idSerie, $tipo)
+    {
+        $model = new SerieIdioma($idSerie, null, $tipo);
+        $listaIdiomasPorTipo = $model->getAllIdiomasTipo();
+        return $listaIdiomasPorTipo;
+    }
+
+    function listarIdiomasAll($idSerie)
+    {
+        $model = new SerieIdioma($idSerie, null, null);
+        $listaIdiomasPorTipo = $model->getAllIdiomas();
+        return $listaIdiomasPorTipo;
     }
 
 ?>
