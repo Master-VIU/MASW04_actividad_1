@@ -11,27 +11,84 @@
                 <div class="item_column">BORRADO</div>
                 <div class="item_column"></div>
             </li>
-        <?php
-            require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php');
-            $plataforma = $_POST['platformId'];
-            $plataformaEliminada = eliminarPlataforma($plataforma);
-            if($plataformaEliminada)
+            <?php
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/MASW04_actividad_1/controllers/SerieController.php');
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/MASW04_actividad_1/controllers/SerieIdiomaController.php');
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/MASW04_actividad_1/controllers/SerieActorController.php');
+            $serieId = $_POST['serieId'];
+
+            $serieActores = listarActoresDeSerie($serieId);
+            if (count($serieActores)) {
+            $serieActorEliminados = eliminarSerieActorAll($serieId);
+            if($serieActorEliminados)
             {
-                ?>
-                <li class="table-success">
-                    <div class="item_column">Plataforma eliminada con éxito!</div>
-                </li>
+            ?>
+            <li class="table-success">
+                <div class="item_column">Eliminado vinculo de actores y serie</div>
+            </li>
             <?php
             }
             else
             {
-                ?>
-                <li class="table-wrong">
-                    <div class="item_column">El plataforma no se ha borrado correctamente. Intentalo de nuevo.</div>
-                </li>
-                <?php
+            ?>
+            <li class="table-wrong">
+                <div class="item_column">No se han borrado correctamente los vinculos entre actores y serie.</div>
+            </li>
+            <?php
             }
-        ?>
+            } else {
+            ?>
+            <li class="table-warning">
+                <div class="item_column">La serie no tenia actores vinculados.</div>
+            </li>
+            <?php
+            }
+
+            $serieIdioma = listarIdiomasAll($serieId);
+            if (count($serieIdioma)) {
+            $serieIdiomaEliminados = eliminarSerieIdiomaAll($serieId);
+            if($serieIdiomaEliminados)
+            {
+            ?>
+            <li class="table-success">
+                <div class="item_column">Eliminado vinculo de idiomas y serie.</div>
+            </li>
+            <?php
+            }
+            else
+            {
+            ?>
+            <li class="table-wrong">
+                <div class="item_column">No se han borrado correctamente los vinculos entre idiomas y serie.</div>
+            </li>
+            <?php
+            }
+            } else {
+            ?>
+            <li class="table-warning">
+                <div class="item_column">La serie no tenia idiomas vinculados.</div>
+            </li>
+            <?php
+            }
+
+            $serieEliminada = eliminarSerie($serieId);
+            if($serieEliminada)
+            {
+            ?>
+            <li class="table-success">
+                <div class="item_column">Serie eliminada con éxito! (Con sus actores e idiomas vinculados)</div>
+            </li>
+            <?php
+            }
+            else
+            {
+            ?>
+            <li class="table-wrong">
+                <div class="item_column">La serie no se ha borrado correctamente. Intentalo de nuevo.</div>
+            </li>
+            <?php
+            }
+            ?>
         </ul>
     </div>
 </div>
