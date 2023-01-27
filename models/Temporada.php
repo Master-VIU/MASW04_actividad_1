@@ -78,10 +78,11 @@ class Temporada
             $temporadaCreada = false;
             if(!$this->existsId())
             {
+                $query = "INSERT INTO filmaviu.temporadas (NUMERO, SERIE_ID, ID, FECHA_LANZAMIENTO) VALUES 
+                    ('$this->numero', '$this->serieId', '$this->id', '$this->fechaLanzamiento')";
                 $connection = $this->database->getConnection();       
                 if($resultInsert = $connection->query(
-                    "INSERT INTO filmaviu.temporadas (NUMERO, SERIE_ID, ID, FECHA_LANZAMIENTO) VALUES 
-                    ('$this->numero', '$this->serieId', '$this->id', '$this->fechaLanzamiento')"
+                    $query
                 ))
                 {
                     $temporadaCreada = true;
@@ -119,9 +120,9 @@ class Temporada
         public function update()
         {
             $temporadaActualizado = false;                     
-                $query = "UPDATE filmaviu.temporadas set numero = '$this->numero', serie_id = '$this->serieId', id = '$this->id', fecha_lanzamiento = '$this->fechaLanzamiento'
-                    WHERE id = " . $this->id;
-                        
+                $query = "UPDATE filmaviu.temporadas set NUMERO = '$this->numero', SERIE_ID = '$this->serieId', FECHA_LANZAMIENTO = '$this->fechaLanzamiento'
+                    WHERE ID = '$this->id'";
+                echo $query;
                 if($this->exists())
                 {
                     $connection = $this->database->getConnection();

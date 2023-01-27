@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../styles/main.css" type="text/css">          
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/TemporadaController.php');
-      //  require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/SerieController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/SerieController.php');
 
     ?>
     <div class="table_container">
@@ -20,10 +20,10 @@
                             </a>
                         </div>
                     </li>            
-                    <li class="table-header">                        
+                    <li class="table-header">
+                        <div class="item_column">Id</div>
                         <div class="item_column">Número</div>
-                        <div class="item_column">Serie</div> 
-                        <div class="item_column">Id</div>                       
+                        <div class="item_column">Serie</div>
                         <div class="item_column">Fecha de lanzamiento</div>
                         <div class="item_column">Acciones</div>
                     </li>
@@ -38,9 +38,10 @@
                         $dateFormat = $mDate->format('d/m/Y');
                 ?>
                 <li class="table-row">
-                                <div class="item_column" data-label="Numero"><?php echo $temporada->getNumero(); ?></div>
-                                <div class="item_column" data-label="idSerie"><?php echo $temporada->getSerieId(); ?></div>
                                 <div class="item_column" data-label="Id"><?php echo $temporada->getId(); ?></div>
+                                <div class="item_column" data-label="Numero"><?php echo $temporada->getNumero(); ?></div>
+                                <div class="item_column" data-label="idSerie"><?php echo obtenerSerie($temporada->getSerieId())->getTitulo(); ?></div>
+
                                 <div class="item_column" data-label="Fecha-Lanzamiento"><?php echo $dateFormat; ?></div>
                                 <div class="item_column" data-label="Acciones">
                                     <div class="btn-group" role="group">
