@@ -66,4 +66,32 @@ function eliminarPelicula($idPelicula)
     return $peliculaEliminada;
 }
 
+function obtenerPeliculasPorPortada($portadaId)
+{
+    $peliculaBase = new Pelicula(null, null, null, null, null, null, null, $portadaId, null);
+    $peliculas = $peliculaBase->getPeliculasPorPortada();
+    return $peliculas;
+}
+
+function obtenerPeliculasPorClasificacion($clasificacionId)
+{
+    $peliculaBase = new Pelicula(null, null, null, null, null, $clasificacionId, null, null, null);
+    $peliculas = $peliculaBase->getPeliculasPorClasificacion();
+    return $peliculas;
+}
+
+function obtenerPeliculasPorGenero($generoId)
+{
+    $peliculaBase = new Pelicula(null, null, null, null, null, null, $generoId, null, null);
+    $peliculas = $peliculaBase->getPeliculasPorGenero();
+    return $peliculas;
+}
+
+function obtenerPeliculasPorPlataforma($plataformaId)
+{
+    $peliculaBase = new Pelicula(null, null, $plataformaId, null, null, null, null, null, null);
+    $peliculas = $peliculaBase->getPeliculasPorPlataforma();
+    return $peliculas;
+}
+
 ?>

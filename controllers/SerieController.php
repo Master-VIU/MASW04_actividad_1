@@ -58,4 +58,32 @@ function eliminarSerie($idSerie)
     return $serieEliminada;
 }
 
+function obtenerSeriesPorPortada($portadaId)
+{
+    $serieBase = new Serie(null, null, null, null, null, null, $portadaId);
+    $series = $serieBase->getSeriesPorPortada();
+    return $series;
+}
+
+function obtenerSeriesPorClasificacion($clasificacionId)
+{
+    $serieBase = new Serie(null, null, null, null, $clasificacionId, null, null);
+    $series = $serieBase->getSeriesPorClasificacion();
+    return $series;
+}
+
+function obtenerSeriesPorGenero($generoId)
+{
+    $serieBase = new Serie(null, null, null, null, null, $generoId, null);
+    $series = $serieBase->getSeriesPorGenero();
+    return $series;
+}
+
+function obtenerSeriesPorPlataforma($plataformaId)
+{
+    $serieBase = new Serie(null, null, $plataformaId, null, null, null, null);
+    $series = $serieBase->getSeriesPorPlataforma();
+    return $series;
+}
+
 ?>

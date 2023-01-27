@@ -209,6 +209,105 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php'
             return $existeSerie;
         }
 
+        function getSeriesPorPortada()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.series WHERE PORTADA = '$this->portadaId'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $serie = new Serie(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA']
+                );
+                array_push($listData, $serie);
+            }
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        function getSeriesPorClasificacion()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.series WHERE CLASIFICACION = '$this->clasificacionId'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $serie = new Serie(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA']
+                );
+                array_push($listData, $serie);
+            }
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        function getSeriesPorGenero()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.series WHERE GENERO = '$this->generoId'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $serie = new Serie(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA']
+                );
+                array_push($listData, $serie);
+            }
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        function getSeriesPorPlataforma()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.series WHERE PLATAFORMA = '$this->plataformaId'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $serie = new Serie(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA']
+                );
+                array_push($listData, $serie);
+            }
+            $this->database->closeConnection();
+            return $listData;
+        }
 
         /**
          * @return mixed
