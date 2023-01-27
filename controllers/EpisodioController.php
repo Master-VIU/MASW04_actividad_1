@@ -10,7 +10,7 @@ function listarEpisodios()
 
 function obtenerEpisodio($idEpisodio)
 {
-    $model = new Episodio($idEpisodio, null, null, null);
+    $model = new Episodio($idEpisodio, null, null, null, null);
     $episodioObjeto = $model->get();
     return $episodioObjeto;
 }
@@ -22,9 +22,9 @@ function crearEpisodio($temporadaId, $nuevoNumero, $nuevoTitulo, $nuevaDuracion)
     return $episodioCreado;
 }
 
-function actualizarEpisodio($idEpisodio, $nombreEpisodio, $isoCode)
+function actualizarEpisodio($idEpisodio, $temporada, $numero, $titulo, $duracion)
 {
-    $episodio = new Episodio($idEpisodio, $nombreEpisodio, $isoCode);
+    $episodio = new Episodio($idEpisodio, $temporada, $numero, $titulo, $duracion);
     $episodioActualizado = $episodio->update();
     return $episodioActualizado;
 }
