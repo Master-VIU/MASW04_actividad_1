@@ -125,6 +125,37 @@ class PeliculaIdioma
                 return $existePeliculaIdioma;
             }
 
+        public function getAllIdiomasTipo(){
+
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.pelicula_idiomas ID_IDIOMA WHERE TIPO = '$this->tipo' AND ID_PELICULA = ".$this->idPelicula;
+            $result = $connection->query($query);
+            $peliculaIdioma = null;
+            foreach ($result as $item)
+            {
+                $peliculaIdioma = new PeliculaIdioma($item['ID_PELICULA'], $item['ID_IDIOMA'], $item['TIPO']);
+            }
+
+            $this->database->closeConnection();
+            return $peliculaIdioma;
+        }
+
+        public function getAllIdiomas(){
+
+            $connection = $this->database->getConnection();
+            $query = "SELECT * FROM filmaviu.pelicula_idiomas ID_IDIOMA WHERE ID_PELICULA = ".$this->idPelicula;
+            $result = $connection->query($query);
+            $peliculaIdioma = null;
+            foreach ($result as $item)
+            {                
+                $peliculaIdioma = new PeliculaIdioma($item['ID_PELICULA'], $item['ID_IDIOMA'], $item['TIPO']);
+            }
+
+            $this->database->closeConnection();
+            return $peliculaIdioma;
+        }
+
         /**
          * @return mixed
          */
