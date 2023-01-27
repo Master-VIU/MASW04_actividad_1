@@ -20,7 +20,6 @@
                     </li>            
                     <li class="table-header">
                         <div class="item_column">Id</div>
-                        <div class="item_column">Tamaño</div>
                         <div class="item_column">imagen</div>
                         <div class="item_column">Acciones</div>
                     </li>
@@ -33,8 +32,9 @@
                 ?>
                 <li class="table-row">                        
                         <div class="item_column" data-label="Id"><?php echo $portada->getId(); ?></div>
-                        <div class="item_column" data-label="tamaño"><?php echo $portada->getTamanio(); ?></div>
-                        <div class="item_column" data-label="imagen"><?php echo $portada->getImagen(); ?></div>
+                        <div class="item_column" data-label="ruta"><img src="http://localhost:8888/MASW04_actividad_1<?php echo $portada->getImagen(); ?>"
+                                    width="150" height="150"/></div>
+                        
                         <div class="item_column" data-label="Acciones">
                              <div class="btn-group" role="group">
                                     <a class="btn btn-success" href="edit.php?id=<?php echo $portada->getId(); ?>">

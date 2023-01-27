@@ -25,9 +25,9 @@
         }
         if($sendData)
         {
-            if(isset($_POST['editarTamanio']) && isset($_POST['editarIamgen']))
+            if( isset($_POST['editarIamgen']))
             {                        
-                $PortadaEditada = actualizarPortada($_POST['idPortada'], $_POST['editarTamanio'], $_POST['editarIamgen']);
+                $PortadaEditada = actualizarPortada($_POST['idPortada'], $_POST['editarIamgen']);
             }
         if($PortadaEditada)
         {
@@ -54,15 +54,9 @@
         ?>
         <form name="editar_idioma" action="" method="POST">
             <li class="table-row">
-                    <div class="item_column">
-                        <label for="editarTamanio" class="form-label">Nombre</label>
-                    </div>
+                    
                     <div class="item_column_wide">
-                        <input id="editarTamanio" name="editarTamanio" type="text" placeholder="Introduce el Tamaño" class="form-control"
-                        required value="<?php if(isset($portadaObjeto)) echo $portadaObjeto->getTamanio();?>" />
-                    </div>
-                    <div class="item_column_wide">
-                    <label for="editarIamgen" class="form-label">Iso code</label>
+                    <label for="editarIamgen" class="form-label">Imagen de Portada</label>
                     </div>
                     <div>
                     <input id="editarIamgen" name="editarIamgen" type="text" placeholder="Introduce la imagen" class="form-control"
