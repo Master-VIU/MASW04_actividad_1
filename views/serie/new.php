@@ -8,19 +8,19 @@
                         Volver
                     </a>
                 </div>
-                <div class="item_column">NUEVA PELICULA</div>
+                <div class="item_column">NUEVA SERIE</div>
                 <div class="item_column"></div>
         </li>
 
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PlataformaController.php');
-        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/SerieController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');
-        //require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php');
         $sendData =false;
-        $peliculaCreada = false;
+        $serieCreada = false;
 
         if(isset($_POST['botonCrear']))
         {
@@ -31,29 +31,25 @@
             if(isset($_POST['titulo']) &&
                     isset($_POST['plataforma']) &&
                     isset($_POST['director']) &&
-                    isset($_POST['puntuacion']) &&
                     isset($_POST['clasificacion']) &&
                     isset($_POST['genero']) &&
-                    isset($_POST['portada']) &&
-                    isset($_POST['duracion']))
+                    isset($_POST['portada']))
             {
-                $peliculaCreada = crearPelicula(
+                $serieCreada = crearSerie(
                     $_POST['titulo'],
                     $_POST['plataforma'],
                     $_POST['director'],
-                    $_POST['puntuacion'],
                     $_POST['clasificacion'],
                     $_POST['genero'],
-                    $_POST['portada'],
-                    $_POST['duracion']
+                    $_POST['portada']
                 );
             }
 
-            if ($peliculaCreada)
+            if ($serieCreada)
             {
                 ?>
                 <li class="table-success">
-                    <div class="item_column">Película creada correctamente.</div>
+                    <div class="item_column">Serie creada correctamente.</div>
                 </li>
                 <?php
             }
@@ -61,19 +57,19 @@
             {
                 ?>
                 <li class="table-wrong">
-                    <div class="item_column">No se ha podido crear la película. Inténtalo de nuevo.</div>
+                    <div class="item_column">No se ha podido crear la serie. Inténtalo de nuevo.</div>
                 </li>
                 <?php
             }
         }
     ?>
-            <form name="nueva_pelicula" action="" method="POST">
+            <form name="nueva_serie" action="" method="POST">
                 <li class="table-row">
                     <div class="item_column">
                         <label for="titulo" class="form-label">Título</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="titulo" name="titulo" type="text" placeholder="Introduce el título de la pelicula" class="form-control" required />
+                        <input id="titulo" name="titulo" type="text" placeholder="Introduce el título de la serie" class="form-control" required />
                     </div>
                     <div class="item_column"></div>
                 </li>
@@ -117,15 +113,6 @@
                 </li>
                 <li class="table-row">
                     <div class="item_column">
-                        <label for="puntuacion" class="form-label">Puntuacion</label>
-                    </div>
-                    <div class="item_column_wide">
-                        <input id="puntuacion" name="puntuacion" type="number" min="0" max="10" placeholder="Introduce la puntuación de la pelicula" class="form-control" required />
-                    </div>
-                    <div class="item_column"></div>
-                </li>
-                <li class="table-row">
-                    <div class="item_column">
                         <label for="clasificacion" class="form-label">Clasificación</label>
                     </div>
                     <div class="item_column_wide">
@@ -143,37 +130,18 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <!--li class="table-row">
+                <li class="table-row">
                     <div class="item_column">
                         <label for="genero" class="form-label">Género</label>
                     </div>
                     <div class="item_column_wide">
                         <select id="genero" name="genero" required>
-                            <!?php
+                            <?php
                             $listaGeneros = listarGeneros();
                             foreach ($listaGeneros as $genero)
                             {
                                 ?>
-                                <option value="<!?php echo $genero->getId(); ?>"><!?php echo $genero->getNombre(); ?></option>
-                                <!?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="item_column"></div>
-                </li-->
-                <li class="table-row">
-                    <div class="item_column">
-                        <label for="portada" class="form-label">Portada</label>
-                    </div>
-                    <div class="item_column_wide">
-                        <select id="portada" name="portada" required>
-                            <?php
-                            $listaPortadas = listarPortadas();
-                            foreach ($listaPortadas as $portada)
-                            {
-                                ?>
-                                <option value="<?php echo $portada->getId(); ?>"><?php echo $portada->getId(); ?></option>
+                                <option value="<?php echo $genero->getId(); ?>"><?php echo $genero->getNombre(); ?></option>
                                 <?php
                             }
                             ?>
@@ -183,10 +151,20 @@
                 </li>
                 <li class="table-row">
                     <div class="item_column">
-                        <label for="duracion" class="form-label">Duración</label>
+                        <label for="portada" class="form-label">Portada</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="duracion" name="duracion" type="time" step="3600"  class="form-control" required/>
+                        <select id="portada" name="portada" required>
+                            <?php
+                            $listaPortadas = listarPortada();
+                            foreach ($listaPortadas as $portada)
+                            {
+                                ?>
+                                <option value="<?php echo $portada->getId(); ?>"><?php echo $portada->getId(); ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="item_column"></div>
                 </li>
