@@ -57,6 +57,23 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php'
             return $listData;
         }
 
+
+        public function get()
+        {
+           
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.episodios WHERE ID = '$this->id'";
+            $result = $connection->query($query);
+            $episodio = null;
+            foreach ($result as $item)
+            {
+                $episodio = new Episodio($item['ID'], $item['TEMPORADA_ID'], $item['NUMERO'], $item['TITULO'], $item['DURACION']);
+            }
+
+            $this->database->closeConnection();
+            return $episodio;
+        }
 /**--------------------------------------------------------------------- */
 public function create()
 {
@@ -81,14 +98,14 @@ public function update()
     $episodioActualizado = false;
     if(!$this->existsEpisodio())
     {
-        $query = "UPDATE filmaviu.episodios set nombre = '$this->nombre' WHERE id = ".$this->id;
-
+        $query = "UPDATE filmaviu.episodios set numero = '$this->numero', temporada_id = '$this->temporadaId', titulo = '$this->titulo', duracion = '$this->duracion' WHERE id = '$this->id'";
+        echo $query;
         if ($this->exists())
         {
             $connection = $this->database->getConnection();
             if ($resultInsert = $connection->query($query))
             {
-                $generoActualizado = true;
+                $episodioActualizado = true;
             }
         }
     }
@@ -131,15 +148,15 @@ public function existsEpisodio()
     $connection = $this->database->getConnection();
     $existeEpisodio = false;
 
-    if($this->nombre != null)
+    if($this->titulo != null)
     {
-        $query = "SELECT ID FROM filmaviu.episodios WHERE nombre = '$this->nombre'";
+        $query = "SELECT ID FROM filmaviu.episodios WHERE TITULO = '$this->titulo'";
         $result = $connection->query($query);
         $episodio = null;
         foreach ($result as $item)
         {
-            $episodio = new Genero(
-                $item['ID'], null
+            $episodio = new Episodio(
+                $item['ID'], null, null, null, null
             );
         }
         if ($episodio != null)
