@@ -16,41 +16,45 @@
                 $sendData = true;
             }
             if ($sendData) {
-            if (isset($_POST['actorId'])) {
-                $peliculaActorVinculado = crearPeliculaActor($idPelicula, $_POST['actorId']);
-            }
+                if (isset($_POST['actorId'])) {
+                    $peliculaActorVinculado = crearPeliculaActor($idPelicula, $_POST['actorId']);
+                }
 
-            if ($peliculaActorVinculado) {
-            ?>
-            <li class="table-success">
-                <div class="item_column">Actor vinculado a <?php
-                    $pelicula = obtenerPelicula($idPelicula);
-                    echo $pelicula->getTitulo();
-                    ?> correctamente.
-                </div>
-            </li>
-            <?php
-            } else {
-            ?>
-            <li class="table-wrong">
-                <div class="item_column">
-                    No se ha podido vincular al actor con <?php
-                    $pelicula = obtenerPelicula($idPelicula);
-                    echo $pelicula->getTitulo();
-                    ?>.
-                </div>
-            </li>
-            <?php
-            }
+                if ($peliculaActorVinculado) {
+                    ?>
+                    <li class="table-success">
+                        <div class="item_column">Actor vinculado a <?php
+                            $pelicula = obtenerPelicula($idPelicula);
+                            echo $pelicula->getTitulo();
+                            ?> correctamente.
+                        </div>
+                    </li>
+                    <?php
+                } else {
+                    ?>
+                    <li class="table-wrong">
+                        <div class="item_column">
+                            No se ha podido vincular al actor con <?php
+                            $pelicula = obtenerPelicula($idPelicula);
+                            echo $pelicula->getTitulo();
+                            ?>.
+                        </div>
+                    </li>
+                    <?php
+                }
             }
             ?>
             <li class="table-title">
                 <div class="item_column">
-                    <a class="btn btn-success" href="index.php?id=<?php echo $pelicula->getId(); ?>">
+                    <a class="btn btn-success" href="<?php
+                    if (isset($_GET['id'])) {
+                        echo "index.php?id=" . $_GET['id'];
+                    }
+                    ?>">
                         Volver
                     </a>
                 </div>
-                <div class="item_column">VINCULAR NUEVO ACTOR</div>
+                <div class="item_column_wide">VINCULAR NUEVO ACTOR</div>
                 <div class="item_column"></div>
             </li>
             <li class="table-header-center">
@@ -64,31 +68,34 @@
                         <label for="actor" class="form-label">Actor</label>
                     </div>
                     <div class="item_column_wide">
-                        <select id="actor" name="actor" required>
+                        <select id="actorId" name="actorId" required>
                             <?php
                             $listaActores = listarActores();
                             foreach ($listaActores as $actor) {
-                            ?>
-                            <option value="<?php echo $actor->getId(); ?>"><?php echo $actor->getNombre(); ?></option>
-                            <?php
+                                ?>
+                                <option value="<?php echo $actor->getId(); ?>">
+                                    <?php echo $actor->getNombre()." ".$actor->getApellidos(); ?>
+                                </option>
+                                <?php
                             }
                             ?>
                         </select>
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <input style="float: right;" type="submit" value="vincular" class="btn btn-primary" name="botonVincular"/>
+                <input style="float: right;" type="submit" value="Vincular" class="btn btn-primary"
+                       name="botonVincular"/>
             </form>
         </ul>
         <?php
         }
         else {
-        ?>
+            ?>
             <div class="alerta alerta-warning" role="alert">
                 Esta vista se ha abierto incorrectamente. Para acceder, primero entre en "Peliculas", "Actores" y en
                 "Vincular".
             </div>
-        <?php
+            <?php
         }
         ?>
     </div>
