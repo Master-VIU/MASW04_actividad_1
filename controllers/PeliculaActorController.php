@@ -35,4 +35,11 @@
         return $peliculaActorEliminada;
     }
 
+    function listarActoresDePelicula($idPelicula)
+    {
+        $model = new PeliculaActor($idPelicula, null, null);
+        $listaActoresDePelicula = $model->getAllActores();
+        return $listaActoresDePelicula;
+    }
+
 ?>
