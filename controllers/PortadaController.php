@@ -9,9 +9,9 @@ function listarportada()
 }
 
 
-function  crearPortada($tamanio, $imagen)
+function  crearPortada( $imagen)
 {
-   $nuevaPortada = new Portada(null, $tamanio, $imagen);
+   $nuevaPortada = new Portada(null, $imagen);
    $portadaCreada = $nuevaPortada->create();
    return $portadaCreada;
 }
@@ -19,22 +19,22 @@ function  crearPortada($tamanio, $imagen)
 
 function obtenerPortada($id)
 {
-    $model = new Portada($id,null,null);
+    $model = new Portada($id,null);
     $portadaObjeto= $model->get();
     return $portadaObjeto;
 }
 
-function actualizarPortada($idPortada, $tamanioPortada, $imagenPortada)
+function actualizarPortada($idPortada, $imagenPortada)
 {
      $portadaActualizada = false;    
-    $portada = new Portada($idPortada, $tamanioPortada, $imagenPortada);
+    $portada = new Portada($idPortada, $imagenPortada);
     $portadaActualizada = $portada->update();
     return $portadaActualizada;
 }
 
 function eliminarPortada($id)
 {
-    $portada = new Portada($id,null,null);
+    $portada = new Portada($id,null);
     $portadaEliminada = $portada->remove();
     return $portadaEliminada;
 }

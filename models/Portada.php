@@ -5,15 +5,13 @@ class Portada
 
 {
         private $id;
-        private $tamanio;
         private $imagen;
         private $database;
 
 
-        public function constructor($idPortada, $tamanioPortada,$imagenPortada)
+        public function constructor($idPortada,$imagenPortada)
         {
             $this->id = $idPortada;
-            $this->tamanio = $tamanioPortada;
             $this->imagen = $imagenPortada;
             $this-> database= Database::getInstance();
         }
@@ -51,7 +49,7 @@ class Portada
 
             foreach ($result as $item)
             {
-                $portada =  new Portada($item['ID'], $item['TAMANIO'], $item['IMAGEN']);
+                $portada =  new Portada($item['ID'], $item['IMAGEN']);
                 array_push($listData, $portada);
             }
 
@@ -75,7 +73,7 @@ class Portada
             $portada = null;
             foreach ($result as $item)
             {
-                $portada = new Portada($item['ID'], $item['TAMANIO'], $item['IMAGEN']);
+                $portada = new Portada($item['ID'], $item['IMAGEN']);
             }
 
             $this->database->closeConnection();
@@ -89,7 +87,7 @@ class Portada
         {
            $portadaCreada = false;
            $connection = $this->database->getConnection();
-           if($resultInsert = $connection->query("INSERT INTO filmaviu.portada (TAMANIO, IMAGEN) VALUES ('$this->tamanio', '$this->imagen')"))
+           if($resultInsert = $connection->query("INSERT INTO filmaviu.portada (IMAGEN) VALUES ( '$this->imagen')"))
             {
                 $portadaCreada = true;
             }
@@ -105,11 +103,11 @@ class Portada
         {
             $portadaActualizada = false;
             $connection = $this->database->getConnection();
-            $query = "UPDATE filmaviu.portada set tamanio = '$this->tamanio', imagen = '$this->imagen' WHERE id=" .$this->id;
+            $query = "UPDATE filmaviu.portada set imagen = '$this->imagen' WHERE id=" .$this->id;
                       
                 if ($resultInsert = $connection->query($query))
                 {
-                    $portdaActualizada = true;
+                    $portadaActualizada = true;
                 }
   
 
@@ -151,21 +149,7 @@ class Portada
             $this->id = $id;
         }
 
-        /**
-         * @return mixed
-         */
-        public function getTamanio()
-        {
-            return $this->tamanio;
-        }
-
-        /**
-         * @param mixed $id
-         */
-        public function setTamanio($tamanio)
-        {
-            $this->tamanio = $tamanio;
-        }
+        
         /**
          * @return mixed
          */

@@ -23,9 +23,9 @@
     }
     if($sendData)
     {
-        if(isset($_POST['nuevoTamanio']) && isset($_POST['nuevaImagen']))
+        if(isset($_POST['nuevaImagen']))
         {
-            $portadaCreada = crearPortada($_POST['nuevoTamanio'], $_POST['nuevaImagen']);
+            $portadaCreada = crearPortada($_POST['nuevaImagen']);
         }
 
         if($portadaCreada)
@@ -47,16 +47,10 @@
         }
     }
 ?>            
-       <form name="nuevo_idioma" action="" method="POST">
+       <form name="nueva_portada" action="" method="POST">
             <li class="table-row">
-                <div class="item_column">
-                    <label for="nuevoTamanio" class="form-label">Nombre</label>
-                </div>
                 <div class="item_column_wide">
-                    <input id="nuevoTamanio" name="nuevoTamanio" type="text" placeholder="Introduce el Tamanio" class="form-control" required />
-                </div>
-                <div class="item_column_wide">
-                    <label for="nuevaImagen" class="form-label">Iso code</label>
+                    <label for="nuevaImagen" class="form-label">Imagen de Portada</label>
                 </div>
                 <div>
                     <input id="nuevaImagen" name="nuevaImagen" type="text" placeholder="Introduce la imagen" class="form-control" required />
