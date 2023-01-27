@@ -19,8 +19,8 @@
 
             $director = $_POST['dirformId'];
 
-            $directorSeries = obtenerSeriesPorDirector();
-            $directorPeliculas = obtenerPeliculasPorDirector();
+            $directorSeries = obtenerSeriesPorDirector($director);
+            $directorPeliculas = obtenerPeliculasPorDirector($director);
 
             if (count($directorSeries) > 0 || count($directorPeliculas) > 0) {
                 ?>
