@@ -94,4 +94,10 @@ function obtenerPeliculasPorPlataforma($plataformaId)
     return $peliculas;
 }
 
+function obtenerPeliculasPorDirector($directorId)
+{
+    $peliculaBase = new Pelicula(null, null, null, $directorId, null, null, null, null, null);
+    $peliculas = $peliculaBase->getPeliculasPorDirector();
+    return $peliculas;
+}
 ?>

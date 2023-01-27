@@ -309,6 +309,31 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php'
             return $listData;
         }
 
+        function getSeriesPorDirector()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.series WHERE DIRECTOR = '$this->directorId'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $serie = new Serie(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA']
+                );
+                array_push($listData, $serie);
+            }
+            $this->database->closeConnection();
+            return $listData;
+        }
+
         /**
          * @return mixed
          */

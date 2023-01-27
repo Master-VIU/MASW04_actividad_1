@@ -86,4 +86,10 @@ function obtenerSeriesPorPlataforma($plataformaId)
     return $series;
 }
 
+function obtenerSeriesPorDirector($directorId)
+{
+    $serieBase = new Serie(null, null, null, $directorId, null, null, null);
+    $series = $serieBase->getSeriesPorDirector();
+    return $series;
+}
 ?>

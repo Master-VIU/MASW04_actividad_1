@@ -334,6 +334,34 @@ class Pelicula
         return $listData;
     }
 
+    function getPeliculasPorDirector()
+    {
+        $connection = $this->database->getConnection();
+
+        $query = "SELECT * FROM filmaviu.peliculas WHERE DIRECTOR = '$this->directorId'";
+        $result = $connection->query($query);
+        $listData = [];
+
+        foreach ($result as $item)
+        {
+            $pelicula = new Pelicula(
+                $item['ID'],
+                $item['TITULO'],
+                $item['PLATAFORMA'],
+                $item['DIRECTOR'],
+                $item['PUNTUACION'],
+                $item['CLASIFICACION'],
+                $item['GENERO'],
+                $item['PORTADA'],
+                $item['DURACION']
+            );
+            array_push($listData, $pelicula);
+        }
+
+        $this->database->closeConnection();
+        return $listData;
+    }
+
         /**
          * @return mixed
          */
