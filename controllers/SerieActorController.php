@@ -44,9 +44,16 @@
 
     function listarActoresDeSerie($idSerie)
     {
-        $model = new SerieActor($idSerie, null, null);
+        $model = new SerieActor($idSerie, null);
         $listaActoresDeSerie = $model->getAllActores();
         return $listaActoresDeSerie;
+    }
+
+    function listarSeriesDeActor($idActor)
+    {
+        $model = new SerieActor(null, $idActor);
+        $listaSeriesDeActor = $model->getAllSeries();
+        return $listaSeriesDeActor;
     }
 
 ?>

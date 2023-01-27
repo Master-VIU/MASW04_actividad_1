@@ -63,7 +63,7 @@
             return $serieActor;
         }
 
-        private function create()
+        public function create()
         {
             $serieActorCreada = false;
             $connection = $this->database->getConnection();
@@ -147,7 +147,24 @@
 
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.serie_actores ID_ACTOR WHERE ID_SERIE = ".$this->idSerie;
+            $query = "SELECT * FROM filmaviu.serie_actores WHERE ID_SERIE = '$this->idSerie'";
+            $result = $connection->query($query);
+            $listData = [];
+            foreach ($result as $item)
+            {
+                $serieActor = new SerieActor($item['ID_SERIE'], $item['ID_ACTOR']);
+                array_push($listData, $serieActor);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        public function getAllSeries(){
+
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.serie_actores WHERE ID_ACTOR = '$this->idActor'";
             $result = $connection->query($query);
             $listData = [];
             foreach ($result as $item)

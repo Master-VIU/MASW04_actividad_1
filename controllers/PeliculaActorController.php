@@ -44,9 +44,16 @@
 
     function listarActoresDePelicula($idPelicula)
     {
-        $model = new PeliculaActor($idPelicula, null, null);
+        $model = new PeliculaActor($idPelicula, null);
         $listaActoresDePelicula = $model->getAllActores();
         return $listaActoresDePelicula;
+    }
+
+    function listarPeliculasDeActor($idActor)
+    {
+        $model = new PeliculaActor(null, $idActor);
+        $listaPeliculasDeActor = $model->getAllPeliculas();
+        return $listaPeliculasDeActor;
     }
 
 ?>

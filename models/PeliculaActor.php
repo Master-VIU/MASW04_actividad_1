@@ -151,7 +151,24 @@
 
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.pelicula_actores ID_ACTOR WHERE ID_PELICULA = ".$this->idPelicula;
+            $query = "SELECT * FROM filmaviu.pelicula_actores WHERE ID_PELICULA = '$this->idPelicula'";
+            $result = $connection->query($query);
+            $listData = [];
+            foreach ($result as $item)
+            {
+                $peliculaActor = new PeliculaActor($item['ID_PELICULA'], $item['ID_ACTOR']);
+                array_push($listData, $peliculaActor);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        public function getAllPeliculas(){
+
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.pelicula_actores WHERE ID_ACTOR = '$this->idActor'";
             $result = $connection->query($query);
             $listData = [];
             foreach ($result as $item)
