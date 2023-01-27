@@ -1,5 +1,6 @@
 <div>
     <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -53,7 +54,7 @@
                 {
                     ?>
             <form name="editar_nacionalidad" action="" method="POST">
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="editarNacionalidad" class="form-label">País</label>
                     </div>

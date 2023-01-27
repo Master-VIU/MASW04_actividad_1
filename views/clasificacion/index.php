@@ -1,5 +1,6 @@
 <div>
-<link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">          
+<link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">          
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');     
     ?>

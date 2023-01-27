@@ -1,5 +1,6 @@
 <div>
     <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -71,7 +72,7 @@
                 {
                     ?>
             <form name="editar_serie" action="" method="POST">
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="titulo" class="form-label">Título</label>
                     </div>
@@ -81,7 +82,7 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="plataforma" class="form-label">Plataforma</label>
                     </div>
@@ -111,7 +112,7 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="director" class="form-label">Director</label>
                     </div>
@@ -141,7 +142,7 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="clasificacion" class="form-label">Clasificación</label>
                     </div>
@@ -171,7 +172,7 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="genero" class="form-label">Género</label>
                     </div>
@@ -201,7 +202,7 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="portada" class="form-label">Portada</label>
                     </div>
