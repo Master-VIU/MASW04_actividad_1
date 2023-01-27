@@ -170,6 +170,24 @@
             return $existeDirector;
         }
 
+        function getDirectoresPorNacionalidad()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.directores WHERE NACIONALIDAD = '$this->nacionalidad'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $director = new Director($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['DNI'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
+                array_push($listData, $director);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
 
         /**
          * @return mixed

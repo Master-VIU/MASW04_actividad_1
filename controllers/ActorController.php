@@ -35,4 +35,11 @@ function eliminarActor($idActor)
     $actorEliminado = $actor->remove();
     return $actorEliminado;
 }
+
+function obtenerActoresPorNacionalidad($nacionalidadId)
+{
+    $actorBase = new Actor(null, null, null, null, null, $nacionalidadId);
+    $actores = $actorBase->getActoresPorNacionalidad();
+    return $actores;
+}
 ?>

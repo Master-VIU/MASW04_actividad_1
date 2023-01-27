@@ -168,6 +168,23 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php')
             return $existeActor;
         }
 
+        function getActoresPorNacionalidad(){
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.actores WHERE NACIONALIDAD = '$this->nacionalidad'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $actor = new Actor($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['DNI'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
+                array_push($listData, $actor);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
 
         // GETTERS Y SETTERS
 

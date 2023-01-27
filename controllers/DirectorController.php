@@ -35,4 +35,11 @@ function eliminarDirector($idDirector)
     $directorEliminado = $director->remove();
     return $directorEliminado;
 }
+
+function obtenerDirectoresPorNacionalidad($nacionalidadId)
+{
+    $directorBase = new Director(null, null, null, null, null, $nacionalidadId);
+    $directores = $directorBase->getDirectoresPorNacionalidad();
+    return $directores;
+}
 ?>

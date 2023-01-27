@@ -4,7 +4,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . '/MASW04_actividad_1/controllers/ActorController.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/MASW04_actividad_1/controllers/SerieController.php');
     ?>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <?php
