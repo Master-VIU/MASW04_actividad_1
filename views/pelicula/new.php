@@ -71,16 +71,15 @@
         }
     ?>
             <form name="nueva_pelicula" action="" method="POST">
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="titulo" class="form-label">Título</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="titulo" name="titulo" type="text" placeholder="Introduce el título de la pelicula" class="form-control" required />
                     </div>
-                    <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="plataforma" class="form-label">Plataforma</label>
                     </div>
@@ -97,9 +96,9 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="director" class="form-label">Director</label>
                     </div>
@@ -116,18 +115,18 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="puntuacion" class="form-label">Puntuacion</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="puntuacion" name="puntuacion" type="number" value="0" min="0" max="10" placeholder="Introduce la puntuación de la pelicula" class="form-control" required />
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="clasificacion" class="form-label">Clasificación</label>
                     </div>
@@ -144,9 +143,9 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="genero" class="form-label">Género</label>
                     </div>
@@ -163,9 +162,9 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="portada" class="form-label">Portada</label>
                     </div>
@@ -182,9 +181,9 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="duracion" class="form-label">Duración</label>
                     </div>
@@ -193,7 +192,7 @@
                         <input id="minutos" name="minutos" type="number" value="0" placeholder="Introduce minutos" min="0" max="59" class="form-control" required/>
                         <input id="segundos" name="segundos" type="number" value="0" placeholder="Introduce segundos" min="0" max="59" class="form-control" required/>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
                 <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
             </form>

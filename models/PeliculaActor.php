@@ -104,7 +104,8 @@
         public function remove()
         {
             $peliculaActorBorrada = false;
-            $query = "DELETE FROM filmaviu.pelicula_actores WHERE ID_PELICULA = ".$this->idPelicula;
+            $query = "DELETE FROM filmaviu.pelicula_actores WHERE ID_PELICULA = '$this->idPelicula' 
+                                        AND ID_ACTOR = '$this->idActor'";
 
             if($this->exists())
             {

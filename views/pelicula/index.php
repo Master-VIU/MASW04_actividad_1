@@ -29,14 +29,14 @@
                         </div>
                     </li>
                     <li class="table-header">
-                        <div class="item_column">Id</div>
+                        <div class="item_column_small">Id</div>
                         <div class="item_column">Titulo</div>
-                        <div class="item_column">Plataforma Id</div>
-                        <div class="item_column">Director Id</div>
+                        <div class="item_column">Plataforma</div>
+                        <div class="item_column">Director</div>
                         <div class="item_column">Puntuacion</div>
-                        <div class="item_column">Clasificacion Id</div>
-                        <div class="item_column">Genero Id</div>
-                        <div class="item_column">Portada Id</div>
+                        <div class="item_column">Clasificacion</div>
+                        <div class="item_column">Genero</div>
+                        <div class="item_column">Portada</div>
                         <div class="item_column">Duracion</div>
                         <div class="item_column">Idiomas</div>
                         <div class="item_column">Actores</div>
@@ -51,7 +51,7 @@
                         {
                         ?>
                             <li class="table-row">
-                                <div class="item_column" data-label="Id"><?php echo $pelicula->getId(); ?></div>
+                                <div class="item_column_small" data-label="Id"><?php echo $pelicula->getId(); ?></div>
                                 <div class="item_column" data-label="Titulo"><?php echo $pelicula->getTitulo(); ?></div>
                                 <div class="item_column" data-label="PlataformaId">
                                     <?php echo obtenerPlataforma($pelicula->getPlataformaId())->getNombre(); ?>
@@ -142,6 +142,12 @@
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-success" href="edit.php?id=<?php echo $pelicula->getId(); ?>">
                                             Editar
+                                        </a>
+                                        <a class="btn btn-success" href="../pelicula_actor/index.php?id=<?php echo $pelicula->getId(); ?>">
+                                            Actores
+                                        </a>
+                                        <a class="btn btn-success" href="../pelicula_idioma/index.php?id=<?php echo $pelicula->getId(); ?>">
+                                            Idiomas
                                         </a>
                                         <form name="delete-pelicula" action="delete.php" method="POST" style="...">
                                             <input type="hidden" name="peliculaId" value="<?php echo $pelicula->getId();?>"/>

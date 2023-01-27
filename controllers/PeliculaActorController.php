@@ -28,9 +28,9 @@
         return $peliculaActorActualizada;
     }
 
-    function eliminarPeliculaActor($idPeliculaActor)
+    function eliminarPeliculaActor($idPelicula, $idActor)
     {
-        $peliculaActor = new PeliculaActor($idPeliculaActor, null);
+        $peliculaActor = new PeliculaActor($idPelicula, $idActor);
         $peliculaActorEliminada = $peliculaActor->remove();
         return $peliculaActorEliminada;
     }

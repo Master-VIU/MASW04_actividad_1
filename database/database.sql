@@ -329,10 +329,10 @@ VALUES
 
 INSERT INTO filmaviu.peliculas (ID, TITULO, PLATAFORMA, DIRECTOR, PUNTUACION, CLASIFICACION, GENERO, PORTADA, DURACION)
 VALUES
-    (1, 'Titanic', 1, 5, 8.9, 5, 8, 3, 11440),
-    (2, 'Avatar', 4, 5, 9.3, 5, 7, 4, 9660),
-    (3, 'Interestellar', 3, 7, 9.5, 5, 7, 5, 9420),
-    (4, 'Origen', 3, 7, 9.8, 5, 7, 6, 8480);
+    (1, 'Titanic', 1, 5, 8, 5, 8, 3, 11440),
+    (2, 'Avatar', 4, 5, 9, 5, 7, 4, 9660),
+    (3, 'Interestellar', 3, 7, 9, 5, 7, 5, 9420),
+    (4, 'Origen', 3, 7, 9, 5, 7, 6, 8480);
 
 INSERT INTO filmaviu.pelicula_actores (ID_PELICULA, ID_ACTOR)
 VALUES

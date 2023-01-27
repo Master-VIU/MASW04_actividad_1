@@ -39,6 +39,3 @@ function eliminarPortada($id)
     return $portadaEliminada;
 }
 ?>
-
-
-?>
