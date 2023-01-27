@@ -71,7 +71,7 @@
                 <div class="item_column_wide">Acciones</div>
             </li>
             <?php
-            $listaPeliculaIdiomas = listarIdiomasAll($idPelicula);
+            $listaPeliculaIdiomas = listarPeliculaIdiomasAll($idPelicula);
 
             if (count($listaPeliculaIdiomas) > 0)
             {

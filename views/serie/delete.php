@@ -44,7 +44,7 @@
             <?php
             }
 
-            $serieIdioma = listarIdiomasAll($serieId);
+            $serieIdioma = listarSerieIdiomasAll($serieId);
             if (count($serieIdioma)) {
             $serieIdiomaEliminados = eliminarSerieIdiomaAll($serieId);
             if($serieIdiomaEliminados)

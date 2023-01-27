@@ -79,7 +79,7 @@
                                         $listaIdiomasPelicula = "";
 
                                         $listaIdiomasPelicula .= "AUDIO"."<br/>";
-                                        $listaAudio = listarIdiomasTipo($pelicula->getId(), "AUDIO");
+                                        $listaAudio = listarPeliculaIdiomasTipo($pelicula->getId(), "AUDIO");
 
                                         if (count($listaAudio) > 0)
                                         {
@@ -95,7 +95,7 @@
                                         }
 
                                         $listaIdiomasPelicula .= "SUBTITULO"."<br/>";
-                                        $listaSubtitulo = listarIdiomasTipo($pelicula->getId(), "SUBTITULO");
+                                        $listaSubtitulo = listarPeliculaIdiomasTipo($pelicula->getId(), "SUBTITULO");
 
                                         if (count($listaSubtitulo) > 0)
                                         {

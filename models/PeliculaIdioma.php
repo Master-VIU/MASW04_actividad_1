@@ -155,7 +155,23 @@ class PeliculaIdioma
     {
 
         $connection = $this->database->getConnection();
-        $query = "SELECT * FROM filmaviu.pelicula_idiomas ID_IDIOMA WHERE ID_PELICULA = " . $this->idPelicula;
+        $query = "SELECT * FROM filmaviu.pelicula_idiomas ID_IDIOMA WHERE ID_PELICULA = '$this->idPelicula'";
+        $result = $connection->query($query);
+        $listData = [];
+        foreach ($result as $item) {
+            $peliculaIdioma = new PeliculaIdioma($item['ID_PELICULA'], $item['ID_IDIOMA'], $item['TIPO']);
+            array_push($listData, $peliculaIdioma);
+        }
+
+        $this->database->closeConnection();
+        return $listData;
+    }
+
+    public function getAllPeliculas()
+    {
+
+        $connection = $this->database->getConnection();
+        $query = "SELECT * FROM filmaviu.pelicula_idiomas ID_IDIOMA WHERE ID_IDIOMA = '$this->idIdioma'";
         $result = $connection->query($query);
         $listData = [];
         foreach ($result as $item) {

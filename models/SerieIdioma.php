@@ -143,7 +143,7 @@
 
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.serie_idiomas ID_IDIOMA WHERE TIPO = '$this->tipo' AND ID_SERIE = " . $this->idSerie;
+            $query = "SELECT * FROM filmaviu.serie_idiomas WHERE TIPO = '$this->tipo' AND ID_SERIE = '$this->idSerie'";
             $result = $connection->query($query);
             $listData = [];
             foreach ($result as $item) {
@@ -159,7 +159,23 @@
         {
 
             $connection = $this->database->getConnection();
-            $query = "SELECT * FROM filmaviu.serie_idiomas ID_IDIOMA WHERE ID_SERIE = " . $this->idSerie;
+            $query = "SELECT * FROM filmaviu.serie_idiomas WHERE ID_SERIE = '$this->idSerie'";
+            $result = $connection->query($query);
+            $listData = [];
+            foreach ($result as $item) {
+                $serieIdioma = new SerieIdioma($item['ID_SERIE'], $item['ID_IDIOMA'], $item['TIPO']);
+                array_push($listData, $serieIdioma);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        public function getAllSeries()
+        {
+
+            $connection = $this->database->getConnection();
+            $query = "SELECT * FROM filmaviu.serie_idiomas WHERE ID_IDIOMA = '$this->idIdioma'";
             $result = $connection->query($query);
             $listData = [];
             foreach ($result as $item) {

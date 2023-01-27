@@ -2,7 +2,7 @@
     <?php
 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php');
 
-$portada_eliminar = $_POST['idiformId'];
+$portada_eliminar = $_POST['idiomaId'];
 $PortadaEliminada = eliminarPortada($portada_eliminar);
 if($PortadaEliminada)
 {    

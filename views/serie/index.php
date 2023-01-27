@@ -73,7 +73,7 @@
                                         $listaIdiomasSerie = "";
 
                                         $listaIdiomasSerie .= "AUDIO"."<br/>";
-                                        $listaAudio = listarIdiomasTipo($serie->getId(), "AUDIO");
+                                        $listaAudio = listarSerieIdiomasTipo($serie->getId(), "AUDIO");
 
                                         if (count($listaAudio) > 0)
                                         {
@@ -89,7 +89,7 @@
                                         }
 
                                         $listaIdiomasSerie .= "SUBTITULO"."<br/>";
-                                        $listaSubtitulo = listarIdiomasTipo($serie->getId(), "SUBTITULO");
+                                        $listaSubtitulo = listarSerieIdiomasTipo($serie->getId(), "SUBTITULO");
 
                                         if (count($listaSubtitulo) > 0)
                                         {

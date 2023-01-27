@@ -44,7 +44,7 @@
             <?php
             }
 
-            $peliculaIdioma = listarIdiomasAll($peliculaId);
+            $peliculaIdioma = listarPeliculaIdiomasAll($peliculaId);
             if (count($peliculaIdioma)) {
             $peliculaIdiomaEliminados = eliminarPeliculaIdiomaAll($peliculaId);
             if($peliculaIdiomaEliminados)

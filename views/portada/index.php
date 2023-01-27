@@ -41,7 +41,7 @@
                                         Editar
                                     </a>
                                     <form name="delete-portada" action="delete.php" method="POST" style="...">
-                                        <input type="hidden" name="idiformId" value="<?php echo $portada->getId();?>"/>
+                                        <input type="hidden" name="idiomaId" value="<?php echo $portada->getId();?>"/>
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                     </form>
                                  </div>

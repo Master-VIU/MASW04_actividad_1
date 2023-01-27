@@ -42,18 +42,25 @@
         return $serieIdiomaEliminada;
     }
 
-    function listarIdiomasTipo($idSerie, $tipo)
+    function listarSerieIdiomasTipo($idSerie, $tipo)
     {
         $model = new SerieIdioma($idSerie, null, $tipo);
         $listaIdiomasPorTipo = $model->getAllIdiomasTipo();
         return $listaIdiomasPorTipo;
     }
 
-    function listarIdiomasAll($idSerie)
+    function listarSerieIdiomasAll($idSerie)
     {
         $model = new SerieIdioma($idSerie, null, null);
         $listaIdiomasPorTipo = $model->getAllIdiomas();
         return $listaIdiomasPorTipo;
+    }
+
+    function listarSeriesDeIdioma($idIdioma)
+    {
+        $model = new SerieIdioma(null, $idIdioma, null);
+        $listaSeriesDeIdioma = $model->getAllSeries();
+        return $listaSeriesDeIdioma;
     }
 
 ?>

@@ -71,7 +71,7 @@
                 <div class="item_column_wide">Acciones</div>
             </li>
             <?php
-            $listaSerieIdiomas = listarIdiomasAll($idSerie);
+            $listaSerieIdiomas = listarSerieIdiomasAll($idSerie);
 
             if (count($listaSerieIdiomas) > 0)
             {
