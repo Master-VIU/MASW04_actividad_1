@@ -63,7 +63,7 @@
             return $serieActor;
         }
 
-        private function create()
+        public function create()
         {
             $serieActorCreada = false;
             $connection = $this->database->getConnection();
