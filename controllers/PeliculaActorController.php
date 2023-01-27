@@ -35,6 +35,13 @@
         return $peliculaActorEliminada;
     }
 
+    function eliminarPeliculaActorAll($idPelicula)
+    {
+        $peliculaActor = new PeliculaActor($idPelicula, null);
+        $peliculaActorEliminada = $peliculaActor->removeAll();
+        return $peliculaActorEliminada;
+    }
+
     function listarActoresDePelicula($idPelicula)
     {
         $model = new PeliculaActor($idPelicula, null, null);

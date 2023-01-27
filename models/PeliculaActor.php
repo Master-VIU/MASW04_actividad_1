@@ -119,6 +119,23 @@
             return $peliculaActorBorrada;
         }
 
+        public function removeAll()
+        {
+            $peliculaActorBorrada = false;
+            $query = "DELETE FROM filmaviu.pelicula_actores WHERE ID_PELICULA = '$this->idPelicula'";
+
+            if($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if($resultRemove = $connection->query($query))
+                {
+                    $peliculaActorBorrada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $peliculaActorBorrada;
+        }
+
         public function exists()
         {
             $existePeliculaActor = false;

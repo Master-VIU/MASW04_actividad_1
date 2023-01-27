@@ -34,6 +34,13 @@
         $peliculaIdiomaEliminada = $peliculaIdioma->remove();
         return $peliculaIdiomaEliminada;
     }
+    function eliminarPeliculaIdiomaAll($idPelicula)
+    {
+        $peliculaIdioma = new PeliculaIdioma($idPelicula, null, null);
+        $peliculaIdiomaEliminada = $peliculaIdioma->removeAll();
+        return $peliculaIdiomaEliminada;
+    }
+
 
     function listarIdiomasTipo($idPelicula, $tipo)
     {

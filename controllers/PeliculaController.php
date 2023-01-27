@@ -61,7 +61,7 @@ function actualizarPelicula($idPelicula,
 
 function eliminarPelicula($idPelicula)
 {
-    $pelicula = new Pelicula($idPelicula, null);
+    $pelicula = new Pelicula($idPelicula, null, null, null, null, null, null, null, null );
     $peliculaEliminada = $pelicula->remove();
     return $peliculaEliminada;
 }
