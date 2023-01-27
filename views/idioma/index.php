@@ -1,5 +1,6 @@
 <div>
-<link rel="stylesheet" href="../styles/main.css" type="text/css">          
+<link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">          
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php');     
     ?>
@@ -41,7 +42,7 @@
                                         Editar
                                     </a>
                                     <form name="delete-idioma" action="delete.php" method="POST" style="...">
-                                        <input type="hidden" name="idiformId" value="<?php echo $idioma->getId();?>"/>
+                                        <input type="hidden" name="idiomaId" value="<?php echo $idioma->getId();?>"/>
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                     </form>
                                  </div>

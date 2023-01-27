@@ -1,5 +1,6 @@
 <div>
-<link rel="stylesheet" href="../styles/main.css" type="text/css">          
+<link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">          
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');     
     ?>
@@ -38,7 +39,7 @@
                                         Editar
                                     </a>
                                     <form name="delete-nacionalidad" action="delete.php" method="POST" style="...">
-                                        <input type="hidden" name="nacformId" value="<?php echo $nacionalidad->getId();?>"/>
+                                        <input type="hidden" name="nacionalidadId" value="<?php echo $nacionalidad->getId();?>"/>
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                     </form>
                                  </div>

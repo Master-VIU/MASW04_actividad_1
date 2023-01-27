@@ -1,5 +1,6 @@
 <div>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -13,15 +14,31 @@
             </li>
         <?php
             require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');
-            $nacionalidad = $_POST['nacformId'];
-            $nacionalidadEliminada = eliminarNacionalidad($nacionalidad);
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/MASW04_actividad_1/controllers/ActorController.php');
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/MASW04_actividad_1/controllers/DirectorController.php');
+            
+            $nacionalidadId = $_POST['nacionalidadId'];
+            
+            $nacionalidadEnActores = obtenerActoresPorNacionalidad($nacionalidadId);
+            $nacionalidadEnDirectores = obtenerDirectoresPorNacionalidad($nacionalidadId);
+
+        if (count($nacionalidadEnActores) > 0 || count($nacionalidadEnDirectores) > 0) {
+            ?>
+            <li class="table-warning">
+                <div class="item_column">No se puede borrar la nacionalidad, ya que esta vinculado a actores y/o directores.</div>
+            </li>
+            <?php
+        }
+        else
+        {
+            $nacionalidadEliminada = eliminarNacionalidad($nacionalidadId);
             if($nacionalidadEliminada)
             {
                 ?>
                 <li class="table-success">
                     <div class="item_column">Nacionalidad eliminada con éxito!</div>
                 </li>
-            <?php
+                <?php
             }
             else
             {
@@ -31,6 +48,7 @@
                 </li>
                 <?php
             }
+        }
         ?>
         </ul>
     </div>

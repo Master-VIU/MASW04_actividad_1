@@ -25,12 +25,6 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php'
             $this->database = Database::getInstance();
         }
 
-        public function constructorUnParametro($idEpisodio)
-        {
-            $this->id = $idEpisodio;
-            $this->database = Database::getInstance();
-        }
-
         public function __construct()
         {
             $params = func_get_args();
@@ -38,10 +32,7 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php'
 
             if ($num_params == 0) {
                 call_user_func_array(array($this,'constructorVacio'),$params);
-            } elseif($num_params == 1)
-            {
-                call_user_func_array(array($this,'constructorUnParametro'),$params);
-            }
+            } 
             else {
                 call_user_func_array(array($this,'constructor'),$params);
             }

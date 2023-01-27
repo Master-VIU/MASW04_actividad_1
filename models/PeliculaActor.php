@@ -36,7 +36,7 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filaviu.pelicula_actores";
+            $query = "SELECT * FROM filmaviu.pelicula_actores";
             $result = $connection->query($query);
             $listData = [];
 
@@ -54,7 +54,7 @@
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filaviu.pelicula_actores WHERE ID_PELICULA = ".$this->idPelicula;
+            $query = "SELECT * FROM filmaviu.pelicula_actores WHERE ID_PELICULA = ".$this->idPelicula;
             $result = $connection->query($query);
 
             $peliculaActor = null;
@@ -67,13 +67,12 @@
             return $peliculaActor;
         }
 
-        private function create()
+        public function create()
         {
             $peliculaActorCreada = false;
             $connection = $this->database->getConnection();
-
-            if($resultInsert = $connection->query(
-                "INSERT INTO filaviu.pelicula_actores (ID_PELICULA, ID_ACTOR) VALUES ('$this->idPelicula, $this->idActor')"
+            if($resultInsert = $connection->query(                
+                "INSERT INTO filmaviu.pelicula_actores (ID_PELICULA, ID_ACTOR) VALUES ($this->idPelicula, $this->idActor)"
             ))
             {
                 $peliculaActorCreada = true;
@@ -85,12 +84,11 @@
 
         public function update()
         {
-            $peliculaActorActualizada = false;
-            $connection = $this->database->getConnection();
-            $query = "UPDATE filaviu.pelicula_actoreS set ID_PELICULA = '$this->idPelicula', ID_ACTOR = '$this->idActor' WHERE ID_PELICULA = ".$this->idPelicula;
-
+            $peliculaActorActualizada = false;            
+            $query = "UPDATE filmaviu.pelicula_actores set ID_PELICULA = '$this->idPelicula', ID_ACTOR = '$this->idActor' WHERE ID_PELICULA = ".$this->idPelicula;
             if($this->exists())
             {
+                $connection = $this->database->getConnection();
                 if($resultInsert = $connection->query($query))
                 {
                     $peliculaActorActualizada = true;
@@ -105,11 +103,29 @@
         public function remove()
         {
             $peliculaActorBorrada = false;
-            $connection = $this->database->getConnection();
-            $query = "DELETE FROM filaviu.pelicula_actores WHERE ID_PELICULA = ".$this->idPelicula;
+            $query = "DELETE FROM filmaviu.pelicula_actores WHERE ID_PELICULA = '$this->idPelicula' 
+                                        AND ID_ACTOR = '$this->idActor'";
 
             if($this->exists())
             {
+                $connection = $this->database->getConnection();
+                if($resultRemove = $connection->query($query))
+                {
+                    $peliculaActorBorrada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $peliculaActorBorrada;
+        }
+
+        public function removeAll()
+        {
+            $peliculaActorBorrada = false;
+            $query = "DELETE FROM filmaviu.pelicula_actores WHERE ID_PELICULA = '$this->idPelicula'";
+
+            if($this->exists())
+            {
+                $connection = $this->database->getConnection();
                 if($resultRemove = $connection->query($query))
                 {
                     $peliculaActorBorrada = true;
@@ -129,6 +145,40 @@
             }
 
             return $existePeliculaActor;
+        }
+
+        public function getAllActores(){
+
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.pelicula_actores WHERE ID_PELICULA = '$this->idPelicula'";
+            $result = $connection->query($query);
+            $listData = [];
+            foreach ($result as $item)
+            {
+                $peliculaActor = new PeliculaActor($item['ID_PELICULA'], $item['ID_ACTOR']);
+                array_push($listData, $peliculaActor);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+        public function getAllPeliculas(){
+
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.pelicula_actores WHERE ID_ACTOR = '$this->idActor'";
+            $result = $connection->query($query);
+            $listData = [];
+            foreach ($result as $item)
+            {
+                $peliculaActor = new PeliculaActor($item['ID_PELICULA'], $item['ID_ACTOR']);
+                array_push($listData, $peliculaActor);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
         }
 
         /**

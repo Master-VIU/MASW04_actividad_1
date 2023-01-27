@@ -10,7 +10,7 @@ function listarActores()
 
 function obtenerActor($idActor)
 {
-    $model = new Actor($idActor);
+    $model = new Actor($idActor, null, null, null, null, null);
     $actorObjeto = $model->get();
     return $actorObjeto;
 }
@@ -31,8 +31,15 @@ function actualizarActor($idActor, $nombreActor, $apellidoActor, $dni, $fechaNac
 
 function eliminarActor($idActor)
 {
-    $actor = new Actor($idActor);
+    $actor = new Actor($idActor, null, null, null, null, null);
     $actorEliminado = $actor->remove();
     return $actorEliminado;
+}
+
+function obtenerActoresPorNacionalidad($nacionalidadId)
+{
+    $actorBase = new Actor(null, null, null, null, null, $nacionalidadId);
+    $actores = $actorBase->getActoresPorNacionalidad();
+    return $actores;
 }
 ?>

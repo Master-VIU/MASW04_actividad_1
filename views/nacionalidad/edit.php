@@ -1,5 +1,6 @@
 <div>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -26,7 +27,7 @@
                 {
                     if(isset($_POST['editarNacionalidad']))
                     {
-                        $nacionalidadEditada = actualizarNacionalidad($_POST['nacformId'], $_POST['editarNacionalidad']);
+                        $nacionalidadEditada = actualizarNacionalidad($_POST['nacionalidadId'], $_POST['editarNacionalidad']);
                     }
 
                     if($nacionalidadEditada)
@@ -53,14 +54,14 @@
                 {
                     ?>
             <form name="editar_nacionalidad" action="" method="POST">
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="editarNacionalidad" class="form-label">País</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="editarNacionalidad" name="editarNacionalidad" type="text" placeholder="Introduce el nombre del país" class="form-control"
                                required value="<?php if(isset($nacionalidadObjeto)) echo $nacionalidadObjeto->getPais();?>" />
-                        <input type="hidden" name="nacformId" value="<?php echo $idNacionalidad;?>"/>
+                        <input type="hidden" name="nacionalidadId" value="<?php echo $idNacionalidad;?>"/>
                     </div>
                     <div class="item_column"></div>
                 </li>

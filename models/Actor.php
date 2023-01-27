@@ -30,12 +30,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php')
             $this->database = Database::getInstance();
         }
     
-        public function constructorUnParametro($idActor)
-        {
-            $this->id = $idActor;
-            $this->database = Database::getInstance();
-        }
-
         public function __construct()
         {
             $params = func_get_args();
@@ -43,10 +37,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php')
 
             if ($num_params == 0) {
                 call_user_func_array(array($this,'constructorVacio'),$params);
-            } elseif($num_params == 1)
-            {
-                call_user_func_array(array($this,'constructorUnParametro'),$params);
-            }
+            } 
             else {
                 call_user_func_array(array($this,'constructor'),$params);
             }
@@ -175,6 +166,23 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php')
             }
             $this->database->closeConnection();
             return $existeActor;
+        }
+
+        function getActoresPorNacionalidad(){
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.actores WHERE NACIONALIDAD = '$this->nacionalidad'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $actor = new Actor($item['ID'], $item['NOMBRE'], $item['APELLIDOS'], $item['DNI'], $item['FECHA_NACIMIENTO'], $item['NACIONALIDAD']);
+                array_push($listData, $actor);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
         }
 
 

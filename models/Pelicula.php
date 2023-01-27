@@ -109,10 +109,9 @@ class Pelicula
             $peliculaCreada = false;
             if(!$this->existsTitulo())
             {
+                echo "no existe";
                 $connection = $this->database->getConnection();
-
-                if ($resultInsert = $connection->query(
-                    "INSERT INTO filmaviu.peliculas (
+                $query = "INSERT INTO filmaviu.peliculas (
                                 TITULO,
                                 PLATAFORMA,
                                 DIRECTOR,
@@ -125,13 +124,14 @@ class Pelicula
                               '$this->titulo',
                               '$this->plataformaId',
                               '$this->directorId',
-                              '$this->puntuacion',
+                              $this->puntuacion,
                               '$this->clasificacionId',
                               '$this->generoId',
-                              '$this->portadaId'
-                              '$this->duracion'
-                    )"
-                ))
+                              '$this->portadaId',
+                              $this->duracion
+                    )";
+                echo $query;
+                if ($resultInsert = $connection->query($query))
                 {
                     $peliculaCreada = true;
                 }
@@ -221,6 +221,146 @@ class Pelicula
             $this->database->closeConnection();
             return $existePelicula;
         }
+
+        function getPeliculasPorPortada()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.peliculas WHERE PORTADA = '$this->portadaId'";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $pelicula = new Pelicula(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['PUNTUACION'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA'],
+                    $item['DURACION']
+                );
+                array_push($listData, $pelicula);
+            }
+
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+    function getPeliculasPorClasificacion()
+    {
+        $connection = $this->database->getConnection();
+
+        $query = "SELECT * FROM filmaviu.peliculas WHERE CLASIFICACION = '$this->clasificacionId'";
+        $result = $connection->query($query);
+        $listData = [];
+
+        foreach ($result as $item)
+        {
+            $pelicula = new Pelicula(
+                $item['ID'],
+                $item['TITULO'],
+                $item['PLATAFORMA'],
+                $item['DIRECTOR'],
+                $item['PUNTUACION'],
+                $item['CLASIFICACION'],
+                $item['GENERO'],
+                $item['PORTADA'],
+                $item['DURACION']
+            );
+            array_push($listData, $pelicula);
+        }
+
+        $this->database->closeConnection();
+        return $listData;
+    }
+
+    function getPeliculasPorGenero()
+    {
+        $connection = $this->database->getConnection();
+
+        $query = "SELECT * FROM filmaviu.peliculas WHERE GENERO = '$this->generoId'";
+        $result = $connection->query($query);
+        $listData = [];
+
+        foreach ($result as $item)
+        {
+            $pelicula = new Pelicula(
+                $item['ID'],
+                $item['TITULO'],
+                $item['PLATAFORMA'],
+                $item['DIRECTOR'],
+                $item['PUNTUACION'],
+                $item['CLASIFICACION'],
+                $item['GENERO'],
+                $item['PORTADA'],
+                $item['DURACION']
+            );
+            array_push($listData, $pelicula);
+        }
+
+        $this->database->closeConnection();
+        return $listData;
+    }
+
+    function getPeliculasPorPlataforma()
+    {
+        $connection = $this->database->getConnection();
+
+        $query = "SELECT * FROM filmaviu.peliculas WHERE PLATAFORMA = '$this->plataformaId'";
+        $result = $connection->query($query);
+        $listData = [];
+
+        foreach ($result as $item)
+        {
+            $pelicula = new Pelicula(
+                $item['ID'],
+                $item['TITULO'],
+                $item['PLATAFORMA'],
+                $item['DIRECTOR'],
+                $item['PUNTUACION'],
+                $item['CLASIFICACION'],
+                $item['GENERO'],
+                $item['PORTADA'],
+                $item['DURACION']
+            );
+            array_push($listData, $pelicula);
+        }
+
+        $this->database->closeConnection();
+        return $listData;
+    }
+
+    function getPeliculasPorDirector()
+    {
+        $connection = $this->database->getConnection();
+
+        $query = "SELECT * FROM filmaviu.peliculas WHERE DIRECTOR = '$this->directorId'";
+        $result = $connection->query($query);
+        $listData = [];
+
+        foreach ($result as $item)
+        {
+            $pelicula = new Pelicula(
+                $item['ID'],
+                $item['TITULO'],
+                $item['PLATAFORMA'],
+                $item['DIRECTOR'],
+                $item['PUNTUACION'],
+                $item['CLASIFICACION'],
+                $item['GENERO'],
+                $item['PORTADA'],
+                $item['DURACION']
+            );
+            array_push($listData, $pelicula);
+        }
+
+        $this->database->closeConnection();
+        return $listData;
+    }
 
         /**
          * @return mixed

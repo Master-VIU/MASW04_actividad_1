@@ -1,5 +1,6 @@
 <div>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -13,7 +14,7 @@
             </li>
             <?php
             require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/TemporadaController.php');
-           // require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/SerieController.php');
+            require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/SerieController.php');
                 $idTemporada = $_GET['id'];
                 $temporadaObjeto = obtenerTemporada($idTemporada);
 
@@ -25,7 +26,7 @@
                 }
                 if($sendData)
                 {
-                    if(isset($_POST['numero']) && isset($_POST['serie']) && isset($_POST['id'])  && isset($_POST['fechaLanzamiento']))
+                    if(isset($_POST['numero']) && isset($_POST['serie']) && isset($_POST['fechaLanzamiento']))
                     {
                         $temporadaEditada = actualizarTemporada($_POST['numero'], $_POST['serie'], $_POST['temporadaId'], $_POST['fechaLanzamiento']);
                     }
@@ -54,61 +55,54 @@
                 {
                     ?>
             <form name="editar_temporada" action="" method="POST">
-                <li class="table-row">
+                <input id="id" hidden name="id" type="text" placeholder="Introduce el id" class="form-control"
+                       required value="<?php if(isset($temporadaObjeto)) echo $temporadaObjeto->getId();?>" />
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="numero" class="form-label">Número</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="numero" name="numero" type="number" min="0" placeholder="Introduce el número de la temporada" class="form-control"
                                required value="<?php if(isset($temporadaObjeto)) echo $temporadaObjeto->getNumero();?>" />
-                        <input type="hidden" name="temporadaId" value="<?php echo $idTemporada;?>"/>
                     </div>
                     <div class="item_column"></div>
                 </li>
 
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="serie" class="form-label">Serie</label>
                     </div>
                     <div class="item_column_wide">
                         <select id="serie" name="serie" required>
                             <?php
-                           // $listaSeries = listarSeries();
-                            //foreach ($listaSeries as $serie)
+                            $listaSeries = listarSeries();
+                            foreach ($listaSeries as $serie)
                             {
                                 ?>
-                                <option value="<!?php echo $serie->getId(); ?>"
+                                <option value="<?php echo $serie->getId(); ?>"
                                         <?php
-                                    /*if(isset($serieObjeto))
+                                    if(isset($serieObjeto))
                                         {
-                                            $serieSeleccionada = $serieObjeto->getSerieId();
+                                            $serieSeleccionada = $serieObjeto->getId();
                                             if ($serie->getId() == $serieSeleccionada)
                                             {
                                                 echo "selected";
                                             }
-                                        }*/
+                                        }
                                         ?>>
-                                    <!?php echo $serie->getTitulo(); ?></option>
+                                    <?php echo $serie->getTitulo(); ?></option>
                                 <?php
                             }
                             ?>
                         </select>
                     </div>
-                    </li>
-                <li class="table-row">
-                    <div class="item_column">
-                        <label for="id" class="form-label">ID</label>
-                    </div>
-                    <div class="item_column_wide">
-                        <input id="id" name="id" type="text" placeholder="Introduce el id" class="form-control" 
-                        required value="<?php if(isset($temporadaObjeto)) echo $temporadaObjeto->getId();?>" />
-                    </div>
                     <div class="item_column"></div>
-                </li>
+                    </li>
+
 
                 <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="fechaLanzamiento" class="form-label">Fecha de lanzamiento</label>
                     </div>

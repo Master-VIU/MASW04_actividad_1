@@ -1,5 +1,6 @@
 <div>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -56,7 +57,7 @@
                 {
                     ?>
             <form name="editar_actor" action="" method="POST">
-            <li class="table-row">
+            <li class="table-row-form-form-form-form">
                     <div class="item_column">
                         <label for="nombre" class="form-label">Nombre</label>
                     </div>
@@ -66,7 +67,7 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form-form-form-form">
                     <div class="item_column">
                         <label for="apellido" class="form-label">Apellidos</label>
                     </div>
@@ -75,17 +76,17 @@
                         required value="<?php if(isset($actorObjeto)) echo $actorObjeto->getApellidos();?>" />
                     </div>
                  <div class="item_column"></div>
-                <li class="table-row">
+                <li class="table-row-form-form-form-form">
                     <div class="item_column">
                         <label for="dni" class="form-label">Dni</label>
                  </div>
                     <div class="item_column_wide">
-                    <input id="dni" name="dni" type="text" placeholder="Introduce el dni" class="form-control" 
+                    <input id="dni" name="dni" type="text" maxlength="9" placeholder="Introduce dni max 9 caracteres" class="form-control" 
                         required value="<?php if(isset($actorObjeto)) echo $actorObjeto->getDni();?>" />
                 </div>
                 <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form-form-form-form">
                     <div class="item_column">
                         <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
                     </div>
@@ -95,7 +96,7 @@
                     </div>
                     <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form-form-form-form">
                     <div class="item_column">
                         <label for="nacionalidad" class="form-label">Nacionalidad</label>
                     </div>

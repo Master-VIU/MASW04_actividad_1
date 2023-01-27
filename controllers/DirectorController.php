@@ -10,7 +10,7 @@ function listarDirectores()
 
 function obtenerDirector($idDirector)
 {
-    $model = new Director($idDirector);
+    $model = new Director($idDirector, null, null, null, null, null);
     $directorObjeto = $model->get();
     return $directorObjeto;
 }
@@ -31,8 +31,15 @@ function actualizarDirector($idDirector, $nombreDirector, $apellidoDirector,$dni
 
 function eliminarDirector($idDirector)
 {
-    $director = new Director($idDirector);
+    $director = new Director($idDirector, null, null, null, null, null);
     $directorEliminado = $director->remove();
     return $directorEliminado;
+}
+
+function obtenerDirectoresPorNacionalidad($nacionalidadId)
+{
+    $directorBase = new Director(null, null, null, null, null, $nacionalidadId);
+    $directores = $directorBase->getDirectoresPorNacionalidad();
+    return $directores;
 }
 ?>

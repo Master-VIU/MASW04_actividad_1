@@ -1,5 +1,6 @@
 <div>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -35,17 +36,20 @@
                     isset($_POST['clasificacion']) &&
                     isset($_POST['genero']) &&
                     isset($_POST['portada']) &&
-                    isset($_POST['duracion']))
+                    isset($_POST['horas']) &&
+                    isset($_POST['minutos']) &&
+                    isset($_POST['segundos']))
             {
+                $duracion = intval($_POST['segundos']) + intval($_POST['minutos'])*60 + intval($_POST['horas']*3600);
                 $peliculaCreada = crearPelicula(
                     $_POST['titulo'],
                     $_POST['plataforma'],
                     $_POST['director'],
-                    $_POST['puntuacion'],
+                    intval($_POST['puntuacion']),
                     $_POST['clasificacion'],
                     $_POST['genero'],
                     $_POST['portada'],
-                    $_POST['duracion']
+                    $duracion
                 );
             }
 
@@ -68,16 +72,15 @@
         }
     ?>
             <form name="nueva_pelicula" action="" method="POST">
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="titulo" class="form-label">Título</label>
                     </div>
                     <div class="item_column_wide">
                         <input id="titulo" name="titulo" type="text" placeholder="Introduce el título de la pelicula" class="form-control" required />
                     </div>
-                    <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="plataforma" class="form-label">Plataforma</label>
                     </div>
@@ -94,9 +97,9 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="director" class="form-label">Director</label>
                     </div>
@@ -113,18 +116,18 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="puntuacion" class="form-label">Puntuacion</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="puntuacion" name="puntuacion" type="number" min="0" max="10" placeholder="Introduce la puntuación de la pelicula" class="form-control" required />
+                        <input id="puntuacion" name="puntuacion" type="number" value="0" min="0" max="10" placeholder="Introduce la puntuación de la pelicula" class="form-control" required />
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="clasificacion" class="form-label">Clasificación</label>
                     </div>
@@ -141,9 +144,9 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="genero" class="form-label">Género</label>
                     </div>
@@ -160,16 +163,16 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="portada" class="form-label">Portada</label>
                     </div>
                     <div class="item_column_wide">
                         <select id="portada" name="portada" required>
                             <?php
-                            $listaPortadas = listarPortadas();
+                            $listaPortadas = listarPortada();
                             foreach ($listaPortadas as $portada)
                             {
                                 ?>
@@ -179,16 +182,18 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="duracion" class="form-label">Duración</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="duracion" name="duracion" type="time" step="3600"  class="form-control" required/>
+                        <input id="horas" name="horas" type="number" value="0" placeholder="Introduce horas" min="0" class="form-control" required/>
+                        <input id="minutos" name="minutos" type="number" value="0" placeholder="Introduce minutos" min="0" max="59" class="form-control" required/>
+                        <input id="segundos" name="segundos" type="number" value="0" placeholder="Introduce segundos" min="0" max="59" class="form-control" required/>
                     </div>
-                    <div class="item_column"></div>
+
                 </li>
                 <input style="float: right;" type="submit" value="Crear" class="btn btn-primary" name="botonCrear" />
             </form>

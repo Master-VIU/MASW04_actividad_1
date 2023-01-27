@@ -1,5 +1,6 @@
 <div>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">
     <div class="table_container">
         <ul class="items_table">
             <li class="table-title">
@@ -16,7 +17,7 @@
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaController.php');
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');
-                //require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
+                require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
                 require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php');
                 $idIPelicula = $_GET['id'];
                 $peliculaObjeto = obtenerPelicula($idIPelicula);
@@ -36,18 +37,21 @@
                         isset($_POST['clasificacion']) &&
                         isset($_POST['genero']) &&
                         isset($_POST['portada']) &&
-                        isset($_POST['duracion']))
+                        isset($_POST['horas']) &&
+                        isset($_POST['minutos']) &&
+                        isset($_POST['segundos']))
                     {
+                        $duracion = intval($_POST['segundos']) + intval($_POST['minutos'])*60 + intval($_POST['horas']*3600);
                         $peliculaEditada = actualizarPelicula(
-                            $_POST['id'],
+                            $idIPelicula,
                             $_POST['titulo'],
                             $_POST['plataforma'],
                             $_POST['director'],
-                            $_POST['puntuacion'],
+                            intval($_POST['puntuacion']),
                             $_POST['clasificacion'],
                             $_POST['genero'],
                             $_POST['portada'],
-                            $_POST['duracion']
+                            $duracion
                         );
                     }
 
@@ -75,7 +79,7 @@
                 {
                     ?>
             <form name="editar_pelicula" action="" method="POST">
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="titulo" class="form-label">Título</label>
                     </div>
@@ -83,9 +87,8 @@
                         <input id="titulo" name="titulo" type="text" placeholder="Introduce el título de la pelicula" class="form-control" required
                         value="<?php if(isset($peliculaObjeto)) echo $peliculaObjeto->getTitulo(); ?>" />
                     </div>
-                    <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="plataforma" class="form-label">Plataforma</label>
                     </div>
@@ -113,9 +116,8 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="director" class="form-label">Director</label>
                     </div>
@@ -143,9 +145,8 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="puntuacion" class="form-label">Puntuacion</label>
                     </div>
@@ -153,9 +154,9 @@
                         <input id="puntuacion" name="puntuacion" type="number" min="0" max="10" placeholder="Introduce la puntuación de la pelicula" class="form-control" required
                         value="<?php if(isset($peliculaObjeto)) echo $peliculaObjeto->getPuntuacion(); ?>" />
                     </div>
-                    <div class="item_column"></div>
+                    
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="clasificacion" class="form-label">Clasificación</label>
                     </div>
@@ -183,21 +184,20 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
                 </li>
-                <!--li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="genero" class="form-label">Género</label>
                     </div>
                     <div class="item_column_wide">
                         <select id="genero" name="genero" required>
-                            <!?php
+                            <?php
                             $listaGeneros = listarGeneros();
                             foreach ($listaGeneros as $genero)
                             {
                                 ?>
-                                <option value="<!?php echo $genero->getId(); ?>"
-                                    <!?php
+                                <option value="<?php echo $genero->getId(); ?>"
+                                    <?php
                                     if(isset($peliculaObjeto))
                                     {
                                         $generoSeleccionado = $peliculaObjeto->getGeneroId();
@@ -207,22 +207,21 @@
                                         }
                                     }
                                     ?>>
-                                <!?php echo $genero->getNombre(); ?></option>
-                                <!?php
+                                <?php echo $genero->getNombre(); ?></option>
+                                <?php
                             }
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
-                </li-->
-                <li class="table-row">
+                </li>
+                <li class="table-row-form">
                     <div class="item_column">
                         <label for="portada" class="form-label">Portada</label>
                     </div>
                     <div class="item_column_wide">
                         <select id="portada" name="portada" required>
                             <?php
-                            $listaPortadas = listarPortadas();
+                            $listaPortadas = listarPortada();
                             foreach ($listaPortadas as $portada)
                             {
                                 ?>
@@ -243,17 +242,23 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item_column"></div>
                 </li>
-                <li class="table-row">
+                <li class="table-row-form">
                     <div class="item_column">
-                        <label for="duracion" class="form-label">Duración (seconds)</label>
+                        <label for="duracion" class="form-label">Duración</label>
                     </div>
+                    <?php if(isset($peliculaObjeto)) {
+                        $duracionTotal = $peliculaObjeto->getDuracion();
+                        $duracionHoras = floor($duracionTotal/3600);
+                        $duracionMinutos = floor(($duracionTotal-$duracionHoras*3600)/60);
+                        $duracionSegundos = floor(($duracionTotal-($duracionHoras*3600)-($duracionMinutos*60)));
+                    } ?>
                     <div class="item_column_wide">
-                        <input id="duracion" name="duracion" type="number"  class="form-control" required
-                               value="<?php if(isset($peliculaObjeto)) echo $peliculaObjeto->getDuracion(); ?>" />
+                        <input id="horas" name="horas" type="number" value="<?php echo $duracionHoras; ?>" placeholder="Introduce horas" min="0" class="form-control" required/>
+                        <input id="minutos" name="minutos" type="number" value="<?php echo $duracionMinutos; ?>" placeholder="Introduce minutos" min="0" max="59" class="form-control" required/>
+                        <input id="segundos" name="segundos" type="number" value="<?php echo $duracionSegundos; ?>" placeholder="Introduce segundos" min="0" max="59" class="form-control" required/>
                     </div>
-                    <div class="item_column"></div>
+                    
                 </li>
                 <input style="float: right;" type="submit" value="Editar" class="btn btn-primary" name="botonEditar" />
             </form>

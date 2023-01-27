@@ -8,19 +8,39 @@ class Portada
         private $imagen;
         private $database;
 
-        function __construct($idPortada, $imagenPortada)
-        {
 
+        public function constructor($idPortada,$imagenPortada)
+        {
             $this->id = $idPortada;
             $this->imagen = $imagenPortada;
             $this-> database= Database::getInstance();
         }
-        
-      /** Este metodo se encarga de obtener 
-       * todas las portadas de la bbdd
-       */
 
-        function getAll()
+        public function constructorVacio()
+        {
+            $this->database = Database::getInstance();
+        }
+
+        public function __construct()
+        {
+            $params = func_get_args();
+            $num_params = func_num_args();
+
+            if ($num_params == 0)
+            {
+                call_user_func_array(array($this,'constructorVacio'),$params);
+            }
+            else
+            {
+                call_user_func_array(array($this,'constructor'),$params);
+            }
+        }
+        
+        /**Ese metodo se encarga de obtener todas las portadas
+         *  usando su id 
+         * */
+
+        public function getAll()
         {
             $connection = $this->database -> getconnection(); 
             $query ="SELECT * FROM filmaviu.portada";
@@ -47,7 +67,7 @@ class Portada
         {
             $connection = $this->database->getConnection();
 
-            $query = "SELECT * FROM filmaviu.portada WHERE ID = '$this->id'";
+            $query = "SELECT * FROM filmaviu.portada WHERE ID =" .$this->id;
             $result = $connection->query($query);
 
             $portada = null;
@@ -65,11 +85,11 @@ class Portada
 
         public function create()
         {
-            $portadaCreada = false;
+           $portadaCreada = false;
            $connection = $this->database->getConnection();
-           if($resultInsert = $connection->query("INSERT INTO filmaviu.idiomas (IMAGEN) VALUES ('$this->imagen')"))
+           if($resultInsert = $connection->query("INSERT INTO filmaviu.portada (IMAGEN) VALUES ( '$this->imagen')"))
             {
-                $portadaCreada = false;
+                $portadaCreada = true;
             }
 
             $this->database->closeConnection();
@@ -83,15 +103,13 @@ class Portada
         {
             $portadaActualizada = false;
             $connection = $this->database->getConnection();
-            $query = "UPDATE filmaviu.portada set IMAGEN = '$this->imagen' WHERE id = '$this->id'";
-
-            if ($this->exists())
-            {
+            $query = "UPDATE filmaviu.portada set imagen = '$this->imagen' WHERE id=" .$this->id;
+                      
                 if ($resultInsert = $connection->query($query))
                 {
-                    $portdaActualizada = true;
+                    $portadaActualizada = true;
                 }
-            }
+  
 
             $this->database->closeConnection();
             return $portadaActualizada;
@@ -103,36 +121,16 @@ class Portada
         public function remove()
         {
             $portadaBorrada = false;
-            $query = "DELETE FROM filmaviu.portada WHERE id = '$this->id'";
-
-            if($this->exists())
+            $query = "DELETE FROM filmaviu.portada WHERE id = '$this->id'";   
+            $connection = $this->database->getConnection();
+            if($connection->query($query))
             {
-                $connection = $this->database->getConnection();
-                if($connection->query($query))
-                {
                     $portadaBorrada = true;
-                }
             }
             $this->database->closeConnection();
             return $portadaBorrada;
         }
 
-
-        /**Metodp que comprueba si un registro existe en la bbdd
-         * 
-         */
-        public function exists()
-        {
-            $existeportada = false;
-            $portada = $this->get();
-            if($portada != null)
-            {
-                $existeportada = true;
-            }
-            return $existeportada;
-        }
-
-        
 
 
         /**
@@ -151,6 +149,7 @@ class Portada
             $this->id = $id;
         }
 
+        
         /**
          * @return mixed
          */

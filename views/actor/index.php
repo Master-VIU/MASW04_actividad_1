@@ -1,5 +1,6 @@
 <div>
-<link rel="stylesheet" href="../styles/main.css" type="text/css">          
+<link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">          
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ActorController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/NacionalidadController.php');
@@ -39,7 +40,7 @@
                         $mDate = DateTime::createFromFormat('Y-m-d', $date);
                         $dateFormat = $mDate->format('d/m/Y');
                 ?>
-                <li class="table-row">                        
+                <li class="table-row-form">
                         <div class="item_column" data-label="Id"><?php echo $actor->getId(); ?></div>
                         <div class="item_column" data-label="Nombre"><?php echo $actor->getNombre(); ?></div>
                         <div class="item_column" data-label="Apellidos"><?php echo $actor->getApellidos(); ?></div>

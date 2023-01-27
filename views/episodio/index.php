@@ -1,5 +1,6 @@
 <div>
-<link rel="stylesheet" href="../styles/main.css" type="text/css">          
+<link rel="stylesheet" href="../styles/biblioteca.css" type="text/css">
+    <link rel="stylesheet" href="../styles/bootstrap.css" type="text/css">          
     <?php
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/EpisodioController.php');     
     ?>
@@ -38,7 +39,7 @@
                         <div class="item_column" data-label="IdTemporada"><?php echo $episodio->getTemporadaId(); ?></div>
                         <div class="item_column" data-label="Numero"><?php echo $episodio->getNumero(); ?></div>
                         <div class="item_column" data-label="Titulo"><?php echo $episodio->getTitulo(); ?></div>
-                        <div class="item_column" data-label="Duracion"><?php echo $episodio->getDuracion(); ?></div>
+                        <div class="item_column" data-label="Duracion"><?php echo gmdate("H:i:s", $episodio->getDuracion()); ?></div>
                         <div class="item_column" data-label="Acciones">
                              <div class="btn-group" role="group">
                                     <a class="btn btn-success" href="edit.php?id=<?php echo $episodio->getId(); ?>">
