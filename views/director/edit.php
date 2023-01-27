@@ -80,7 +80,7 @@
                         <label for="dni" class="form-label">Dni</label>
                  </div>
                     <div class="item_column_wide">
-                    <input id="dni" name="dni" type="text" placeholder="Introduce el dni" class="form-control" 
+                    <input id="dni" name="dni" type="text" maxlength="9" placeholder="Introduce dni max 9 caracteres" class="form-control" 
                         required value="<?php if(isset($directorObjeto)) echo $directorObjeto->getDni();?>" />
                 </div>
                 <div class="item_column"></div>
