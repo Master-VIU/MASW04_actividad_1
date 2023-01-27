@@ -73,7 +73,7 @@
                         <label for="dni" class="form-label">Dni</label>
                     </div>
                     <div class="item_column_wide">
-                        <input id="dni" name="dni" type="text" placeholder="Introduce el dni" class="form-control" required />
+                        <input id="dni" name="dni" type="text" maxlength="9" placeholder="Introduce dni max 9 caracteres" class="form-control" required />
                     </div>
                     <div class="item_column"></div>
                 </li>
