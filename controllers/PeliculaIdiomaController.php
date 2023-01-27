@@ -8,9 +8,9 @@
         return $listaPeliculaIdiomas;
     }
 
-    function obtenerPeliculaIdioma($idPeliculaIdioma)
+    function obtenerPeliculaIdioma($idPelicula)
     {
-        $model = new PeliculaIdioma($idPeliculaIdioma, null, null);
+        $model = new PeliculaIdioma($idPelicula, null, null);
         $peliculaIdiomaObjeto = $model->get();
         return $peliculaIdiomaObjeto;
     }

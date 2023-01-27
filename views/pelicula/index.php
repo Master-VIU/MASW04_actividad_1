@@ -6,8 +6,12 @@
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ClasificacionController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/DirectorController.php');
-        //require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/GeneroController.php');
         require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PortadaController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaIdiomaController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/IdiomaController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/PeliculaActorController.php');
+        require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/controllers/ActorController.php');
     ?>
             <div class="table_container">
                 <ul class="items_table">
@@ -34,6 +38,8 @@
                         <div class="item_column">Genero Id</div>
                         <div class="item_column">Portada Id</div>
                         <div class="item_column">Duracion</div>
+                        <div class="item_column">Idiomas</div>
+                        <div class="item_column">Actores</div>
                         <div class="item_column">Acciones</div>
                     </li>
                     <?php
@@ -59,7 +65,7 @@
                                     <?php echo obtenerClasificacion($pelicula->getClasificacionId())->getTipo(); ?>
                                 </div>
                                 <div class="item_column" data-label="GeneroId">
-                                    <!--?php echo obtenerGenero($pelicula->getGeneroId())->getNombre(); ?-->
+                                    <?php echo obtenerGenero($pelicula->getGeneroId())->getNombre(); ?>
                                 </div>
                                 <div class="item_column" data-label="PortadaId">
                                     <?php $portada = obtenerPortada($pelicula->getPortadaId()); ?>
@@ -68,6 +74,69 @@
                                 </div>
                                 <div class="item_column" data-label="Duracion">
                                     <?php echo gmdate("H:i:s", $pelicula->getDuracion()); ?>
+                                </div>
+                                <div class="item_column" data-label="Idiomas">
+                                    <?php
+                                        $listaIdiomasPelicula = "";
+
+                                        $listaIdiomasPelicula .= "AUDIO"."<br/>";
+                                        $listaAudio = listarIdiomasTipo($pelicula->getId(), "AUDIO");
+
+                                        if (count($listaAudio) > 0)
+                                        {
+                                            foreach ($listaAudio as $audio)
+                                            {
+                                                $listaIdiomasPelicula .= obtenerIdioma($audio->getIdIdioma())->getNombre()."<br/>";
+                                            }
+                                            $listaIdiomasPelicula .="<br/>";
+                                        }
+                                        else
+                                        {
+                                            $listaIdiomasPelicula .= "-<br/><br/>";
+                                        }
+
+                                        $listaIdiomasPelicula .= "SUBTITULO"."<br/>";
+                                        $listaSubtitulo = listarIdiomasTipo($pelicula->getId(), "SUBTITULO");
+
+                                        if (count($listaSubtitulo) > 0)
+                                        {
+                                            foreach ($listaSubtitulo as $subtitulo)
+                                            {
+                                                $listaIdiomasPelicula .= obtenerIdioma($subtitulo->getIdIdioma())->getNombre()."<br/>";
+                                            }
+                                            $listaIdiomasPelicula .= "<br/>";
+                                        }
+                                        else
+                                        {
+                                            $listaIdiomasPelicula .= "-<br/><br/>";
+                                        }
+
+
+                                        echo $listaIdiomasPelicula;
+                                    ?>
+                                </div>
+                                <div class="item_column" data-label="Actores">
+                                    <?php
+                                    $listaActoresPelicula = "";
+
+                                    $listaActores = listarActoresDePelicula($pelicula->getId());
+
+                                    if (count($listaActores) > 0)
+                                    {
+                                        foreach ($listaActores as $actorPelicula)
+                                        {
+                                            $actor = obtenerActor($actorPelicula->getIdActor());
+                                            $listaActoresPelicula .= $actor->getNombre()." ".$actor->getApellidos()."<br/>";
+                                        }
+                                        $listaActoresPelicula .="<br/>";
+                                    }
+                                    else
+                                    {
+                                        $listaActoresPelicula .= "-<br/><br/>";
+                                    }
+
+                                    echo $listaActoresPelicula;
+                                    ?>
                                 </div>
                                 <div class="item_column" data-label="Acciones">
                                     <div class="btn-group" role="group">

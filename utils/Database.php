@@ -18,10 +18,10 @@
         {
             // empty
         }
-        private function __wakeup()
-        {
+        // private function __wakeup()
+        // {
             // empty
-        }
+        //}
 
         public static function getInstance()
         {
