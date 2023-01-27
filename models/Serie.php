@@ -1,28 +1,215 @@
 <?php
 
+require_once( $_SERVER['DOCUMENT_ROOT'].'/MASW04_actividad_1/utils/Database.php');
     class Serie
     {
         private $id;
         private $titulo;
-        private $plataforma;
-        private $director;
-        private $clasificacion;
-        private $genero;
+        private $plataformaId;
+        private $directorId;
+        private $clasificacionId;
+        private $generoId;
+        private $portadaId;
+        private $database;
 
 
-        function __construct($idSerie, $tituloSerie, $plataformaSerie,
-             $directorSerie, $clasificacionSerie, $generoSerie)
+        function constructor($idSerie, $tituloSerie, $plataformaSerie,
+             $directorSerie, $clasificacionSerie, $generoSerie, $portadaSerie)
         {
 
             $this->id = $idSerie;
             $this->titulo = $tituloSerie;
-            $this->plataforma = $plataformaSerie;
-            $this->director = $directorSerie;
-            $this->clasificacion = $clasificacionSerie;
-            $this->genero = $generoSerie;
+            $this->plataformaId = $plataformaSerie;
+            $this->directorId = $directorSerie;
+            $this->clasificacionId = $clasificacionSerie;
+            $this->generoId = $generoSerie;
+            $this->portadaId = $portadaSerie;
+            $this->database = Database::getInstance();
          }
 
+         public function constructorVacio()
+        {
+            $this->database = Database::getInstance();
+        }
+
+        public function __construct()
+        {
+            $params = func_get_args();
+            $num_params = func_num_args();
+
+            if ($num_params == 0)
+            {
+                call_user_func_array(array($this,'constructorVacio'),$params);
+            }
+            else
+            {
+                call_user_func_array(array($this,'constructor'),$params);
+            }
+        }
         
+        public function getAll()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.series";
+            $result = $connection->query($query);
+            $listData = [];
+
+            foreach ($result as $item)
+            {
+                $serie = new Serie(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA']
+                );
+                array_push($listData, $serie);
+            }
+            $this->database->closeConnection();
+            return $listData;
+        }
+
+
+        public function get()
+        {
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.series WHERE ID = '$this->id'";
+            $result = $connection->query($query);
+
+            $serie = null;
+            foreach ($result as $item)
+            {
+                $serie = new Serie(
+                    $item['ID'],
+                    $item['TITULO'],
+                    $item['PLATAFORMA'],
+                    $item['DIRECTOR'],
+                    $item['CLASIFICACION'],
+                    $item['GENERO'],
+                    $item['PORTADA']
+                );
+            }
+
+            $this->database->closeConnection();
+            return $serie;
+        }
+
+        public function create()
+        {
+            $serieCreada = false;
+            if(!$this->existsTitulo())
+            {
+                
+                $connection = $this->database->getConnection();
+                $query = "INSERT INTO filmaviu.series (
+                                TITULO,
+                                PLATAFORMA,
+                                DIRECTOR,
+                                CLASIFICACION,
+                                GENERO,
+                                PORTADA
+                    ) VALUES (
+                              '$this->titulo',
+                              '$this->plataformaId',
+                              '$this->directorId',
+                              '$this->clasificacionId',
+                              '$this->generoId',
+                              '$this->portadaId'
+                    )";
+                if ($resultInsert = $connection->query($query))
+                {
+                    $serieCreada = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $serieCreada;
+        }
+
+        public function update()
+        {
+            $serieActualizada = false;
+            $query = "UPDATE filmaviu.series
+                        set 
+                            TITULO = '$this->titulo',
+                            PLATAFORMA = '$this->plataformaId',
+                            DIRECTOR = '$this->directorId',
+                            CLASIFICACION = '$this->clasificacionId',
+                            GENERO = '$this->generoId',
+                            PORTADA = '$this->portadaId'                
+                        WHERE id = '$this->id'";
+
+            if ($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if ($resultInsert = $connection->query($query))
+                {
+                    $serieActualizada = true;
+                }
+            }
+
+            $this->database->closeConnection();
+            return $serieActualizada;
+        }
+
+        public function remove()
+        {
+            $serieBorrada = false;
+            $query = "DELETE FROM filmaviu.series WHERE id = '$this->id'";
+
+            if ($this->exists())
+            {
+                $connection = $this->database->getConnection();
+                if ($resultRemove = $connection->query($query))
+                {
+                    $serieBorrada = true;
+                }
+            }
+
+            $this->database->closeConnection();
+            return $serieBorrada;
+        }
+
+        public function exists()
+        {
+            $existeSerie = false;
+            $serie = $this->get();
+            if ($serie != null)
+            {
+                $existeSerie = true;
+            }
+            return $existeSerie;
+        }
+
+        public function existsTitulo()
+        {
+            $connection = $this->database->getConnection();
+            $existeSerie = false;
+
+            if($this->titulo != null)
+            {
+                $query = "SELECT ID FROM filmaviu.series WHERE TITULO = '$this->titulo'";
+                $result = $connection->query($query);
+                $serie = null;
+                foreach ($result as $item)
+                {
+                    $serie = new Serie(
+                        $item['ID'], null, null, null, null, null, null, null, null
+                    );
+                }
+                if ($serie != null)
+                {
+                    $existeSerie = true;
+                }
+            }
+            $this->database->closeConnection();
+            return $existeSerie;
+        }
+
+
         /**
          * @return mixed
          */
@@ -58,66 +245,84 @@
            /**
          * @return mixed
          */
-        public function getPlataforma()
+        public function getPlataformaId()
         {
-            return $this->plataforma;
+            return $this->plataformaId;
         }
 
         /**
-         * @param mixed $plataforma
+         * @param mixed $plataformaId
          */
-        public function setPlataforma($plataforma)
+        public function setPlataformaId($plataformaId)
         {
-            $this->plataforma = $plataforma;
+            $this->plataformaId = $plataformaId;
         }
 
          /**
          * @return mixed
          */
-        public function getDirector()
+        public function getDirectorId()
         {
-            return $this->director;
+            return $this->directorId;
         }
 
         /**
-         * @param mixed $director
+         * @param mixed $directorId
          */
-        public function setDirector($director)
+        public function setDirectorId($directorId)
         {
-            $this->director = $director;
+            $this->directorId = $directorId;
         }
 
         /**
          * @return mixed
          */
-        public function getClasificacion()
+        public function getClasificacionId()
         {
-            return $this->clasificacion;
+            return $this->clasificacionId;
         }
 
         /**
-         * @param mixed $clasificacion
+         * @param mixed $clasificacionId
          */
-        public function setClasificacion($clasificacion)
+        public function setClasificacionId($clasificacionId)
         {
-            $this->clasificacion = $clasificacion;
+            $this->clasificacionId = $clasificacionId;
         }
 
            /**
          * @return mixed
          */
-        public function getGenero()
+        public function getGeneroId()
         {
-            return $this->genero;
+            return $this->generoId;
         }
 
         /**
-         * @param mixed $genero
+         * @param mixed $generoId
          */
-        public function setGenero($genero)
+        public function setGeneroId($generoId)
         {
-            $this->genero = $genero;
+            $this->generoId = $generoId;
         }
+
+          /**
+         * @return mixed
+         */
+        public function getPortadaId()
+        {
+            return $this->portadaId;
+        }
+
+        /**
+         * @param mixed $portadaId
+         */
+        public function setPortadaId($portadaId)
+        {
+            $this->portadaId = $portadaId;
+        }
+
+        
 
     }
     
