@@ -130,6 +130,22 @@
             return $existePeliculaActor;
         }
 
+        public function getAllActors(){
+
+            $connection = $this->database->getConnection();
+
+            $query = "SELECT * FROM filmaviu.pelicula_actores ID_ACTOR WHERE ID_PELICULA = ".$this->idPelicula;
+            $result = $connection->query($query);
+            $peliculaActor = null;
+            foreach ($result as $item)
+            {
+                $peliculaActor = new PeliculaActor($item['ID_PELICULA'], $item['ID_ACTOR']);
+            }
+
+            $this->database->closeConnection();
+            return $peliculaActor;
+        }
+
         /**
          * @return mixed
          */
