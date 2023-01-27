@@ -71,7 +71,6 @@
         {
             $peliculaActorCreada = false;
             $connection = $this->database->getConnection();
-            $query = "INSERT INTO filmaviu.pelicula_actores (ID_PELICULA, ID_ACTOR) VALUES ($this->idPelicula, $this->idActor)";
             if($resultInsert = $connection->query(                
                 "INSERT INTO filmaviu.pelicula_actores (ID_PELICULA, ID_ACTOR) VALUES ($this->idPelicula, $this->idActor)"
             ))
