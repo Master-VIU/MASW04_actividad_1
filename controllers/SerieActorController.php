@@ -14,25 +14,39 @@
         $serieActorObjeto = $model->get();
         return $serieActorObjeto;
     }
-    function crearSerieActor($pelicula, $idioma, $tipo)
+    function crearSerieActor($serie, $actor)
     {
-        $nuevaSerieActor = new SerieActor($pelicula, $idioma, $tipo);
+        $nuevaSerieActor = new SerieActor($serie, $actor);
         $serieActorCreada = $nuevaSerieActor->create();
         return $serieActorCreada;
     }
 
-    function actualizarSerieActor($pelicula, $idioma)
+    function actualizarSerieActor($idSerieActor, $nombreSerieActor)
     {
-        $serieActor = new SerieActor($pelicula, $idioma);
+        $serieActor = new SerieActor($idSerieActor, $nombreSerieActor);
         $serieActorActualizada = $serieActor->update();
         return $serieActorActualizada;
     }
 
-    function eliminarSerieActor($idSerieActor)
+    function eliminarSerieActor($idSerie, $idActor)
     {
-        $serieActor = new SerieActor($idSerieActor, null);
+        $serieActor = new SerieActor($idSerie, $idActor);
         $serieActorEliminada = $serieActor->remove();
         return $serieActorEliminada;
+    }
+
+    function eliminarSerieActorAll($idSerie)
+    {
+        $serieActor = new SerieActor($idSerie, null);
+        $serieActorEliminada = $serieActor->removeAll();
+        return $serieActorEliminada;
+    }
+
+    function listarActoresDeSerie($idSerie)
+    {
+        $model = new SerieActor($idSerie, null, null);
+        $listaActoresDeSerie = $model->getAllActores();
+        return $listaActoresDeSerie;
     }
 
 ?>
